@@ -9,6 +9,7 @@ export const ColumnSchema = z.object({
   key: z.string(),
   title: z.string(),
   order: z.number(),
+  color: z.string().nullable().optional(),
 });
 
 /**
@@ -97,6 +98,9 @@ export const ConfigSchema = z.object({
   opacity: z.number().min(0.7).max(1.0),
   autostart: z.boolean(),
   showStarterCards: z.boolean(),
+  sidebarPinned: z.boolean().optional(),
+  columnsLocked: z.boolean().optional(),
+  uiScale: z.number().min(0.8).max(1.2).optional(),
   columnTitles: z.record(z.string(), z.string()).optional(),
   fields: z
     .record(z.string(), FieldDefinitionSchema)

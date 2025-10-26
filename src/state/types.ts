@@ -7,12 +7,13 @@ import type { FieldDefinition } from "../io/fieldSchema";
 export type ColumnKey = "todo" | "doing" | "done" | string;
 
 /**
- * Column definition with key, title, and display order
+ * Column definition with key, title, display order, and optional color
  */
 export interface Column {
   key: ColumnKey;
   title: string;
   order: number;
+  color?: string | null; // hex like "#3b82f6"; null/undefined = default
 }
 
 /**
@@ -66,6 +67,7 @@ export interface Config {
   showStarterCards: boolean; // Settings toggle
   sidebarPinned: boolean; // Sidebar pin/unpin state
   columnsLocked: boolean; // Column dragging lock state
+  uiScale: number; // Global UI/font scale: 0.8 - 1.2 (default 1.0)
   // Future-proofing
   columnTitles?: Record<ColumnKey, string>;
   fields?: Record<string, FieldDefinition>; // fieldId → field definition (max 20 fields)

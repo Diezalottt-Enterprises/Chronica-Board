@@ -5,6 +5,7 @@ import { validateImportData, VALIDATION_LIMITS } from "./schema";
 import { PREDEFINED_COLORS } from "../state/types";
 import type { Card, Column, ExportFormat } from "../state/types";
 import { sanitizeColor } from "../utils/sanitize";
+import { VERSION_DISPLAY, VERSION_FILENAME } from "../version";
 
 /**
  * Normalize color name or hex to valid hex color
@@ -58,7 +59,7 @@ export async function exportBoard(
         project: boardName,
         generated_by: "Chronica",
         created_at: new Date().toISOString(),
-        app_version: "v0.1.0-alpha",
+        app_version: VERSION_DISPLAY,
         fields,
       },
       columns,
@@ -66,7 +67,7 @@ export async function exportBoard(
     };
 
     // Show save dialog
-    const defaultFilename = `chronica_${boardName.replace(/\s+/g, "_")}_v0.1.0-alpha.json`;
+    const defaultFilename = `chronica_${boardName.replace(/\s+/g, "_")}_${VERSION_FILENAME}.json`;
     const filePath = await save({
       defaultPath: defaultFilename,
       filters: [

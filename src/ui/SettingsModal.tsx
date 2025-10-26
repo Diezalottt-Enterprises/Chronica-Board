@@ -2,16 +2,21 @@
 import { useState, useEffect } from "react";
 import { useConfigStore } from "../stores/configStore";
 import { invoke } from "@tauri-apps/api/core";
+import { setPinned, setOpacity } from "../platform/window";
 import { FieldManager } from "./FieldManager";
+import type { Theme } from "../utils/theme";
+import { VERSION_DISPLAY } from "../version";
 
 interface SettingsModalProps {
   onClose: () => void;
+  theme: Theme;
+  onThemeChange: (theme: Theme) => void;
 }
 
 type Tab = "general" | "fields";
 
-export function SettingsModal({ onClose }: SettingsModalProps) {
-  const { config, setAutostart, setShowStarterCards } = useConfigStore();
+export function SettingsModal({ onClose, theme, onThemeChange }: SettingsModalProps) {
+  const { config, setAutostart, setShowStarterCards, setPinned: updatePinned, setOpacity: updateOpacity, setUIScale } = useConfigStore();
   const [activeTab, setActiveTab] = useState<Tab>("general");
   const [autostart, setAutostartLocal] = useState(config?.autostart || false);
   const [showStarters, setShowStartersLocal] = useState(
@@ -46,6 +51,23 @@ export function SettingsModal({ onClose }: SettingsModalProps) {
     const newValue = !showStarters;
     setShowStartersLocal(newValue);
     setShowStarterCards(newValue);
+  };
+
+  const handlePinToggle = async () => {
+    const newPinned = !config?.pinned;
+    await setPinned(newPinned);
+    updatePinned(newPinned);
+  };
+
+  const handleOpacityChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newOpacity = parseFloat(e.target.value);
+    await setOpacity(newOpacity);
+    updateOpacity(newOpacity);
+  };
+
+  const handleUIScaleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newScale = parseFloat(e.target.value);
+    setUIScale(newScale);
   };
 
   const handleOverlayClick = (e: React.MouseEvent) => {
@@ -100,6 +122,82 @@ export function SettingsModal({ onClose }: SettingsModalProps) {
           {activeTab === "general" && (
             <>
               <div className="form-group">
+                <label className="form-label">Appearance</label>
+                <div className="form-checkbox">
+                  <input
+                    type="checkbox"
+                    role="switch"
+                    id="darkMode"
+                    aria-checked={theme === 'dark'}
+                    checked={theme === 'dark'}
+                    onChange={(e) => onThemeChange(e.target.checked ? 'dark' : 'light')}
+                  />
+                  <label htmlFor="darkMode" style={{ textTransform: "none" }}>
+                    Dark mode
+                  </label>
+                </div>
+                <p style={{ fontSize: "11px", color: "var(--text-secondary)", marginTop: "4px", marginLeft: "24px" }}>
+                  Use a dark background and light text
+                </p>
+
+                <div style={{ marginTop: "12px", marginLeft: "24px" }}>
+                  <label htmlFor="uiScaleSlider" style={{ fontSize: "11px", color: "var(--text-secondary)", display: "block", marginBottom: "8px" }}>
+                    UI Scale: {Math.round((config?.uiScale ?? 1.0) * 100)}%
+                  </label>
+                  <input
+                    id="uiScaleSlider"
+                    type="range"
+                    min="0.8"
+                    max="1.2"
+                    step="0.05"
+                    value={config?.uiScale ?? 1.0}
+                    onChange={handleUIScaleChange}
+                    style={{ width: "100%" }}
+                  />
+                  <p style={{ fontSize: "10px", color: "var(--text-secondary)", marginTop: "4px" }}>
+                    Adjust font and icon sizes globally (80% - 120%)
+                  </p>
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">Window</label>
+                <div className="form-checkbox">
+                  <input
+                    type="checkbox"
+                    id="alwaysOnTop"
+                    checked={config?.pinned || false}
+                    onChange={handlePinToggle}
+                  />
+                  <label htmlFor="alwaysOnTop" style={{ textTransform: "none" }}>
+                    Always on top
+                  </label>
+                </div>
+                <p style={{ fontSize: "11px", color: "var(--text-secondary)", marginTop: "4px", marginLeft: "24px" }}>
+                  Keep window above other applications
+                </p>
+
+                <div style={{ marginTop: "12px", marginLeft: "24px" }}>
+                  <label htmlFor="opacitySlider" style={{ fontSize: "11px", color: "var(--text-secondary)", display: "block", marginBottom: "8px" }}>
+                    Window opacity: {Math.round((config?.opacity ?? 1.0) * 100)}%
+                  </label>
+                  <input
+                    id="opacitySlider"
+                    type="range"
+                    min="0.7"
+                    max="1.0"
+                    step="0.05"
+                    value={config?.opacity ?? 1.0}
+                    onChange={handleOpacityChange}
+                    style={{ width: "100%" }}
+                  />
+                  <p style={{ fontSize: "10px", color: "var(--text-secondary)", marginTop: "4px", fontStyle: "italic" }}>
+                    Note: Opacity control requires window decorations (currently disabled for transparency)
+                  </p>
+                </div>
+              </div>
+
+              <div className="form-group">
                 <div className="form-checkbox">
                   <input
                     type="checkbox"
@@ -130,7 +228,7 @@ export function SettingsModal({ onClose }: SettingsModalProps) {
               <div className="form-group" style={{ marginTop: "24px" }}>
                 <label className="form-label">About</label>
                 <p style={{ fontSize: "12px", color: "var(--text-secondary)" }}>
-                  Chronica v0.1.0-alpha
+                  Chronica {VERSION_DISPLAY}
                   <br />
                   Desktop Sticky Kanban Widget
                 </p>

@@ -3,6 +3,7 @@
 import { create } from "zustand";
 import type { Config } from "../state/types";
 import type { FieldDefinition } from "../io/fieldSchema";
+import { VERSION_DISPLAY } from "../version";
 
 /**
  * Config state interface
@@ -19,6 +20,7 @@ interface ConfigState {
   setShowStarterCards: (show: boolean) => void;
   setSidebarPinned: (pinned: boolean) => void;
   setColumnsLocked: (locked: boolean) => void;
+  setUIScale: (scale: number) => void;
 
   // Field management
   addField: (fieldId: string, field: FieldDefinition) => void;
@@ -80,6 +82,13 @@ export const useConfigStore = create<ConfigState>((set, get) => ({
     set({ config: { ...state.config, columnsLocked: locked } });
   },
 
+  setUIScale: (scale) => {
+    const state = get();
+    if (!state.config) return;
+    const clamped = Math.max(0.8, Math.min(1.2, scale));
+    set({ config: { ...state.config, uiScale: clamped } });
+  },
+
   // Field management actions
   addField: (fieldId, field) => {
     const state = get();
@@ -121,7 +130,7 @@ export const useConfigStore = create<ConfigState>((set, get) => ({
  */
 export function getDefaultConfig(): Config {
   return {
-    appVersion: "v0.1.0-alpha",
+    appVersion: VERSION_DISPLAY,
     window: { x: 100, y: 100, width: 1000, height: 700 },
     pinned: false,
     opacity: 1.0,
@@ -129,5 +138,6 @@ export function getDefaultConfig(): Config {
     showStarterCards: true,
     sidebarPinned: true,
     columnsLocked: false,
+    uiScale: 1.0,
   };
 }

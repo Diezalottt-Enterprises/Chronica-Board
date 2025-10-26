@@ -69,6 +69,7 @@ interface BoardState {
   addColumn: (title: string) => void;
   deleteColumn: (columnKey: string) => void;
   reorderColumns: (newOrder: Column[]) => void;
+  setColumnColor: (columnKey: string, color: string | null) => void;
 }
 
 /**
@@ -318,6 +319,24 @@ export const useBoardStore = create<BoardState>((set, get) => ({
     const updatedBoard: Board = {
       ...state.activeBoard,
       columns: updatedColumns,
+    };
+
+    const boards = state.boards.map((b) =>
+      b.id === updatedBoard.id ? updatedBoard : b
+    );
+
+    set({ boards, activeBoard: updatedBoard });
+  },
+
+  setColumnColor: (columnKey, color) => {
+    const state = get();
+    if (!state.activeBoard) return;
+
+    const updatedBoard: Board = {
+      ...state.activeBoard,
+      columns: state.activeBoard.columns.map((col) =>
+        col.key === columnKey ? { ...col, color } : col
+      ),
     };
 
     const boards = state.boards.map((b) =>

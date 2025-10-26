@@ -23,6 +23,7 @@ import { CardEditor } from "./ui/CardEditor";
 import { SettingsModal } from "./ui/SettingsModal";
 import { ImportModal } from "./ui/ImportModal";
 import type { Card, ColumnKey } from "./state/types";
+import { detectInitialTheme, type Theme } from "./utils/theme";
 import "./App.css";
 
 function App() {
@@ -43,6 +44,19 @@ function App() {
   } = useUIStore();
 
   const [isInitialized, setIsInitialized] = useState(false);
+  const [theme, setTheme] = useState<Theme>(detectInitialTheme());
+
+  // Apply theme to document
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('chronica.theme', theme);
+  }, [theme]);
+
+  // Apply UI scale to document
+  useEffect(() => {
+    const scale = config?.uiScale ?? 1.0;
+    document.documentElement.style.setProperty('--ui-scale', scale.toString());
+  }, [config?.uiScale]);
 
   // Initialize app on mount
   useEffect(() => {
@@ -215,9 +229,7 @@ function App() {
 
   return (
     <div className="app">
-      <Header
-        onSettings={() => setShowSettings(true)}
-      />
+      <Header />
 
       <div className={`main-content ${!config?.sidebarPinned ? 'sidebar-collapsed' : ''}`}>
         <Sidebar
@@ -225,7 +237,7 @@ function App() {
           onImport={() => setShowImport(true)}
           onExport={handleExport}
         />
-        <KanbanBoard onEditCard={handleEditCard} onNewCard={handleNewCard} />
+        <KanbanBoard onEditCard={handleEditCard} onNewCard={handleNewCard} theme={theme} />
       </div>
 
       {/* Modals */}
@@ -237,7 +249,13 @@ function App() {
         />
       )}
 
-      {showSettings && <SettingsModal onClose={() => setShowSettings(false)} />}
+      {showSettings && (
+        <SettingsModal
+          onClose={() => setShowSettings(false)}
+          theme={theme}
+          onThemeChange={setTheme}
+        />
+      )}
 
       {showImport && <ImportModal onClose={() => setShowImport(false)} />}
 

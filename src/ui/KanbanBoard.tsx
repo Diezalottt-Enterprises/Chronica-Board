@@ -23,12 +23,16 @@ import { useUIStore } from "../stores/uiStore";
 import { useConfigStore } from "../stores/configStore";
 import { Card } from "./Card";
 import { SortableCard } from "./SortableCard";
+import { ColorPicker } from "./ColorPicker";
 import type { Card as CardType, Column, ColumnKey } from "../state/types";
 import { DEFAULT_RANK, RANK_GAP } from "../constants/ranks";
+import { getColumnColorStyles } from "../utils/theme";
+import type { Theme } from "../utils/theme";
 
 interface KanbanBoardProps {
   onEditCard: (card: CardType) => void;
   onNewCard: (column: ColumnKey) => void;
+  theme: Theme;
 }
 
 // Droppable column component
@@ -55,11 +59,13 @@ interface SortableColumnProps {
   column: Column;
   cards: CardType[];
   locked: boolean;
+  theme: Theme;
   onEditCard: (card: CardType) => void;
   onNewCard: (column: ColumnKey) => void;
   onRenameColumn: (columnKey: string, currentTitle: string) => void;
   onDeleteColumn: (columnKey: string, columnTitle: string) => void;
   onToggleLock: () => void;
+  onSetColor: (columnKey: string, color: string | null) => void;
   columnsCount: number;
 }
 
@@ -67,13 +73,17 @@ function SortableColumn({
   column,
   cards,
   locked,
+  theme,
   onEditCard,
   onNewCard,
   onRenameColumn,
   onDeleteColumn,
   onToggleLock,
+  onSetColor,
   columnsCount,
 }: SortableColumnProps) {
+  const [showColorPicker, setShowColorPicker] = useState(false);
+
   const {
     attributes,
     listeners,
@@ -86,26 +96,53 @@ function SortableColumn({
     disabled: locked,
   });
 
+  const colorStyles = getColumnColorStyles(column.color, theme);
+
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
     opacity: isDragging ? 0.5 : 1,
+    backgroundColor: colorStyles.bodyBg || undefined,
+    borderLeft: colorStyles.rail ? `4px solid ${colorStyles.rail}` : undefined,
+  };
+
+  const headerStyle = {
+    backgroundColor: colorStyles.headerBg || undefined,
+    borderBottom: colorStyles.border ? `1px solid ${colorStyles.border}` : undefined,
+    color: colorStyles.textColor || undefined,
   };
 
   return (
     <div ref={setNodeRef} style={style} className="kanban-column">
-      <div className="column-header">
+      <div className="column-header" style={headerStyle}>
         <div style={{ display: "flex", alignItems: "center", gap: "8px", flex: 1 }}>
+          {!locked && (
+            <span
+              className="drag-grip"
+              style={{ cursor: "grab", opacity: 0.4 }}
+              {...attributes}
+              {...listeners}
+              title="Drag to reorder"
+            >
+              ⋮⋮
+            </span>
+          )}
           <span
             className="column-title"
-            style={{ cursor: locked ? "default" : "grab" }}
-            {...(!locked ? { ...attributes, ...listeners } : {})}
+            style={{ cursor: locked ? "default" : "pointer" }}
           >
             {column.title}
           </span>
           <span className="column-count">{cards.length}</span>
         </div>
-        <div style={{ display: "flex", gap: "4px" }}>
+        <div style={{ display: "flex", gap: "4px", alignItems: "center" }}>
+          <button
+            className="color-swatch"
+            onClick={() => setShowColorPicker(true)}
+            title="Set column color"
+            aria-label={`Set column color for ${column.title}`}
+            style={{ backgroundColor: column.color || "#d0d0d0" }}
+          />
           <button
             className="icon"
             onClick={onToggleLock}
@@ -130,6 +167,15 @@ function SortableColumn({
           </button>
         </div>
       </div>
+
+      {showColorPicker && (
+        <ColorPicker
+          currentColor={column.color}
+          columnTitle={column.title}
+          onApply={(color) => onSetColor(column.key, color)}
+          onClose={() => setShowColorPicker(false)}
+        />
+      )}
 
       <SortableContext
         items={cards.map((c) => c.id)}
@@ -157,8 +203,8 @@ function SortableColumn({
   );
 }
 
-export function KanbanBoard({ onEditCard, onNewCard }: KanbanBoardProps) {
-  const { activeBoard, moveCard, renameColumn, addColumn, deleteColumn, reorderColumns } = useBoardStore();
+export function KanbanBoard({ onEditCard, onNewCard, theme }: KanbanBoardProps) {
+  const { activeBoard, moveCard, renameColumn, addColumn, deleteColumn, reorderColumns, setColumnColor } = useBoardStore();
   const { showPrompt, showConfirm } = useUIStore();
   const { config, setColumnsLocked } = useConfigStore();
   const [activeCardId, setActiveCardId] = useState<string | null>(null);
@@ -322,11 +368,13 @@ export function KanbanBoard({ onEditCard, onNewCard }: KanbanBoardProps) {
                 column={column}
                 cards={cards}
                 locked={columnsLocked}
+                theme={theme}
                 onEditCard={onEditCard}
                 onNewCard={onNewCard}
                 onRenameColumn={handleRenameColumn}
                 onDeleteColumn={handleDeleteColumn}
                 onToggleLock={() => setColumnsLocked(!columnsLocked)}
+                onSetColor={setColumnColor}
                 columnsCount={activeBoard.columns.length}
               />
             );

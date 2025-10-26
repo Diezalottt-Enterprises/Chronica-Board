@@ -2,6 +2,7 @@
 import { create } from "zustand";
 import { v4 as uuidv4 } from "uuid";
 import type { Board, BoardsIndex, Card, Config, Column } from "./types";
+import { VERSION_DISPLAY } from "../version";
 
 /**
  * Default columns for new boards
@@ -284,7 +285,7 @@ export const useStore = create<AppState>((set, get) => ({
  */
 export function getDefaultConfig(): Config {
   return {
-    appVersion: "v0.1.0-alpha",
+    appVersion: VERSION_DISPLAY,
     window: { x: 100, y: 100, width: 1000, height: 700 },
     pinned: false,
     opacity: 1.0,
@@ -292,5 +293,6 @@ export function getDefaultConfig(): Config {
     showStarterCards: true,
     sidebarPinned: true,
     columnsLocked: false,
+    uiScale: 1.0,
   };
 }

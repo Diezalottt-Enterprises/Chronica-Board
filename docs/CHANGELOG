@@ -1,0 +1,57 @@
+# Changelog
+
+All notable changes to Chronica will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
+
+## [0.1.0-alpha.2] - 2025-10-25
+
+Major UI/UX update adding dark mode support, customizable column colors, and improved settings organization. Cards maintain light theme for readability while interface adapts to dark mode. Added global UI scaling and centralized version management.
+
+### Added
+- Dark mode theme toggle in Settings � Appearance
+- Column color customization with color picker
+  - Visual color swatch button on column headers
+  - Full color picker with hex input, native selector, and 6 quick swatches
+  - Color-tinted column backgrounds and borders that respect dark mode
+- Drag grip visual indicator (��) on column headers when unlocked
+- Global UI Scale setting (80%-120%) in Settings � Appearance
+  - Scales all fonts and icons proportionally
+- "Always on top" toggle moved to Settings � Window
+- Window opacity slider moved to Settings � Window (note: requires decorations)
+- Centralized version management system (src/version.ts)
+
+### Changed
+- Cards now always use light theme (white background, dark text) regardless of dark mode
+- Header controls (pin, opacity, settings) removed from top-right
+- Settings now accessible only via sidebar gear icon
+- Header elements now shrink responsively when window is resized
+- Save status indicator now only shows "Saving..." and errors (no persistent " Saved")
+- All modals, forms, and context menus now respect dark mode theme
+- Version references now pull from single source file
+
+### Fixed
+- Header overflow when window width decreases
+- Modal backgrounds appearing white in dark mode
+- Form inputs not respecting dark mode colors
+
+### Technical
+- Added column.color field to Column interface and schema validation
+- Added uiScale, sidebarPinned, columnsLocked to Config schema
+- Added setColumnColor action to boardStore
+- Added setUIScale action to configStore
+- CSS variables now support --ui-scale multiplier for fonts
+- Theme utilities (detectInitialTheme, getColumnColorStyles, hexToRgba, isDark)
+
+
+## [0.1.0-alpha.1] - 2025-10-25
+
+Initial commit to https://gitlab.com/stack-junkie-projects/chronica-board
+
+### Added
+ 
+### Changed
+ 
+### Fixed
+
+### Commit Message
