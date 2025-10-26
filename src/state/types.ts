@@ -1,0 +1,107 @@
+// Core TypeScript type definitions for Chronica v0.1.0-alpha
+import type { FieldDefinition } from "../io/fieldSchema";
+
+/**
+ * Column keys - identifies each column in the kanban board
+ */
+export type ColumnKey = "todo" | "doing" | "done" | string;
+
+/**
+ * Column definition with key, title, and display order
+ */
+export interface Column {
+  key: ColumnKey;
+  title: string;
+  order: number;
+}
+
+/**
+ * Card definition - represents a single task card
+ */
+export interface Card {
+  id: string;
+  title: string;
+  description?: string;
+  column: ColumnKey;
+  color?: string; // Hex color or predefined name (mint, cyan, salmon, lavender, slate)
+  tags?: string[];
+  rank?: number; // For ordering within column (default: 1000)
+  due?: string | null; // ISO8601 date
+  links?: Array<{ label: string; url: string }>;
+  customFields?: Record<string, unknown>; // fieldId → value (validated against field definitions)
+}
+
+/**
+ * Board definition - contains columns and cards
+ */
+export interface Board {
+  id: string;
+  name: string;
+  columns: Column[];
+  cards: Card[];
+}
+
+/**
+ * Boards index - tracks all boards and active board
+ */
+export interface BoardsIndex {
+  boards: Array<{ id: string; name: string }>;
+  activeId: string;
+}
+
+/**
+ * Application config - window state, settings, preferences
+ */
+export interface Config {
+  appVersion: string; // "v0.1.0-alpha"
+  window: {
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+  };
+  pinned: boolean;
+  opacity: number; // 0.7 - 1.0
+  autostart: boolean;
+  showStarterCards: boolean; // Settings toggle
+  sidebarPinned: boolean; // Sidebar pin/unpin state
+  columnsLocked: boolean; // Column dragging lock state
+  // Future-proofing
+  columnTitles?: Record<ColumnKey, string>;
+  fields?: Record<string, FieldDefinition>; // fieldId → field definition (max 20 fields)
+}
+
+/**
+ * Import/Export JSON schema metadata
+ */
+export interface BoardMetadata {
+  schema: "chronica-board";
+  version: 1;
+  project: string;
+  generated_by: string;
+  created_at: string; // ISO8601
+  app_version: string; // "v0.1.0-alpha"
+  fields?: Record<string, FieldDefinition>; // Custom field definitions
+}
+
+/**
+ * Complete export format (canonical schema)
+ */
+export interface ExportFormat {
+  meta: BoardMetadata;
+  columns: Column[];
+  cards: Card[];
+}
+
+/**
+ * Predefined color names
+ */
+export const PREDEFINED_COLORS = {
+  mint: "#98D8C8",
+  cyan: "#6FC2DB",
+  salmon: "#F88379",
+  lavender: "#B4A7D6",
+  slate: "#8D99AE",
+} as const;
+
+export type PredefinedColorName = keyof typeof PREDEFINED_COLORS;
