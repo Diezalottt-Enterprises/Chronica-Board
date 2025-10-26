@@ -33,7 +33,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
     };
   }
 
-  componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
+  override componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
     logger.error("Error boundary caught error:", error);
     logger.error("Error info:", errorInfo);
   }
@@ -47,68 +47,82 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
     window.location.reload();
   };
 
-  render(): ReactNode {
+  override render(): ReactNode {
     if (this.state.hasError) {
       return (
-        <div style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          height: "100vh",
-          padding: "32px",
-          textAlign: "center",
-          background: "#f5f5f5",
-        }}>
-          <div style={{
-            fontSize: "64px",
-            marginBottom: "16px",
-          }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100vh",
+            padding: "32px",
+            textAlign: "center",
+            background: "#f5f5f5",
+          }}
+        >
+          <div
+            style={{
+              fontSize: "64px",
+              marginBottom: "16px",
+            }}
+          >
             ⚠️
           </div>
-          <h1 style={{
-            fontSize: "24px",
-            fontWeight: 600,
-            marginBottom: "8px",
-            color: "#2b2d42",
-          }}>
+          <h1
+            style={{
+              fontSize: "24px",
+              fontWeight: 600,
+              marginBottom: "8px",
+              color: "#2b2d42",
+            }}
+          >
             Something went wrong
           </h1>
-          <p style={{
-            fontSize: "14px",
-            color: "#6c757d",
-            marginBottom: "24px",
-            maxWidth: "400px",
-          }}>
+          <p
+            style={{
+              fontSize: "14px",
+              color: "#6c757d",
+              marginBottom: "24px",
+              maxWidth: "400px",
+            }}
+          >
             Chronica encountered an unexpected error. Your data is safe.
           </p>
           {this.state.error && (
-            <details style={{
-              marginBottom: "24px",
-              padding: "16px",
-              background: "white",
-              borderRadius: "8px",
-              maxWidth: "600px",
-              width: "100%",
-              textAlign: "left",
-            }}>
-              <summary style={{
-                cursor: "pointer",
-                fontWeight: 600,
-                marginBottom: "8px",
-                color: "#2b2d42",
-              }}>
+            <details
+              style={{
+                marginBottom: "24px",
+                padding: "16px",
+                background: "white",
+                borderRadius: "8px",
+                maxWidth: "600px",
+                width: "100%",
+                textAlign: "left",
+              }}
+            >
+              <summary
+                style={{
+                  cursor: "pointer",
+                  fontWeight: 600,
+                  marginBottom: "8px",
+                  color: "#2b2d42",
+                }}
+              >
                 Error details
               </summary>
-              <code style={{
-                display: "block",
-                padding: "8px",
-                background: "#f5f5f5",
-                borderRadius: "4px",
-                fontSize: "12px",
-                overflow: "auto",
-                color: "#d32f2f",
-              }}>
+              <code
+                style={{
+                  display: "block",
+                  padding: "8px",
+                  background: "#f5f5f5",
+                  borderRadius: "4px",
+                  fontSize: "12px",
+                  overflow: "auto",
+                  color: "#d32f2f",
+                }}
+              >
                 {this.state.error.toString()}
               </code>
             </details>

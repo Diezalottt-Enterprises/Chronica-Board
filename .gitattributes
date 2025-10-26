@@ -1,0 +1,39 @@
+# Auto detect text files and normalize line endings to LF
+* text=auto eol=lf
+
+# Explicitly declare text files
+*.js text
+*.ts text
+*.tsx text
+*.jsx text
+*.json text
+*.md text
+*.yml text
+*.yaml text
+*.toml text
+*.rs text
+*.css text
+*.html text
+*.svg text
+
+# Denote binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.ico binary
+*.icns binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+
+# Export-ignore (exclude from archives)
+.gitignore export-ignore
+.gitattributes export-ignore
+.editorconfig export-ignore
+.eslintrc* export-ignore
+.prettierrc* export-ignore
+.husky export-ignore
+CLAUDE.md export-ignore
+.claude export-ignore
+docs/manual-testing-guide.md export-ignore

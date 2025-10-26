@@ -182,7 +182,7 @@ export interface ImportPreview {
   boardName: string;
   columnCount: number;
   cardCount: number;
-  firstCards: Array<{ title: string; column: string }>;
+  firstCards: { title: string; column: string }[];
 }
 
 export function getImportPreview(jsonContent: string): ImportPreview {

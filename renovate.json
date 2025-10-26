@@ -1,0 +1,28 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "schedule": ["before 6am on Monday"],
+  "labels": ["dependencies"],
+  "packageRules": [
+    {
+      "groupName": "Tauri packages",
+      "matchPackagePatterns": ["^@tauri-apps/"]
+    },
+    {
+      "groupName": "Testing packages",
+      "matchPackagePatterns": ["^@testing-library/", "^vitest", "^@vitest/"]
+    },
+    {
+      "groupName": "React packages",
+      "matchPackagePatterns": ["^react", "^@types/react"]
+    },
+    {
+      "groupName": "ESLint packages",
+      "matchPackagePatterns": ["^eslint", "^@eslint/", "typescript-eslint"]
+    }
+  ],
+  "vulnerabilityAlerts": {
+    "labels": ["security"],
+    "assignees": ["@me"]
+  }
+}

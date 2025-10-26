@@ -76,10 +76,12 @@ export const BoardSchema = z.object({
  * Boards index schema - validates boards index structure
  */
 export const BoardsIndexSchema = z.object({
-  boards: z.array(z.object({
-    id: z.string().uuid(),
-    name: z.string(),
-  })),
+  boards: z.array(
+    z.object({
+      id: z.string().uuid(),
+      name: z.string(),
+    })
+  ),
   activeId: z.string().uuid(),
 });
 

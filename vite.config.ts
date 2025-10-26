@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import { resolve } from "path";
 
 // @ts-expect-error process is a nodejs global
 const host = process.env.TAURI_DEV_HOST;
@@ -7,6 +8,20 @@ const host = process.env.TAURI_DEV_HOST;
 // https://vite.dev/config/
 export default defineConfig(async () => ({
   plugins: [react()],
+
+  resolve: {
+    alias: {
+      "@": resolve(__dirname, "./src"),
+      "@ui": resolve(__dirname, "./src/ui"),
+      "@stores": resolve(__dirname, "./src/stores"),
+      "@services": resolve(__dirname, "./src/services"),
+      "@io": resolve(__dirname, "./src/io"),
+      "@platform": resolve(__dirname, "./src/platform"),
+      "@state": resolve(__dirname, "./src/state"),
+      "@constants": resolve(__dirname, "./src/constants"),
+      "@utils": resolve(__dirname, "./src/utils"),
+    },
+  },
 
   // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`
   //
@@ -25,8 +40,8 @@ export default defineConfig(async () => ({
         }
       : undefined,
     watch: {
-      // 3. tell Vite to ignore watching `src-tauri`
-      ignored: ["**/src-tauri/**"],
+      // 3. tell Vite to ignore watching `tauri`
+      ignored: ["**/tauri/**"],
     },
   },
 }));

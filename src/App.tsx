@@ -48,14 +48,14 @@ function App() {
 
   // Apply theme to document
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('chronica.theme', theme);
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("chronica.theme", theme);
   }, [theme]);
 
   // Apply UI scale to document
   useEffect(() => {
     const scale = config?.uiScale ?? 1.0;
-    document.documentElement.style.setProperty('--ui-scale', scale.toString());
+    document.documentElement.style.setProperty("--ui-scale", scale.toString());
   }, [config?.uiScale]);
 
   // Initialize app on mount
@@ -112,7 +112,10 @@ function App() {
           message: (error as Error).message,
           stack: (error as Error).stack,
         });
-        showAlert("Initialization Failed", `Failed to initialize Chronica: ${(error as Error).message}\n\nCheck DevTools console (F12) for details.`);
+        showAlert(
+          "Initialization Failed",
+          `Failed to initialize Chronica: ${(error as Error).message}\n\nCheck DevTools console (F12) for details.`
+        );
       }
     }
 
@@ -130,7 +133,9 @@ function App() {
       }
     });
 
-    return () => unsubscribe();
+    return () => {
+      unsubscribe();
+    };
   }, [setSaveStatus, showAlert]);
 
   // Auto-save boards when they change
@@ -154,7 +159,9 @@ function App() {
       }
     }, 500);
 
-    return () => clearTimeout(timerId);
+    return () => {
+      clearTimeout(timerId);
+    };
   }, [boards, activeBoard, isInitialized]);
 
   // Auto-save config when it changes
@@ -165,7 +172,9 @@ function App() {
       saveQueue.save("config", saveConfig, config);
     }, 500);
 
-    return () => clearTimeout(timerId);
+    return () => {
+      clearTimeout(timerId);
+    };
   }, [config, isInitialized]);
 
   // Listen for tray "open-settings" event
@@ -214,13 +223,15 @@ function App() {
   if (!isInitialized) {
     return (
       <div className="app">
-        <div style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          height: "100vh",
-          color: "var(--text-secondary)"
-        }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100vh",
+            color: "var(--text-secondary)",
+          }}
+        >
           Loading Chronica...
         </div>
       </div>
@@ -231,10 +242,14 @@ function App() {
     <div className="app">
       <Header />
 
-      <div className={`main-content ${!config?.sidebarPinned ? 'sidebar-collapsed' : ''}`}>
+      <div className={`main-content ${!config?.sidebarPinned ? "sidebar-collapsed" : ""}`}>
         <Sidebar
-          onSettings={() => setShowSettings(true)}
-          onImport={() => setShowImport(true)}
+          onSettings={() => {
+            setShowSettings(true);
+          }}
+          onImport={() => {
+            setShowImport(true);
+          }}
           onExport={handleExport}
         />
         <KanbanBoard onEditCard={handleEditCard} onNewCard={handleNewCard} theme={theme} />
@@ -251,13 +266,21 @@ function App() {
 
       {showSettings && (
         <SettingsModal
-          onClose={() => setShowSettings(false)}
+          onClose={() => {
+            setShowSettings(false);
+          }}
           theme={theme}
           onThemeChange={setTheme}
         />
       )}
 
-      {showImport && <ImportModal onClose={() => setShowImport(false)} />}
+      {showImport && (
+        <ImportModal
+          onClose={() => {
+            setShowImport(false);
+          }}
+        />
+      )}
 
       {/* Global Dialog */}
       {dialog && (

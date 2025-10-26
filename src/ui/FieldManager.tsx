@@ -74,7 +74,11 @@ export function FieldManager() {
       if (formMin) validation.min = parseFloat(formMin);
       if (formMax) validation.max = parseFloat(formMax);
 
-      if (validation.min !== undefined && validation.max !== undefined && validation.min >= validation.max) {
+      if (
+        validation.min !== undefined &&
+        validation.max !== undefined &&
+        validation.min >= validation.max
+      ) {
         showAlert("Validation Error", "Min must be less than max");
         return;
       }
@@ -83,8 +87,8 @@ export function FieldManager() {
     if (formType === "select") {
       const options = formOptions
         .split("\n")
-        .map(o => o.trim())
-        .filter(o => o.length > 0);
+        .map((o) => o.trim())
+        .filter((o) => o.length > 0);
 
       if (options.length === 0) {
         showAlert("Validation Error", "Select field requires at least one option");
@@ -134,13 +138,23 @@ export function FieldManager() {
 
   return (
     <div>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginBottom: "16px",
+        }}
+      >
         <div>
           <p style={{ fontSize: "12px", color: "var(--text-secondary)" }}>
             {fieldCount}/{FIELD_LIMITS.MAX_FIELDS_PER_BOARD} custom fields
           </p>
         </div>
-        <button onClick={handleNew} disabled={fieldCount >= FIELD_LIMITS.MAX_FIELDS_PER_BOARD || editingId !== null}>
+        <button
+          onClick={handleNew}
+          disabled={fieldCount >= FIELD_LIMITS.MAX_FIELDS_PER_BOARD || editingId !== null}
+        >
           + New Field
         </button>
       </div>
@@ -164,17 +178,27 @@ export function FieldManager() {
               <div>
                 <div style={{ fontWeight: 600, fontSize: "14px" }}>
                   {field.label}
-                  {field.required && <span style={{ color: "var(--color-salmon)", marginLeft: "4px" }}>*</span>}
+                  {field.required && (
+                    <span style={{ color: "var(--color-salmon)", marginLeft: "4px" }}>*</span>
+                  )}
                 </div>
-                <div style={{ fontSize: "12px", color: "var(--text-secondary)" }}>
-                  {field.type}
-                </div>
+                <div style={{ fontSize: "12px", color: "var(--text-secondary)" }}>{field.type}</div>
               </div>
               <div style={{ display: "flex", gap: "8px" }}>
-                <button onClick={() => handleEdit(id, field)} className="icon">
+                <button
+                  onClick={() => {
+                    handleEdit(id, field);
+                  }}
+                  className="icon"
+                >
                   ✏️
                 </button>
-                <button onClick={() => handleDelete(id, field.label)} className="icon">
+                <button
+                  onClick={() => {
+                    handleDelete(id, field.label);
+                  }}
+                  className="icon"
+                >
                   🗑️
                 </button>
               </div>
@@ -195,7 +219,13 @@ export function FieldManager() {
 
       {/* Edit Form */}
       {editingId !== null && (
-        <div style={{ background: "var(--bg-secondary)", padding: "16px", borderRadius: "var(--radius-md)" }}>
+        <div
+          style={{
+            background: "var(--bg-secondary)",
+            padding: "16px",
+            borderRadius: "var(--radius-md)",
+          }}
+        >
           <h3 style={{ marginBottom: "16px", fontSize: "16px" }}>
             {editingId === "new" ? "New Field" : "Edit Field"}
           </h3>
@@ -206,7 +236,9 @@ export function FieldManager() {
               type="text"
               className="form-input"
               value={formLabel}
-              onChange={(e) => setFormLabel(e.target.value)}
+              onChange={(e) => {
+                setFormLabel(e.target.value);
+              }}
               placeholder="Priority, Assignee, etc."
               maxLength={FIELD_LIMITS.MAX_LABEL_LENGTH}
             />
@@ -214,7 +246,13 @@ export function FieldManager() {
 
           <div className="form-group">
             <label className="form-label">Type</label>
-            <select className="form-select" value={formType} onChange={(e) => setFormType(e.target.value as FieldType)}>
+            <select
+              className="form-select"
+              value={formType}
+              onChange={(e) => {
+                setFormType(e.target.value as FieldType);
+              }}
+            >
               <option value="text">Text</option>
               <option value="number">Number</option>
               <option value="date">Date</option>
@@ -230,7 +268,9 @@ export function FieldManager() {
                 type="checkbox"
                 id="required"
                 checked={formRequired}
-                onChange={(e) => setFormRequired(e.target.checked)}
+                onChange={(e) => {
+                  setFormRequired(e.target.checked);
+                }}
               />
               <label htmlFor="required" style={{ textTransform: "none" }}>
                 Required field
@@ -246,7 +286,9 @@ export function FieldManager() {
                 type="number"
                 className="form-input"
                 value={formMaxLength}
-                onChange={(e) => setFormMaxLength(e.target.value)}
+                onChange={(e) => {
+                  setFormMaxLength(e.target.value);
+                }}
                 placeholder={`Max ${FIELD_LIMITS.MAX_TEXT_LENGTH}`}
                 min="1"
                 max={FIELD_LIMITS.MAX_TEXT_LENGTH}
@@ -262,7 +304,9 @@ export function FieldManager() {
                   type="number"
                   className="form-input"
                   value={formMin}
-                  onChange={(e) => setFormMin(e.target.value)}
+                  onChange={(e) => {
+                    setFormMin(e.target.value);
+                  }}
                   placeholder="Minimum value"
                 />
               </div>
@@ -272,7 +316,9 @@ export function FieldManager() {
                   type="number"
                   className="form-input"
                   value={formMax}
-                  onChange={(e) => setFormMax(e.target.value)}
+                  onChange={(e) => {
+                    setFormMax(e.target.value);
+                  }}
                   placeholder="Maximum value"
                 />
               </div>
@@ -285,7 +331,9 @@ export function FieldManager() {
               <textarea
                 className="form-textarea"
                 value={formOptions}
-                onChange={(e) => setFormOptions(e.target.value)}
+                onChange={(e) => {
+                  setFormOptions(e.target.value);
+                }}
                 placeholder="High&#10;Medium&#10;Low"
                 rows={5}
               />

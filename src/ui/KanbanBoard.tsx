@@ -15,7 +15,7 @@ import {
   verticalListSortingStrategy,
   horizontalListSortingStrategy,
   useSortable,
-  arrayMove
+  arrayMove,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { useBoardStore } from "../stores/boardStore";
@@ -38,7 +38,7 @@ interface KanbanBoardProps {
 // Droppable column component
 function DroppableColumn({
   columnKey,
-  children
+  children,
 }: {
   columnKey: string;
   children: React.ReactNode;
@@ -84,14 +84,7 @@ function SortableColumn({
 }: SortableColumnProps) {
   const [showColorPicker, setShowColorPicker] = useState(false);
 
-  const {
-    attributes,
-    listeners,
-    setNodeRef,
-    transform,
-    transition,
-    isDragging,
-  } = useSortable({
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: `column-${column.key}`,
     disabled: locked,
   });
@@ -127,10 +120,7 @@ function SortableColumn({
               ⋮⋮
             </span>
           )}
-          <span
-            className="column-title"
-            style={{ cursor: locked ? "default" : "pointer" }}
-          >
+          <span className="column-title" style={{ cursor: locked ? "default" : "pointer" }}>
             {column.title}
           </span>
           <span className="column-count">{cards.length}</span>
@@ -138,7 +128,9 @@ function SortableColumn({
         <div style={{ display: "flex", gap: "4px", alignItems: "center" }}>
           <button
             className="color-swatch"
-            onClick={() => setShowColorPicker(true)}
+            onClick={() => {
+              setShowColorPicker(true);
+            }}
             title="Set column color"
             aria-label={`Set column color for ${column.title}`}
             style={{ backgroundColor: column.color || "#d0d0d0" }}
@@ -152,14 +144,18 @@ function SortableColumn({
           </button>
           <button
             className="icon"
-            onClick={() => onRenameColumn(column.key, column.title)}
+            onClick={() => {
+              onRenameColumn(column.key, column.title);
+            }}
             title="Rename column"
           >
             ✏️
           </button>
           <button
             className="icon"
-            onClick={() => onDeleteColumn(column.key, column.title)}
+            onClick={() => {
+              onDeleteColumn(column.key, column.title);
+            }}
             title="Delete column"
             disabled={columnsCount <= 1}
           >
@@ -172,8 +168,12 @@ function SortableColumn({
         <ColorPicker
           currentColor={column.color}
           columnTitle={column.title}
-          onApply={(color) => onSetColor(column.key, color)}
-          onClose={() => setShowColorPicker(false)}
+          onApply={(color) => {
+            onSetColor(column.key, color);
+          }}
+          onClose={() => {
+            setShowColorPicker(false);
+          }}
         />
       )}
 
@@ -187,7 +187,9 @@ function SortableColumn({
             <SortableCard
               key={card.id}
               card={card}
-              onClick={() => onEditCard(card)}
+              onClick={() => {
+                onEditCard(card);
+              }}
             />
           ))}
         </DroppableColumn>
@@ -195,7 +197,9 @@ function SortableColumn({
 
       <button
         className="add-card-btn"
-        onClick={() => onNewCard(column.key)}
+        onClick={() => {
+          onNewCard(column.key);
+        }}
       >
         + Add Card
       </button>
@@ -204,7 +208,15 @@ function SortableColumn({
 }
 
 export function KanbanBoard({ onEditCard, onNewCard, theme }: KanbanBoardProps) {
-  const { activeBoard, moveCard, renameColumn, addColumn, deleteColumn, reorderColumns, setColumnColor } = useBoardStore();
+  const {
+    activeBoard,
+    moveCard,
+    renameColumn,
+    addColumn,
+    deleteColumn,
+    reorderColumns,
+    setColumnColor,
+  } = useBoardStore();
   const { showPrompt, showConfirm } = useUIStore();
   const { config, setColumnsLocked } = useConfigStore();
   const [activeCardId, setActiveCardId] = useState<string | null>(null);
@@ -218,23 +230,33 @@ export function KanbanBoard({ onEditCard, onNewCard, theme }: KanbanBoardProps) 
   );
 
   // Column management handlers
-  const handleRenameColumn = useCallback((columnKey: string, currentTitle: string) => {
-    showPrompt("Rename Column", "Enter new column name:", currentTitle, (newTitle) => {
-      if (newTitle.trim()) {
-        renameColumn(columnKey, newTitle.trim());
-      }
-    });
-  }, [showPrompt, renameColumn]);
+  const handleRenameColumn = useCallback(
+    (columnKey: string, currentTitle: string) => {
+      showPrompt("Rename Column", "Enter new column name:", currentTitle, (newTitle) => {
+        if (newTitle.trim()) {
+          renameColumn(columnKey, newTitle.trim());
+        }
+      });
+    },
+    [showPrompt, renameColumn]
+  );
 
-  const handleDeleteColumn = useCallback((columnKey: string, columnTitle: string) => {
-    if (!activeBoard) return;
-    if (activeBoard.columns.length <= 1) {
-      return; // Prevent deleting last column
-    }
-    showConfirm("Delete Column", `Delete column "${columnTitle}"? All cards will be moved to the first remaining column.`, () => {
-      deleteColumn(columnKey);
-    });
-  }, [showConfirm, deleteColumn, activeBoard]);
+  const handleDeleteColumn = useCallback(
+    (columnKey: string, columnTitle: string) => {
+      if (!activeBoard) return;
+      if (activeBoard.columns.length <= 1) {
+        return; // Prevent deleting last column
+      }
+      showConfirm(
+        "Delete Column",
+        `Delete column "${columnTitle}"? All cards will be moved to the first remaining column.`,
+        () => {
+          deleteColumn(columnKey);
+        }
+      );
+    },
+    [showConfirm, deleteColumn, activeBoard]
+  );
 
   const handleAddColumn = useCallback(() => {
     showPrompt("New Column", "Enter column name:", "New Column", (title) => {
@@ -260,7 +282,7 @@ export function KanbanBoard({ onEditCard, onNewCard, theme }: KanbanBoardProps) 
 
   const handleDragStart = useCallback((event: DragStartEvent) => {
     const id = event.active.id as string;
-    if (!id.startsWith('column-')) {
+    if (!id.startsWith("column-")) {
       setActiveCardId(id);
     }
   }, []);
@@ -277,15 +299,15 @@ export function KanbanBoard({ onEditCard, onNewCard, theme }: KanbanBoardProps) 
       const overId = over.id as string;
 
       // Handle column reordering
-      if (activeId.startsWith('column-') && overId.startsWith('column-')) {
-        const activeColKey = activeId.replace('column-', '');
-        const overColKey = overId.replace('column-', '');
+      if (activeId.startsWith("column-") && overId.startsWith("column-")) {
+        const activeColKey = activeId.replace("column-", "");
+        const overColKey = overId.replace("column-", "");
 
         if (activeColKey === overColKey) return;
 
         const sortedColumns = activeBoard.columns.sort((a, b) => a.order - b.order);
-        const oldIndex = sortedColumns.findIndex(col => col.key === activeColKey);
-        const newIndex = sortedColumns.findIndex(col => col.key === overColKey);
+        const oldIndex = sortedColumns.findIndex((col) => col.key === activeColKey);
+        const newIndex = sortedColumns.findIndex((col) => col.key === overColKey);
 
         const reordered = arrayMove(sortedColumns, oldIndex, newIndex);
         reorderColumns(reordered);
@@ -315,7 +337,7 @@ export function KanbanBoard({ onEditCard, onNewCard, theme }: KanbanBoardProps) 
           newRank = (overCard.rank ?? DEFAULT_RANK) - RANK_GAP;
         } else {
           const prevCard = columnCards[overIndex - 1];
-          newRank = ((prevCard.rank ?? DEFAULT_RANK) + (overCard.rank ?? DEFAULT_RANK)) / 2;
+          newRank = ((prevCard?.rank ?? DEFAULT_RANK) + (overCard.rank ?? DEFAULT_RANK)) / 2;
         }
 
         moveCard(cardId, overCard.column, newRank);
@@ -327,6 +349,11 @@ export function KanbanBoard({ onEditCard, onNewCard, theme }: KanbanBoardProps) 
   const activeCard = useMemo(
     () => activeBoard?.cards.find((c) => c.id === activeCardId),
     [activeBoard, activeCardId]
+  );
+
+  const sortedColumns = useMemo(
+    () => activeBoard?.columns.sort((a, b) => a.order - b.order) ?? [],
+    [activeBoard]
   );
 
   if (!activeBoard) {
@@ -341,21 +368,12 @@ export function KanbanBoard({ onEditCard, onNewCard, theme }: KanbanBoardProps) 
     );
   }
 
-  const sortedColumns = useMemo(
-    () => activeBoard.columns.sort((a, b) => a.order - b.order),
-    [activeBoard]
-  );
-
   const columnsLocked = config?.columnsLocked ?? false;
 
   return (
-    <DndContext
-      sensors={sensors}
-      onDragStart={handleDragStart}
-      onDragEnd={handleDragEnd}
-    >
+    <DndContext sensors={sensors} onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
       <SortableContext
-        items={sortedColumns.map(col => `column-${col.key}`)}
+        items={sortedColumns.map((col) => `column-${col.key}`)}
         strategy={horizontalListSortingStrategy}
       >
         <div className="kanban-board">
@@ -373,7 +391,9 @@ export function KanbanBoard({ onEditCard, onNewCard, theme }: KanbanBoardProps) 
                 onNewCard={onNewCard}
                 onRenameColumn={handleRenameColumn}
                 onDeleteColumn={handleDeleteColumn}
-                onToggleLock={() => setColumnsLocked(!columnsLocked)}
+                onToggleLock={() => {
+                  setColumnsLocked(!columnsLocked);
+                }}
                 onSetColor={setColumnColor}
                 columnsCount={activeBoard.columns.length}
               />
@@ -389,9 +409,7 @@ export function KanbanBoard({ onEditCard, onNewCard, theme }: KanbanBoardProps) 
         </div>
       </SortableContext>
 
-      <DragOverlay>
-        {activeCard ? <Card card={activeCard} onClick={() => {}} /> : null}
-      </DragOverlay>
+      <DragOverlay>{activeCard ? <Card card={activeCard} onClick={() => {}} /> : null}</DragOverlay>
     </DndContext>
   );
 }

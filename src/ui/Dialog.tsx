@@ -82,7 +82,9 @@ export function Dialog({
               type="text"
               className="form-input"
               value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
+              onChange={(e) => {
+                setInputValue(e.target.value);
+              }}
               onKeyDown={handleKeyDown}
               autoFocus
               style={{ marginTop: "12px" }}

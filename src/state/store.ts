@@ -116,9 +116,7 @@ export const useStore = create<AppState>((set, get) => ({
       id: uuidv4(),
       name,
       columns: DEFAULT_COLUMNS,
-      cards: withStarters
-        ? STARTER_CARDS.map((card) => ({ ...card, id: uuidv4() }))
-        : [],
+      cards: withStarters ? STARTER_CARDS.map((card) => ({ ...card, id: uuidv4() })) : [],
     };
 
     const boards = [...state.boards, newBoard];
@@ -127,9 +125,7 @@ export const useStore = create<AppState>((set, get) => ({
 
   renameBoard: (boardId, newName) => {
     const state = get();
-    const boards = state.boards.map((b) =>
-      b.id === boardId ? { ...b, name: newName } : b
-    );
+    const boards = state.boards.map((b) => (b.id === boardId ? { ...b, name: newName } : b));
     const activeBoard =
       state.activeBoard?.id === boardId
         ? { ...state.activeBoard, name: newName }
@@ -147,8 +143,7 @@ export const useStore = create<AppState>((set, get) => ({
     }
 
     // If deleted board was active, switch to first board
-    const activeBoard =
-      state.activeBoard?.id === boardId ? boards[0] : state.activeBoard;
+    const activeBoard = state.activeBoard?.id === boardId ? boards[0] : state.activeBoard;
 
     set({ boards, activeBoard });
   },
@@ -185,9 +180,7 @@ export const useStore = create<AppState>((set, get) => ({
       cards: [...state.activeBoard.cards, newCard],
     };
 
-    const boards = state.boards.map((b) =>
-      b.id === updatedBoard.id ? updatedBoard : b
-    );
+    const boards = state.boards.map((b) => (b.id === updatedBoard.id ? updatedBoard : b));
 
     set({ boards, activeBoard: updatedBoard });
   },
@@ -203,9 +196,7 @@ export const useStore = create<AppState>((set, get) => ({
       ),
     };
 
-    const boards = state.boards.map((b) =>
-      b.id === updatedBoard.id ? updatedBoard : b
-    );
+    const boards = state.boards.map((b) => (b.id === updatedBoard.id ? updatedBoard : b));
 
     set({ boards, activeBoard: updatedBoard });
   },
@@ -219,9 +210,7 @@ export const useStore = create<AppState>((set, get) => ({
       cards: state.activeBoard.cards.filter((card) => card.id !== cardId),
     };
 
-    const boards = state.boards.map((b) =>
-      b.id === updatedBoard.id ? updatedBoard : b
-    );
+    const boards = state.boards.map((b) => (b.id === updatedBoard.id ? updatedBoard : b));
 
     set({ boards, activeBoard: updatedBoard });
   },
@@ -239,15 +228,15 @@ export const useStore = create<AppState>((set, get) => ({
       ),
     };
 
-    const boards = state.boards.map((b) =>
-      b.id === updatedBoard.id ? updatedBoard : b
-    );
+    const boards = state.boards.map((b) => (b.id === updatedBoard.id ? updatedBoard : b));
 
     set({ boards, activeBoard: updatedBoard });
   },
 
   // Config actions
-  setConfig: (config) => set({ config }),
+  setConfig: (config) => {
+    set({ config });
+  },
 
   updateConfig: (updates) => {
     const state = get();

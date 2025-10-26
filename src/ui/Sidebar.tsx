@@ -80,7 +80,9 @@ export function Sidebar({ onSettings, onImport, onExport }: SidebarProps) {
               +
             </button>
             <button
-              onClick={() => setSidebarPinned(!config?.sidebarPinned)}
+              onClick={() => {
+                setSidebarPinned(!config?.sidebarPinned);
+              }}
               className="icon"
               title={config?.sidebarPinned ? "Collapse sidebar" : "Expand sidebar"}
             >
@@ -94,22 +96,32 @@ export function Sidebar({ onSettings, onImport, onExport }: SidebarProps) {
             <div
               key={board.id}
               className={`board-item ${activeBoard?.id === board.id ? "active" : ""}`}
-              onClick={() => setActiveBoard(board.id)}
-              onContextMenu={(e) => handleContextMenu(e, board.id)}
+              onClick={() => {
+                setActiveBoard(board.id);
+              }}
+              onContextMenu={(e) => {
+                handleContextMenu(e, board.id);
+              }}
             >
               {renamingId === board.id ? (
                 <input
                   type="text"
                   className="form-input"
                   value={renamingValue}
-                  onChange={(e) => setRenamingValue(e.target.value)}
-                  onBlur={() => handleRenameSubmit(board.id)}
+                  onChange={(e) => {
+                    setRenamingValue(e.target.value);
+                  }}
+                  onBlur={() => {
+                    handleRenameSubmit(board.id);
+                  }}
                   onKeyDown={(e) => {
                     if (e.key === "Enter") handleRenameSubmit(board.id);
                     if (e.key === "Escape") setRenamingId(null);
                   }}
                   autoFocus
-                  onClick={(e) => e.stopPropagation()}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
                 />
               ) : (
                 <>
@@ -152,10 +164,7 @@ export function Sidebar({ onSettings, onImport, onExport }: SidebarProps) {
             }}
             onClick={handleClickOutside}
           />
-          <div
-            className="context-menu"
-            style={{ top: contextMenu.y, left: contextMenu.x }}
-          >
+          <div className="context-menu" style={{ top: contextMenu.y, left: contextMenu.x }}>
             <div
               className="context-menu-item"
               onClick={() => {
@@ -167,7 +176,9 @@ export function Sidebar({ onSettings, onImport, onExport }: SidebarProps) {
             </div>
             <div
               className="context-menu-item danger"
-              onClick={() => handleDelete(contextMenu.boardId)}
+              onClick={() => {
+                handleDelete(contextMenu.boardId);
+              }}
             >
               🗑️ Delete
             </div>

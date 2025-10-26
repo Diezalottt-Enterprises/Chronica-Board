@@ -16,12 +16,17 @@ interface SettingsModalProps {
 type Tab = "general" | "fields";
 
 export function SettingsModal({ onClose, theme, onThemeChange }: SettingsModalProps) {
-  const { config, setAutostart, setShowStarterCards, setPinned: updatePinned, setOpacity: updateOpacity, setUIScale } = useConfigStore();
+  const {
+    config,
+    setAutostart,
+    setShowStarterCards,
+    setPinned: updatePinned,
+    setOpacity: updateOpacity,
+    setUIScale,
+  } = useConfigStore();
   const [activeTab, setActiveTab] = useState<Tab>("general");
   const [autostart, setAutostartLocal] = useState(config?.autostart || false);
-  const [showStarters, setShowStartersLocal] = useState(
-    config?.showStarterCards ?? true
-  );
+  const [showStarters, setShowStartersLocal] = useState(config?.showStarterCards ?? true);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -87,14 +92,23 @@ export function SettingsModal({ onClose, theme, onThemeChange }: SettingsModalPr
         </div>
 
         {/* Tabs */}
-        <div style={{ display: "flex", borderBottom: "1px solid var(--border-color)", padding: "0 24px" }}>
+        <div
+          style={{
+            display: "flex",
+            borderBottom: "1px solid var(--border-color)",
+            padding: "0 24px",
+          }}
+        >
           <button
-            onClick={() => setActiveTab("general")}
+            onClick={() => {
+              setActiveTab("general");
+            }}
             style={{
               padding: "12px 16px",
               background: "transparent",
               border: "none",
-              borderBottom: activeTab === "general" ? "2px solid var(--color-cyan)" : "2px solid transparent",
+              borderBottom:
+                activeTab === "general" ? "2px solid var(--color-cyan)" : "2px solid transparent",
               color: activeTab === "general" ? "var(--color-cyan)" : "var(--text-secondary)",
               cursor: "pointer",
               fontWeight: activeTab === "general" ? 600 : 400,
@@ -103,12 +117,15 @@ export function SettingsModal({ onClose, theme, onThemeChange }: SettingsModalPr
             General
           </button>
           <button
-            onClick={() => setActiveTab("fields")}
+            onClick={() => {
+              setActiveTab("fields");
+            }}
             style={{
               padding: "12px 16px",
               background: "transparent",
               border: "none",
-              borderBottom: activeTab === "fields" ? "2px solid var(--color-cyan)" : "2px solid transparent",
+              borderBottom:
+                activeTab === "fields" ? "2px solid var(--color-cyan)" : "2px solid transparent",
               color: activeTab === "fields" ? "var(--color-cyan)" : "var(--text-secondary)",
               cursor: "pointer",
               fontWeight: activeTab === "fields" ? 600 : 400,
@@ -128,20 +145,37 @@ export function SettingsModal({ onClose, theme, onThemeChange }: SettingsModalPr
                     type="checkbox"
                     role="switch"
                     id="darkMode"
-                    aria-checked={theme === 'dark'}
-                    checked={theme === 'dark'}
-                    onChange={(e) => onThemeChange(e.target.checked ? 'dark' : 'light')}
+                    aria-checked={theme === "dark"}
+                    checked={theme === "dark"}
+                    onChange={(e) => {
+                      onThemeChange(e.target.checked ? "dark" : "light");
+                    }}
                   />
                   <label htmlFor="darkMode" style={{ textTransform: "none" }}>
                     Dark mode
                   </label>
                 </div>
-                <p style={{ fontSize: "11px", color: "var(--text-secondary)", marginTop: "4px", marginLeft: "24px" }}>
+                <p
+                  style={{
+                    fontSize: "11px",
+                    color: "var(--text-secondary)",
+                    marginTop: "4px",
+                    marginLeft: "24px",
+                  }}
+                >
                   Use a dark background and light text
                 </p>
 
                 <div style={{ marginTop: "12px", marginLeft: "24px" }}>
-                  <label htmlFor="uiScaleSlider" style={{ fontSize: "11px", color: "var(--text-secondary)", display: "block", marginBottom: "8px" }}>
+                  <label
+                    htmlFor="uiScaleSlider"
+                    style={{
+                      fontSize: "11px",
+                      color: "var(--text-secondary)",
+                      display: "block",
+                      marginBottom: "8px",
+                    }}
+                  >
                     UI Scale: {Math.round((config?.uiScale ?? 1.0) * 100)}%
                   </label>
                   <input
@@ -173,12 +207,27 @@ export function SettingsModal({ onClose, theme, onThemeChange }: SettingsModalPr
                     Always on top
                   </label>
                 </div>
-                <p style={{ fontSize: "11px", color: "var(--text-secondary)", marginTop: "4px", marginLeft: "24px" }}>
+                <p
+                  style={{
+                    fontSize: "11px",
+                    color: "var(--text-secondary)",
+                    marginTop: "4px",
+                    marginLeft: "24px",
+                  }}
+                >
                   Keep window above other applications
                 </p>
 
                 <div style={{ marginTop: "12px", marginLeft: "24px" }}>
-                  <label htmlFor="opacitySlider" style={{ fontSize: "11px", color: "var(--text-secondary)", display: "block", marginBottom: "8px" }}>
+                  <label
+                    htmlFor="opacitySlider"
+                    style={{
+                      fontSize: "11px",
+                      color: "var(--text-secondary)",
+                      display: "block",
+                      marginBottom: "8px",
+                    }}
+                  >
                     Window opacity: {Math.round((config?.opacity ?? 1.0) * 100)}%
                   </label>
                   <input
@@ -191,8 +240,16 @@ export function SettingsModal({ onClose, theme, onThemeChange }: SettingsModalPr
                     onChange={handleOpacityChange}
                     style={{ width: "100%" }}
                   />
-                  <p style={{ fontSize: "10px", color: "var(--text-secondary)", marginTop: "4px", fontStyle: "italic" }}>
-                    Note: Opacity control requires window decorations (currently disabled for transparency)
+                  <p
+                    style={{
+                      fontSize: "10px",
+                      color: "var(--text-secondary)",
+                      marginTop: "4px",
+                      fontStyle: "italic",
+                    }}
+                  >
+                    Note: Opacity control requires window decorations (currently disabled for
+                    transparency)
                   </p>
                 </div>
               </div>

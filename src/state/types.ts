@@ -3,8 +3,9 @@ import type { FieldDefinition } from "../io/fieldSchema";
 
 /**
  * Column keys - identifies each column in the kanban board
+ * Accepts any string, with common defaults being "todo", "doing", "done"
  */
-export type ColumnKey = "todo" | "doing" | "done" | string;
+export type ColumnKey = string;
 
 /**
  * Column definition with key, title, display order, and optional color
@@ -28,7 +29,7 @@ export interface Card {
   tags?: string[];
   rank?: number; // For ordering within column (default: 1000)
   due?: string | null; // ISO8601 date
-  links?: Array<{ label: string; url: string }>;
+  links?: { label: string; url: string }[];
   customFields?: Record<string, unknown>; // fieldId → value (validated against field definitions)
 }
 
@@ -46,7 +47,7 @@ export interface Board {
  * Boards index - tracks all boards and active board
  */
 export interface BoardsIndex {
-  boards: Array<{ id: string; name: string }>;
+  boards: { id: string; name: string }[];
   activeId: string;
 }
 

@@ -1,0 +1,21 @@
+# Build outputs
+dist
+tauri/target
+tauri/gen
+tauri/WixTools
+node_modules
+
+# Lock files
+pnpm-lock.yaml
+package-lock.json
+
+# Generated files
+*.min.js
+*.min.css
+
+# Coverage
+coverage
+
+# Cache
+.cache
+.eslintcache

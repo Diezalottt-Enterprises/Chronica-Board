@@ -43,7 +43,9 @@ class SaveQueue {
    * Notify subscribers of status change
    */
   private notify(key: string, status: SaveStatus, error?: Error): void {
-    this.subscribers.forEach((cb) => cb(key, status, error));
+    this.subscribers.forEach((cb) => {
+      cb(key, status, error);
+    });
   }
 
   /**

@@ -1,0 +1,85 @@
+# GitLab CI/CD Pipeline for Chronica v0.1.0-alpha
+# Runs lint, typecheck, test, and build on every push
+
+image: node:22
+
+variables:
+  PNPM_HOME: /root/.local/share/pnpm
+  COREPACK_ENABLE_STRICT: 0
+
+# Cache pnpm store for faster builds
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .pnpm-store
+
+# Install dependencies once, reuse across jobs
+before_script:
+  - corepack enable
+  - pnpm -v || npm install -g pnpm@9
+  - pnpm config set store-dir .pnpm-store
+  - pnpm install --frozen-lockfile
+
+stages:
+  - lint
+  - typecheck
+  - test
+  - build
+
+# Stage 1: Linting and formatting checks
+lint:
+  stage: lint
+  script:
+    - pnpm lint
+    - pnpm format --check
+  allow_failure: false
+  only:
+    - merge_requests
+    - main
+
+# Stage 2: TypeScript type checking
+typecheck:
+  stage: typecheck
+  script:
+    - pnpm typecheck
+  allow_failure: false
+  only:
+    - merge_requests
+    - main
+
+# Stage 3: Run tests with coverage
+test:
+  stage: test
+  script:
+    - pnpm test run --coverage
+  coverage: '/All files[^|]*\|[^|]*\s+([\d\.]+)/'
+  artifacts:
+    when: always
+    paths:
+      - coverage
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage/cobertura-coverage.xml
+    expire_in: 30 days
+  only:
+    - merge_requests
+    - main
+
+# Stage 4: Production build
+build:
+  stage: build
+  script:
+    - pnpm build
+  artifacts:
+    paths:
+      - dist
+    expire_in: 1 week
+  only:
+    - merge_requests
+    - main
+  dependencies: []
+# Optional: Security scanning (requires GitLab Ultimate/Gold)
+# include:
+#   - template: Security/Dependency-Scanning.gitlab-ci.yml
+#   - template: Security/Secret-Detection.gitlab-ci.yml

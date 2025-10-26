@@ -18,12 +18,7 @@ const QUICK_SWATCHES = [
   "#f43f5e", // rose
 ];
 
-export function ColorPicker({
-  currentColor,
-  columnTitle,
-  onApply,
-  onClose,
-}: ColorPickerProps) {
+export function ColorPicker({ currentColor, columnTitle, onApply, onClose }: ColorPickerProps) {
   const [color, setColor] = useState(currentColor || "#3b82f6");
   const [hexInput, setHexInput] = useState(currentColor || "#3b82f6");
   const [isValid, setIsValid] = useState(true);
@@ -87,14 +82,21 @@ export function ColorPicker({
 
   return (
     <div className="color-picker-overlay">
-      <div ref={popoverRef} className="color-picker-popover" role="dialog" aria-label={`Set column color for ${columnTitle}`}>
+      <div
+        ref={popoverRef}
+        className="color-picker-popover"
+        role="dialog"
+        aria-label={`Set column color for ${columnTitle}`}
+      >
         <div className="color-picker-section">
           <label className="form-label">Color</label>
           <input
             ref={colorInputRef}
             type="color"
             value={color}
-            onChange={(e) => handleColorChange(e.target.value)}
+            onChange={(e) => {
+              handleColorChange(e.target.value);
+            }}
             className="color-input"
           />
         </div>
@@ -104,7 +106,9 @@ export function ColorPicker({
           <input
             type="text"
             value={hexInput}
-            onChange={(e) => handleHexInputChange(e.target.value)}
+            onChange={(e) => {
+              handleHexInputChange(e.target.value);
+            }}
             className={`form-input ${!isValid ? "invalid" : ""}`}
             placeholder="#3b82f6"
           />
@@ -119,7 +123,9 @@ export function ColorPicker({
                 key={swatch}
                 className={`quick-swatch ${color === swatch ? "selected" : ""}`}
                 style={{ backgroundColor: swatch }}
-                onClick={() => handleColorChange(swatch)}
+                onClick={() => {
+                  handleColorChange(swatch);
+                }}
                 title={swatch}
                 aria-label={`Select color ${swatch}`}
               />

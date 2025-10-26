@@ -9,15 +9,18 @@
 ## Pre-Testing Setup
 
 ### Environment Preparation
+
 - [ ] Close any running instances of Chronica
 - [ ] Delete test data: `%AppData%\Chronica\` (backup first if needed)
 - [ ] Open DevTools (F12) for console monitoring
 - [ ] Have Task Manager open to monitor system tray
 
 ### Launch Application
+
 ```bash
 pnpm tauri dev
 ```
+
 - [ ] App launches without errors
 - [ ] Console shows initialization logs
 - [ ] Window appears at default position (1000x700)
@@ -28,6 +31,7 @@ pnpm tauri dev
 ## Phase 0: Security Features
 
 ### Test 1: XSS Prevention (Input Sanitization)
+
 **Goal:** Verify malicious input is sanitized
 
 **Step-by-step:**
@@ -77,6 +81,7 @@ pnpm tauri dev
 ---
 
 ### Test 2: File Size Validation (Import)
+
 **Goal:** Verify import rejects oversized files
 
 **Preparation - Create test files:**
@@ -84,6 +89,7 @@ pnpm tauri dev
 1. **Create small valid file:**
    - [ ] Open Notepad or any text editor
    - [ ] Paste this JSON:
+
    ```json
    {
      "meta": {
@@ -95,24 +101,25 @@ pnpm tauri dev
        "app_version": "v0.1.0-alpha"
      },
      "columns": [
-       {"key": "todo", "title": "To Do", "order": 0},
-       {"key": "doing", "title": "Doing", "order": 1},
-       {"key": "done", "title": "Done", "order": 2}
+       { "key": "todo", "title": "To Do", "order": 0 },
+       { "key": "doing", "title": "Doing", "order": 1 },
+       { "key": "done", "title": "Done", "order": 2 }
      ],
-     "cards": [
-       {"id": "test-123", "title": "Test Card", "column": "todo", "rank": 1000}
-     ]
+     "cards": [{ "id": "test-123", "title": "Test Card", "column": "todo", "rank": 1000 }]
    }
    ```
+
    - [ ] Save as `small-board.json` to your Desktop
 
 2. **Create oversized file (>2MB):**
    - [ ] Copy the above JSON
    - [ ] In the cards array, add 5000+ cards (or make description field VERY long - 100,000+ characters)
    - [ ] Example: Add this card with huge description:
+
    ```json
-   {"id": "huge-1", "title": "Huge", "column": "todo", "rank": 1000, "description": "A..."}
+   { "id": "huge-1", "title": "Huge", "column": "todo", "rank": 1000, "description": "A..." }
    ```
+
    - [ ] Where the `A...` is repeated 2,000,000 times to exceed 2MB
    - [ ] Save as `large-board.json` to your Desktop
    - [ ] Verify file size: Right-click → Properties → Should show >2MB (2,097,152 bytes)
@@ -143,6 +150,7 @@ pnpm tauri dev
 ---
 
 ### Test 3: Path Traversal Prevention
+
 **Goal:** Verify board IDs are validated (prevents saving files outside boards directory)
 
 **Step-by-step:**
@@ -187,6 +195,7 @@ pnpm tauri dev
 ---
 
 ### Test 4: Temp File Cleanup
+
 **Goal:** Verify `.tmp` files are cleaned up after saves
 
 **Step-by-step:**
@@ -239,6 +248,7 @@ pnpm tauri dev
 ## Phase 1: Foundation & UX
 
 ### Test 5: Service Layer Architecture
+
 **Goal:** Verify abstraction works correctly
 
 1. Storage operations:
@@ -257,6 +267,7 @@ pnpm tauri dev
 ---
 
 ### Test 6: Error Boundaries
+
 **Goal:** Verify crashes don't expose stack traces
 
 1. Force error (DevTools Console):
@@ -277,6 +288,7 @@ pnpm tauri dev
 ---
 
 ### Test 7: Import/Export in Sidebar
+
 **Goal:** Verify UX improvement from Phase 1
 
 1. Locate buttons:
@@ -293,6 +305,7 @@ pnpm tauri dev
 ---
 
 ### Test 8: Responsive Kanban Columns
+
 **Goal:** Verify columns stay 100% visible at all window sizes
 
 1. Default size (1000x700):
@@ -311,6 +324,7 @@ pnpm tauri dev
 ---
 
 ### Test 9: Drag-and-Drop
+
 **Goal:** Verify smooth card movement between columns and within columns
 
 **Step-by-step:**
@@ -406,6 +420,7 @@ pnpm tauri dev
     - [ ] **Fail if:** Cards reset to old positions
 
 **Pass Criteria:**
+
 - Cards drag smoothly between all columns
 - Cards can be reordered within columns
 - Drag preview shows during drag
@@ -418,6 +433,7 @@ pnpm tauri dev
 ## Phase 2: Custom Fields
 
 ### Test 10: Field Manager (Settings)
+
 **Goal:** Verify custom field CRUD operations
 
 1. Open Settings → Custom Fields tab:
@@ -446,6 +462,7 @@ pnpm tauri dev
 ---
 
 ### Test 11: Custom Fields in Card Editor
+
 **Goal:** Verify fields render and validate correctly
 
 1. Create/edit card:
@@ -470,6 +487,7 @@ pnpm tauri dev
 ---
 
 ### Test 12: Custom Fields in Import/Export
+
 **Goal:** Verify field definitions persist across export/import
 
 1. Export board with custom fields:
@@ -492,6 +510,7 @@ pnpm tauri dev
 ## Phase 3: Always-On Features
 
 ### Test 13: System Tray Integration
+
 **Goal:** Verify tray icon, menu, and close-to-tray behavior
 
 **Step-by-step:**
@@ -564,6 +583,7 @@ pnpm tauri dev
    - [ ] **Fail if:** App still running or tray icon remains
 
 **Pass Criteria:**
+
 - X button hides to tray (doesn't quit)
 - Only "Quit" menu item fully exits the app
 - Tray icon always visible while app runs
@@ -572,6 +592,7 @@ pnpm tauri dev
 ---
 
 ### Test 14: Save Queue with Retry
+
 **Goal:** Verify retry logic on save failures
 
 1. Normal save:
@@ -596,6 +617,7 @@ pnpm tauri dev
 ---
 
 ### Test 15: Save Status Indicator
+
 **Goal:** Verify visual feedback in Header
 
 1. Rapid edits:
@@ -613,6 +635,7 @@ pnpm tauri dev
 ---
 
 ### Test 16: Backup Rotation
+
 **Goal:** Verify max 5 backups kept per board (oldest deleted automatically)
 
 **Step-by-step:**
@@ -685,6 +708,7 @@ pnpm tauri dev
    - [ ] **Fail if:** Boards share backups or exceed 5 each
 
 **Pass Criteria:**
+
 - Maximum 5 backups per board
 - Oldest backups automatically deleted when >5 exist
 - Each board's backups are independent
@@ -693,6 +717,7 @@ pnpm tauri dev
 ---
 
 ### Test 17: Backup Before Save
+
 **Goal:** Verify backup created before each save
 
 1. Create board with 1 card
@@ -710,6 +735,7 @@ pnpm tauri dev
 ---
 
 ### Test 18: Performance Optimizations
+
 **Goal:** Verify reduced re-renders and smooth interactions
 
 1. Open DevTools → Performance tab
@@ -728,6 +754,7 @@ pnpm tauri dev
 ---
 
 ### Test 19: Autostart (Windows)
+
 **Goal:** Verify app launches on login
 
 **⚠️ IMPORTANT:** This requires Windows restart/logout
@@ -757,6 +784,7 @@ pnpm tauri dev
 ---
 
 ### Test 20: Window State Persistence
+
 **Goal:** Verify position/size restored on relaunch
 
 1. Move window to specific position (e.g., top-left corner)
@@ -776,6 +804,7 @@ pnpm tauri dev
 ## Core Features (Existing)
 
 ### Test 21: Board Management
+
 **Goal:** Verify board CRUD operations
 
 1. Create board:
@@ -799,6 +828,7 @@ pnpm tauri dev
 ---
 
 ### Test 22: Card CRUD Operations
+
 **Goal:** Verify basic card management
 
 1. Create card:
@@ -822,6 +852,7 @@ pnpm tauri dev
 ---
 
 ### Test 23: Multiple Boards & Cards
+
 **Goal:** Verify data isolation and scale
 
 1. Create 3 boards:
@@ -840,6 +871,7 @@ pnpm tauri dev
 ---
 
 ### Test 24: Settings Modal
+
 **Goal:** Verify all settings work
 
 1. Open Settings (gear icon or sidebar):
@@ -858,6 +890,7 @@ pnpm tauri dev
 ---
 
 ### Test 25: Header Controls
+
 **Goal:** Verify pin and opacity controls
 
 1. Pin toggle:
@@ -876,6 +909,7 @@ pnpm tauri dev
 ## Edge Cases & Stress Tests
 
 ### Test 26: Empty States
+
 **Goal:** Verify graceful handling of empty data
 
 1. No boards:
@@ -892,6 +926,7 @@ pnpm tauri dev
 ---
 
 ### Test 27: Large Data Sets
+
 **Goal:** Verify performance at schema limits
 
 1. Max cards (schema limit: 3000):
@@ -913,6 +948,7 @@ pnpm tauri dev
 ---
 
 ### Test 28: Rapid Operations
+
 **Goal:** Verify race condition handling
 
 1. Rapid card creation:
@@ -932,6 +968,7 @@ pnpm tauri dev
 ---
 
 ### Test 29: Invalid Data Handling
+
 **Goal:** Verify resilience to corrupted data
 
 1. Corrupt boards-index.json:
@@ -952,18 +989,25 @@ pnpm tauri dev
 ---
 
 ### Test 30: Import Edge Cases
+
 **Goal:** Verify import validation
 
 1. Import invalid schema:
+
    ```json
-   {"invalid": "structure"}
+   { "invalid": "structure" }
    ```
+
    - [ ] Rejected with clear error message
+
 2. Import missing required fields:
+
    ```json
-   {"meta": {}, "columns": [], "cards": []}
+   { "meta": {}, "columns": [], "cards": [] }
    ```
+
    - [ ] Validation error shown
+
 3. Import duplicate board:
    - Export board A
    - Import same file twice
@@ -976,6 +1020,7 @@ pnpm tauri dev
 ## Final Verification Checklist
 
 ### Production Build Test
+
 - [ ] Build production version: `pnpm build && pnpm tauri build`
 - [ ] Install generated `.msi` or `.exe`
 - [ ] Run installed app (not dev mode)
@@ -983,24 +1028,28 @@ pnpm tauri dev
 - [ ] No console.log spam in production
 
 ### Data Persistence
+
 - [ ] Create board with 5 cards + custom fields
 - [ ] Close app (Quit from tray)
 - [ ] Check `%AppData%\Chronica\` → files exist
 - [ ] Relaunch → all data restored
 
 ### Security Verification
+
 - [ ] No XSS vulnerabilities found
 - [ ] File size limits enforced
 - [ ] Path traversal prevented
 - [ ] Temp files cleaned up
 
 ### Performance Verification
+
 - [ ] App launches in <3 seconds
 - [ ] Board loads in <2 seconds (1000 cards)
 - [ ] Drag-drop response <100ms
 - [ ] Memory usage <100MB with 20 boards
 
 ### Always-On Verification
+
 - [ ] Autostart works (after Windows restart)
 - [ ] Tray icon always visible
 - [ ] X button hides to tray (doesn't quit)
@@ -1018,11 +1067,13 @@ If you find issues, document them:
 **Issue:** [Brief description]
 **Severity:** Critical / High / Medium / Low
 **Steps to Reproduce:**
+
 1. Step one
 2. Step two
 3. Expected vs Actual result
 
 **Environment:**
+
 - Chronica version: v0.1.0-alpha
 - OS: Windows [version]
 - Build: Dev / Production
@@ -1038,6 +1089,7 @@ If you find issues, document them:
 **Estimated Time:** 3-4 hours for thorough testing
 
 Once all tests pass:
+
 - [ ] Document any issues found
 - [ ] Create GitHub issues for bugs
 - [ ] Update improvement-plan.md with findings

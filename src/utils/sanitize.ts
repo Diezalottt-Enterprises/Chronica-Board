@@ -68,8 +68,8 @@ export function sanitizeTags(tags: string[] | undefined): string[] | undefined {
   if (!tags || tags.length === 0) return undefined;
 
   const sanitized = tags
-    .map(tag => sanitizeText(tag.trim()))
-    .filter(tag => tag.length > 0)
+    .map((tag) => sanitizeText(tag.trim()))
+    .filter((tag) => tag.length > 0)
     .filter((tag, index, array) => array.indexOf(tag) === index) // Deduplicate
     .slice(0, 50); // Max 50 tags
 

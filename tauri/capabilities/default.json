@@ -18,9 +18,7 @@
     "opener:default",
     {
       "identifier": "fs:scope",
-      "allow": [
-        { "path": "$APPDATA/**" }
-      ]
+      "allow": [{ "path": "$APPDATA/**" }]
     },
     "fs:default",
     "fs:allow-read-text-file",

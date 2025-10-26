@@ -103,9 +103,7 @@ export const useBoardStore = create<BoardState>((set, get) => ({
       id: uuidv4(),
       name,
       columns: DEFAULT_COLUMNS,
-      cards: withStarters
-        ? STARTER_CARDS.map((card) => ({ ...card, id: uuidv4() }))
-        : [],
+      cards: withStarters ? STARTER_CARDS.map((card) => ({ ...card, id: uuidv4() })) : [],
     };
 
     const boards = [...state.boards, newBoard];
@@ -114,9 +112,7 @@ export const useBoardStore = create<BoardState>((set, get) => ({
 
   renameBoard: (boardId, newName) => {
     const state = get();
-    const boards = state.boards.map((b) =>
-      b.id === boardId ? { ...b, name: newName } : b
-    );
+    const boards = state.boards.map((b) => (b.id === boardId ? { ...b, name: newName } : b));
     const activeBoard =
       state.activeBoard?.id === boardId
         ? { ...state.activeBoard, name: newName }
@@ -134,8 +130,7 @@ export const useBoardStore = create<BoardState>((set, get) => ({
     }
 
     // If deleted board was active, switch to first board
-    const activeBoard =
-      state.activeBoard?.id === boardId ? boards[0] : state.activeBoard;
+    const activeBoard = state.activeBoard?.id === boardId ? boards[0] : state.activeBoard;
 
     set({ boards, activeBoard });
   },
@@ -172,9 +167,7 @@ export const useBoardStore = create<BoardState>((set, get) => ({
       cards: [...state.activeBoard.cards, newCard],
     };
 
-    const boards = state.boards.map((b) =>
-      b.id === updatedBoard.id ? updatedBoard : b
-    );
+    const boards = state.boards.map((b) => (b.id === updatedBoard.id ? updatedBoard : b));
 
     set({ boards, activeBoard: updatedBoard });
   },
@@ -190,9 +183,7 @@ export const useBoardStore = create<BoardState>((set, get) => ({
       ),
     };
 
-    const boards = state.boards.map((b) =>
-      b.id === updatedBoard.id ? updatedBoard : b
-    );
+    const boards = state.boards.map((b) => (b.id === updatedBoard.id ? updatedBoard : b));
 
     set({ boards, activeBoard: updatedBoard });
   },
@@ -206,9 +197,7 @@ export const useBoardStore = create<BoardState>((set, get) => ({
       cards: state.activeBoard.cards.filter((card) => card.id !== cardId),
     };
 
-    const boards = state.boards.map((b) =>
-      b.id === updatedBoard.id ? updatedBoard : b
-    );
+    const boards = state.boards.map((b) => (b.id === updatedBoard.id ? updatedBoard : b));
 
     set({ boards, activeBoard: updatedBoard });
   },
@@ -226,9 +215,7 @@ export const useBoardStore = create<BoardState>((set, get) => ({
       ),
     };
 
-    const boards = state.boards.map((b) =>
-      b.id === updatedBoard.id ? updatedBoard : b
-    );
+    const boards = state.boards.map((b) => (b.id === updatedBoard.id ? updatedBoard : b));
 
     set({ boards, activeBoard: updatedBoard });
   },
@@ -245,9 +232,7 @@ export const useBoardStore = create<BoardState>((set, get) => ({
       ),
     };
 
-    const boards = state.boards.map((b) =>
-      b.id === updatedBoard.id ? updatedBoard : b
-    );
+    const boards = state.boards.map((b) => (b.id === updatedBoard.id ? updatedBoard : b));
 
     set({ boards, activeBoard: updatedBoard });
   },
@@ -271,9 +256,7 @@ export const useBoardStore = create<BoardState>((set, get) => ({
       columns: [...state.activeBoard.columns, newColumn],
     };
 
-    const boards = state.boards.map((b) =>
-      b.id === updatedBoard.id ? updatedBoard : b
-    );
+    const boards = state.boards.map((b) => (b.id === updatedBoard.id ? updatedBoard : b));
 
     set({ boards, activeBoard: updatedBoard });
   },
@@ -287,21 +270,17 @@ export const useBoardStore = create<BoardState>((set, get) => ({
 
     // Move all cards from deleted column to first remaining column
     const remainingColumns = state.activeBoard.columns.filter((col) => col.key !== columnKey);
-    const firstColumnKey = remainingColumns[0]?.key;
+    const firstColumnKey = remainingColumns[0]?.key ?? "todo";
 
     const updatedBoard: Board = {
       ...state.activeBoard,
       columns: remainingColumns,
       cards: state.activeBoard.cards.map((card) =>
-        card.column === columnKey
-          ? { ...card, column: firstColumnKey }
-          : card
+        card.column === columnKey ? { ...card, column: firstColumnKey } : card
       ),
     };
 
-    const boards = state.boards.map((b) =>
-      b.id === updatedBoard.id ? updatedBoard : b
-    );
+    const boards = state.boards.map((b) => (b.id === updatedBoard.id ? updatedBoard : b));
 
     set({ boards, activeBoard: updatedBoard });
   },
@@ -321,9 +300,7 @@ export const useBoardStore = create<BoardState>((set, get) => ({
       columns: updatedColumns,
     };
 
-    const boards = state.boards.map((b) =>
-      b.id === updatedBoard.id ? updatedBoard : b
-    );
+    const boards = state.boards.map((b) => (b.id === updatedBoard.id ? updatedBoard : b));
 
     set({ boards, activeBoard: updatedBoard });
   },
@@ -339,9 +316,7 @@ export const useBoardStore = create<BoardState>((set, get) => ({
       ),
     };
 
-    const boards = state.boards.map((b) =>
-      b.id === updatedBoard.id ? updatedBoard : b
-    );
+    const boards = state.boards.map((b) => (b.id === updatedBoard.id ? updatedBoard : b));
 
     set({ boards, activeBoard: updatedBoard });
   },

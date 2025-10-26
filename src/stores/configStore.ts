@@ -38,7 +38,9 @@ export const useConfigStore = create<ConfigState>((set, get) => ({
   config: null,
 
   // Config actions
-  setConfig: (config) => set({ config }),
+  setConfig: (config) => {
+    set({ config });
+  },
 
   updateConfig: (updates) => {
     const state = get();

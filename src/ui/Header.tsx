@@ -8,9 +8,20 @@ export function Header() {
   const renderSaveStatus = () => {
     switch (saveStatus) {
       case "saving":
-        return <span style={{ fontSize: "11px", color: "var(--text-secondary)", marginLeft: "12px" }}>Saving...</span>;
+        return (
+          <span style={{ fontSize: "11px", color: "var(--text-secondary)", marginLeft: "12px" }}>
+            Saving...
+          </span>
+        );
       case "error":
-        return <span style={{ fontSize: "11px", color: "var(--color-salmon)", marginLeft: "12px" }} title={saveError || "Save failed"}>⚠ Failed</span>;
+        return (
+          <span
+            style={{ fontSize: "11px", color: "var(--color-salmon)", marginLeft: "12px" }}
+            title={saveError || "Save failed"}
+          >
+            ⚠ Failed
+          </span>
+        );
       default:
         return null;
     }

@@ -31,7 +31,10 @@ export function CardEditor({ card, initialColumn, onClose }: CardEditorProps) {
     const initial: Record<string, FieldValue> = {};
     Object.keys(fields).forEach((fieldId) => {
       const existingValue = card?.customFields?.[fieldId];
-      initial[fieldId] = existingValue !== undefined ? (existingValue as FieldValue) : fieldRegistry.getDefaultValue(fieldId);
+      initial[fieldId] =
+        existingValue !== undefined
+          ? (existingValue as FieldValue)
+          : fieldRegistry.getDefaultValue(fieldId);
     });
     return initial;
   });
@@ -58,7 +61,7 @@ export function CardEditor({ card, initialColumn, onClose }: CardEditorProps) {
     // Validate and sanitize custom fields
     const fieldValidation = fieldRegistry.validateCardFields(customFields);
     if (!fieldValidation.valid) {
-      const firstError = Object.values(fieldValidation.errors)[0];
+      const firstError = Object.values(fieldValidation.errors)[0] ?? "Validation failed";
       showAlert("Validation Error", firstError);
       return;
     }
@@ -68,7 +71,8 @@ export function CardEditor({ card, initialColumn, onClose }: CardEditorProps) {
       description: sanitizedDescription,
       color: sanitizedColor || color, // Fallback to original if sanitization fails
       column,
-      customFields: Object.keys(fieldValidation.sanitized).length > 0 ? fieldValidation.sanitized : undefined,
+      customFields:
+        Object.keys(fieldValidation.sanitized).length > 0 ? fieldValidation.sanitized : undefined,
     };
 
     if (card) {
@@ -80,7 +84,19 @@ export function CardEditor({ card, initialColumn, onClose }: CardEditorProps) {
     }
 
     onClose();
-  }, [title, description, color, column, customFields, card, fieldRegistry, showAlert, updateCard, addCard, onClose]);
+  }, [
+    title,
+    description,
+    color,
+    column,
+    customFields,
+    card,
+    fieldRegistry,
+    showAlert,
+    updateCard,
+    addCard,
+    onClose,
+  ]);
 
   const handleDelete = useCallback(() => {
     if (card) {
@@ -95,11 +111,14 @@ export function CardEditor({ card, initialColumn, onClose }: CardEditorProps) {
     setCustomFields((prev) => ({ ...prev, [fieldId]: value }));
   }, []);
 
-  const handleOverlayClick = useCallback((e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) {
-      onClose();
-    }
-  }, [onClose]);
+  const handleOverlayClick = useCallback(
+    (e: React.MouseEvent) => {
+      if (e.target === e.currentTarget) {
+        onClose();
+      }
+    },
+    [onClose]
+  );
 
   return (
     <div className="modal-overlay" onClick={handleOverlayClick}>
@@ -118,7 +137,9 @@ export function CardEditor({ card, initialColumn, onClose }: CardEditorProps) {
               type="text"
               className="form-input"
               value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={(e) => {
+                setTitle(e.target.value);
+              }}
               placeholder="Enter card title..."
               autoFocus
             />
@@ -129,7 +150,9 @@ export function CardEditor({ card, initialColumn, onClose }: CardEditorProps) {
             <textarea
               className="form-textarea"
               value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              onChange={(e) => {
+                setDescription(e.target.value);
+              }}
               placeholder="Add a description..."
             />
           </div>
@@ -139,7 +162,9 @@ export function CardEditor({ card, initialColumn, onClose }: CardEditorProps) {
             <select
               className="form-select"
               value={column}
-              onChange={(e) => setColumn(e.target.value)}
+              onChange={(e) => {
+                setColumn(e.target.value);
+              }}
             >
               {activeBoard?.columns.map((col) => (
                 <option key={col.key} value={col.key}>
@@ -157,7 +182,9 @@ export function CardEditor({ card, initialColumn, onClose }: CardEditorProps) {
                   key={name}
                   className={`color-chip ${color === name ? "selected" : ""}`}
                   style={{ backgroundColor: hex }}
-                  onClick={() => setColor(name)}
+                  onClick={() => {
+                    setColor(name);
+                  }}
                   title={name}
                 />
               ))}
@@ -166,10 +193,11 @@ export function CardEditor({ card, initialColumn, onClose }: CardEditorProps) {
                 value={
                   color && color.startsWith("#")
                     ? color
-                    : PREDEFINED_COLORS[color as keyof typeof PREDEFINED_COLORS] ||
-                      "#8D99AE"
+                    : PREDEFINED_COLORS[color as keyof typeof PREDEFINED_COLORS] || "#8D99AE"
                 }
-                onChange={(e) => setColor(e.target.value)}
+                onChange={(e) => {
+                  setColor(e.target.value);
+                }}
                 className="color-chip"
                 title="Custom color"
               />
@@ -189,7 +217,9 @@ export function CardEditor({ card, initialColumn, onClose }: CardEditorProps) {
                   type="text"
                   className="form-input"
                   value={(customFields[fieldId] as string) || ""}
-                  onChange={(e) => handleCustomFieldChange(fieldId, e.target.value)}
+                  onChange={(e) => {
+                    handleCustomFieldChange(fieldId, e.target.value);
+                  }}
                   maxLength={field.validation?.maxLength}
                 />
               )}
@@ -199,7 +229,9 @@ export function CardEditor({ card, initialColumn, onClose }: CardEditorProps) {
                   type="number"
                   className="form-input"
                   value={(customFields[fieldId] as number) || ""}
-                  onChange={(e) => handleCustomFieldChange(fieldId, parseFloat(e.target.value))}
+                  onChange={(e) => {
+                    handleCustomFieldChange(fieldId, parseFloat(e.target.value));
+                  }}
                   min={field.validation?.min}
                   max={field.validation?.max}
                 />
@@ -210,7 +242,9 @@ export function CardEditor({ card, initialColumn, onClose }: CardEditorProps) {
                   type="date"
                   className="form-input"
                   value={(customFields[fieldId] as string) || ""}
-                  onChange={(e) => handleCustomFieldChange(fieldId, e.target.value)}
+                  onChange={(e) => {
+                    handleCustomFieldChange(fieldId, e.target.value);
+                  }}
                 />
               )}
 
@@ -218,7 +252,9 @@ export function CardEditor({ card, initialColumn, onClose }: CardEditorProps) {
                 <select
                   className="form-select"
                   value={(customFields[fieldId] as string) || ""}
-                  onChange={(e) => handleCustomFieldChange(fieldId, e.target.value)}
+                  onChange={(e) => {
+                    handleCustomFieldChange(fieldId, e.target.value);
+                  }}
                 >
                   <option value="">-- Select --</option>
                   {field.validation?.options?.map((option) => (
@@ -234,7 +270,9 @@ export function CardEditor({ card, initialColumn, onClose }: CardEditorProps) {
                   type="url"
                   className="form-input"
                   value={(customFields[fieldId] as string) || ""}
-                  onChange={(e) => handleCustomFieldChange(fieldId, e.target.value)}
+                  onChange={(e) => {
+                    handleCustomFieldChange(fieldId, e.target.value);
+                  }}
                   placeholder="https://"
                 />
               )}
@@ -245,7 +283,9 @@ export function CardEditor({ card, initialColumn, onClose }: CardEditorProps) {
                     type="checkbox"
                     id={`field-${fieldId}`}
                     checked={(customFields[fieldId] as boolean) || false}
-                    onChange={(e) => handleCustomFieldChange(fieldId, e.target.checked)}
+                    onChange={(e) => {
+                      handleCustomFieldChange(fieldId, e.target.checked);
+                    }}
                   />
                   <label htmlFor={`field-${fieldId}`} style={{ textTransform: "none" }}>
                     {field.label}
@@ -258,10 +298,7 @@ export function CardEditor({ card, initialColumn, onClose }: CardEditorProps) {
 
         <div className="modal-footer">
           {card && (
-            <button
-              onClick={handleDelete}
-              style={{ marginRight: "auto", color: "#d32f2f" }}
-            >
+            <button onClick={handleDelete} style={{ marginRight: "auto", color: "#d32f2f" }}>
               Delete
             </button>
           )}

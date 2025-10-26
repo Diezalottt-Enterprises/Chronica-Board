@@ -1,5 +1,10 @@
 // Window control helpers for Chronica (v0.1.0-alpha)
-import { getCurrentWindow, LogicalPosition, LogicalSize, type Window as TauriWindow } from "@tauri-apps/api/window";
+import {
+  getCurrentWindow,
+  LogicalPosition,
+  LogicalSize,
+  type Window as TauriWindow,
+} from "@tauri-apps/api/window";
 
 /**
  * Set window always-on-top state
@@ -19,15 +24,15 @@ export async function setOpacity(opacity: number): Promise<void> {
 
   try {
     // Check if setOpacity exists (may not be available with decorations:false)
-    if (typeof (appWindow as any).setOpacity === 'function') {
+    if (typeof (appWindow as any).setOpacity === "function") {
       await (appWindow as any).setOpacity(clamped);
     } else {
       // Opacity control not available - silently skip
       // This is expected with decorations:false in tauri.conf.json
-      console.debug('[Window] Opacity control not available (decorations disabled)');
+      console.debug("[Window] Opacity control not available (decorations disabled)");
     }
   } catch (error) {
-    console.warn('[Window] Failed to set opacity:', error);
+    console.warn("[Window] Failed to set opacity:", error);
   }
 }
 

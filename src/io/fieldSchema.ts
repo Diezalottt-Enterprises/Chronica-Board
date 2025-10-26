@@ -34,7 +34,7 @@ export const SAFE_REGEX_PATTERNS: Record<string, RegExp> = {
  */
 function isValidRegexPattern(pattern: string): boolean {
   // Check if it's a predefined safe pattern
-  if (Object.values(SAFE_REGEX_PATTERNS).some(p => p.source === pattern)) {
+  if (Object.values(SAFE_REGEX_PATTERNS).some((p) => p.source === pattern)) {
     return true;
   }
 
@@ -204,7 +204,7 @@ export function validateFieldValue(
       }
       return { valid: true };
 
-    case "date":
+    case "date": {
       if (typeof value !== "string") {
         return { valid: false, error: "Must be a date string" };
       }
@@ -214,6 +214,7 @@ export function validateFieldValue(
         return { valid: false, error: "Invalid date" };
       }
       return { valid: true };
+    }
 
     case "select":
       if (typeof value !== "string") {

@@ -5,7 +5,18 @@
       "Bash(pnpm add:*)",
       "Bash(pnpm build:*)",
       "Bash(pnpm tsc:*)",
-      "Bash(mkdir:*)"
+      "Bash(mkdir:*)",
+      "Bash(dir:*)",
+      "Bash(pnpm exec tsc:*)",
+      "Bash(pnpm lint:*)",
+      "Bash(pnpm lint:fix:*)",
+      "Bash(pnpm format:*)",
+      "Bash(pnpm format:fix:*)",
+      "Bash(pnpm typecheck:*)",
+      "Bash(pnpm exec prettier:*)",
+      "Bash(pnpm test:*)",
+      "Bash(pnpm ls:*)",
+      "Bash(pnpm remove:*)"
     ],
     "deny": [],
     "ask": []

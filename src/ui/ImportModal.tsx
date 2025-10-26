@@ -31,10 +31,13 @@ export function ImportModal({ onClose }: ImportModalProps) {
     }
 
     const existingFields = getAllFields();
-    const hasConflicts = Object.keys(importedFields).some(id => id in existingFields);
+    const hasConflicts = Object.keys(importedFields).some((id) => id in existingFields);
 
     if (hasConflicts) {
-      showAlert("Field Conflict", "Imported board has custom fields. These will be merged with your existing fields.");
+      showAlert(
+        "Field Conflict",
+        "Imported board has custom fields. These will be merged with your existing fields."
+      );
     }
 
     // Merge fields (imported fields take precedence)
@@ -100,13 +103,17 @@ export function ImportModal({ onClose }: ImportModalProps) {
           <div style={{ display: "flex", gap: "8px", marginBottom: "16px" }}>
             <button
               className={tab === "file" ? "primary" : ""}
-              onClick={() => setTab("file")}
+              onClick={() => {
+                setTab("file");
+              }}
             >
               From File
             </button>
             <button
               className={tab === "paste" ? "primary" : ""}
-              onClick={() => setTab("paste")}
+              onClick={() => {
+                setTab("paste");
+              }}
             >
               Paste JSON
             </button>
@@ -133,8 +140,10 @@ export function ImportModal({ onClose }: ImportModalProps) {
                   className="form-textarea"
                   style={{ minHeight: "200px", fontFamily: "monospace", fontSize: "12px" }}
                   value={jsonContent}
-                  onChange={(e) => setJsonContent(e.target.value)}
-                  placeholder='Paste Chronica board JSON here...'
+                  onChange={(e) => {
+                    setJsonContent(e.target.value);
+                  }}
+                  placeholder="Paste Chronica board JSON here..."
                 />
               </div>
 

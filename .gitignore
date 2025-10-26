@@ -1,3 +1,15 @@
+# Dependencies
+node_modules
+.pnpm-store
+.pnpm-debug.log
+
+# Build outputs
+dist
+dist-ssr
+out
+build
+*.local
+
 # Logs
 logs
 *.log
@@ -7,18 +19,60 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Testing
+coverage
+*.coverage
+.nyc_output
+.vitest
 
-# Editor directories and files
+# Caching
+.cache
+.parcel-cache
+.turbo
+.next
+.nuxt
+.vite-inspect
+
+# Tauri
+tauri/target
+tauri/WixTools
+tauri/gen
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+*.dmp
+*.tmp
+*.temp
+
+# Editor
 .vscode/*
 !.vscode/extensions.json
+!.vscode/settings.json
 .idea
-.DS_Store
+*.swp
+*.swo
+*~
+.vim
+.sublime-*
+
+# IDE
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+.project
+.classpath
+.settings
+
+# Env
+.env
+.env.local
+.env.*.local
+.env.production
+
+# Misc
+*.tsbuildinfo
+.eslintcache

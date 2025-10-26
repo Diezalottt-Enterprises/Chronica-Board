@@ -31,9 +31,7 @@ export function Card({ card, onClick }: CardProps) {
   return (
     <div className={`card ${colorClass}`} style={customStyle} onClick={onClick}>
       <div className="card-title">{card.title}</div>
-      {card.description && (
-        <div className="card-description">{card.description}</div>
-      )}
+      {card.description && <div className="card-description">{card.description}</div>}
       {card.tags && card.tags.length > 0 && (
         <div className="card-tags">
           {card.tags.map((tag, i) => (
