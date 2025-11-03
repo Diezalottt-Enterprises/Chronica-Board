@@ -1,0 +1,1754 @@
+   0.271912800s  INFO prepare_target{force=false package_id=chronica v0.1.0-alpha (C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri) target="chronica_lib"}: cargo::core::compiler::fingerprint: fingerprint error for chronica v0.1.0-alpha (C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri)/Check { test: false }/TargetInner { ..: lib_target("chronica_lib", ["staticlib", "cdylib", "rlib"], "C:\\Users\\ckvam\\Documents\\Development\\Active\\Chronica\\Chronica-CC\\tauri\\src\\lib.rs", Edition2021) }
+   0.271955400s  INFO prepare_target{force=false package_id=chronica v0.1.0-alpha (C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri) target="chronica_lib"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\chronica-fb210d37b849ad17\lib-chronica_lib`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_libgit2_prerelease
+  12: <unknown>
+  13: <unknown>
+  14: <unknown>
+  15: <unknown>
+  16: git_midx_writer_dump
+  17: git_filter_source_repo
+  18: git_midx_writer_dump
+  19: BaseThreadInitThunk
+  20: RtlUserThreadStart
+   0.279060400s  INFO prepare_target{force=false package_id=chronica v0.1.0-alpha (C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri) target="build-script-build"}: cargo::core::compiler::fingerprint: fingerprint error for chronica v0.1.0-alpha (C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri)/RunCustomBuild/TargetInner { ..: custom_build_target("build-script-build", "C:\\Users\\ckvam\\Documents\\Development\\Active\\Chronica\\Chronica-CC\\tauri\\build.rs", Edition2021) }
+   0.279082500s  INFO prepare_target{force=false package_id=chronica v0.1.0-alpha (C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri) target="build-script-build"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\chronica-a5998a7d22409322\run-build-script-build-script-build`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_libgit2_prerelease
+  14: <unknown>
+  15: <unknown>
+  16: <unknown>
+  17: <unknown>
+  18: git_midx_writer_dump
+  19: git_filter_source_repo
+  20: git_midx_writer_dump
+  21: BaseThreadInitThunk
+  22: RtlUserThreadStart
+   0.279243400s  INFO prepare_target{force=false package_id=chronica v0.1.0-alpha (C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri) target="build-script-build"}: cargo::core::compiler::fingerprint: fingerprint error for chronica v0.1.0-alpha (C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri)/Build/TargetInner { ..: custom_build_target("build-script-build", "C:\\Users\\ckvam\\Documents\\Development\\Active\\Chronica\\Chronica-CC\\tauri\\build.rs", Edition2021) }
+   0.279250600s  INFO prepare_target{force=false package_id=chronica v0.1.0-alpha (C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri) target="build-script-build"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\chronica-de41c879f9b950ac\build-script-build-script-build`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_libgit2_prerelease
+  14: <unknown>
+  15: <unknown>
+  16: <unknown>
+  17: <unknown>
+  18: git_midx_writer_dump
+  19: git_filter_source_repo
+  20: git_midx_writer_dump
+  21: BaseThreadInitThunk
+  22: RtlUserThreadStart
+   0.279650500s  INFO prepare_target{force=false package_id=tauri-build v2.5.1 target="tauri_build"}: cargo::core::compiler::fingerprint: fingerprint error for tauri-build v2.5.1/Build/TargetInner { ..: lib_target("tauri_build", ["lib"], "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\tauri-build-2.5.1\\src\\lib.rs", Edition2021) }
+   0.279660700s  INFO prepare_target{force=false package_id=tauri-build v2.5.1 target="tauri_build"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\tauri-build-81c1889b60cb6466\lib-tauri_build`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_filter_source_repo
+  14: git_libgit2_prerelease
+  15: <unknown>
+  16: <unknown>
+  17: <unknown>
+  18: <unknown>
+  19: git_midx_writer_dump
+  20: git_filter_source_repo
+  21: git_midx_writer_dump
+  22: BaseThreadInitThunk
+  23: RtlUserThreadStart
+   0.284492100s  INFO prepare_target{force=false package_id=schemars v0.8.22 target="schemars"}: cargo::core::compiler::fingerprint: fingerprint error for schemars v0.8.22/Build/TargetInner { ..: lib_target("schemars", ["lib"], "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\schemars-0.8.22\\src\\lib.rs", Edition2021) }
+   0.284506400s  INFO prepare_target{force=false package_id=schemars v0.8.22 target="schemars"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\schemars-8a6388724512d7fb\lib-schemars`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_filter_source_repo
+  14: git_filter_source_repo
+  15: git_libgit2_prerelease
+  16: <unknown>
+  17: <unknown>
+  18: <unknown>
+  19: <unknown>
+  20: git_midx_writer_dump
+  21: git_filter_source_repo
+  22: git_midx_writer_dump
+  23: BaseThreadInitThunk
+  24: RtlUserThreadStart
+   0.285877900s  INFO prepare_target{force=false package_id=url v2.5.7 target="url"}: cargo::core::compiler::fingerprint: fingerprint error for url v2.5.7/Build/TargetInner { ..: lib_target("url", ["lib"], "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\url-2.5.7\\src\\lib.rs", Edition2018) }
+   0.285889700s  INFO prepare_target{force=false package_id=url v2.5.7 target="url"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\url-e8ce2bfe8dd1fdfc\lib-url`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_filter_source_repo
+  14: git_filter_source_repo
+  15: git_filter_source_repo
+  16: git_libgit2_prerelease
+  17: <unknown>
+  18: <unknown>
+  19: <unknown>
+  20: <unknown>
+  21: git_midx_writer_dump
+  22: git_filter_source_repo
+  23: git_midx_writer_dump
+  24: BaseThreadInitThunk
+  25: RtlUserThreadStart
+   0.286234100s  INFO prepare_target{force=false package_id=idna v1.1.0 target="idna"}: cargo::core::compiler::fingerprint: fingerprint error for idna v1.1.0/Build/TargetInner { doctest: false, ..: lib_target("idna", ["lib"], "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\idna-1.1.0\\src\\lib.rs", Edition2018) }
+   0.286246800s  INFO prepare_target{force=false package_id=idna v1.1.0 target="idna"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\idna-03c4a76505796a5f\lib-idna`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_filter_source_repo
+  14: git_filter_source_repo
+  15: git_filter_source_repo
+  16: git_filter_source_repo
+  17: git_libgit2_prerelease
+  18: <unknown>
+  19: <unknown>
+  20: <unknown>
+  21: <unknown>
+  22: git_midx_writer_dump
+  23: git_filter_source_repo
+  24: git_midx_writer_dump
+  25: BaseThreadInitThunk
+  26: RtlUserThreadStart
+   0.289361800s  INFO prepare_target{force=false package_id=tauri-utils v2.8.0 target="tauri_utils"}: cargo::core::compiler::fingerprint: fingerprint error for tauri-utils v2.8.0/Build/TargetInner { ..: lib_target("tauri_utils", ["lib"], "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\tauri-utils-2.8.0\\src\\lib.rs", Edition2021) }
+   0.289375700s  INFO prepare_target{force=false package_id=tauri-utils v2.8.0 target="tauri_utils"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\tauri-utils-7488f5137a5d06bb\lib-tauri_utils`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_filter_source_repo
+  14: git_filter_source_repo
+  15: git_libgit2_prerelease
+  16: <unknown>
+  17: <unknown>
+  18: <unknown>
+  19: <unknown>
+  20: git_midx_writer_dump
+  21: git_filter_source_repo
+  22: git_midx_writer_dump
+  23: BaseThreadInitThunk
+  24: RtlUserThreadStart
+   0.293363200s  INFO prepare_target{force=false package_id=html5ever v0.29.1 target="html5ever"}: cargo::core::compiler::fingerprint: fingerprint error for html5ever v0.29.1/Build/TargetInner { ..: lib_target("html5ever", ["lib"], "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\html5ever-0.29.1\\src\\lib.rs", Edition2021) }
+   0.293383400s  INFO prepare_target{force=false package_id=html5ever v0.29.1 target="html5ever"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\html5ever-ef1137fad9c586c4\lib-html5ever`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_filter_source_repo
+  14: git_filter_source_repo
+  15: git_filter_source_repo
+  16: git_libgit2_prerelease
+  17: <unknown>
+  18: <unknown>
+  19: <unknown>
+  20: <unknown>
+  21: git_midx_writer_dump
+  22: git_filter_source_repo
+  23: git_midx_writer_dump
+  24: BaseThreadInitThunk
+  25: RtlUserThreadStart
+   0.293817700s  INFO prepare_target{force=false package_id=markup5ever v0.14.1 target="markup5ever"}: cargo::core::compiler::fingerprint: fingerprint error for markup5ever v0.14.1/Build/TargetInner { ..: lib_target("markup5ever", ["lib"], "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\markup5ever-0.14.1\\lib.rs", Edition2021) }
+   0.293829700s  INFO prepare_target{force=false package_id=markup5ever v0.14.1 target="markup5ever"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\markup5ever-e02d07b6a9b7085f\lib-markup5ever`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_filter_source_repo
+  14: git_filter_source_repo
+  15: git_filter_source_repo
+  16: git_filter_source_repo
+  17: git_libgit2_prerelease
+  18: <unknown>
+  19: <unknown>
+  20: <unknown>
+  21: <unknown>
+  22: git_midx_writer_dump
+  23: git_filter_source_repo
+  24: git_midx_writer_dump
+  25: BaseThreadInitThunk
+  26: RtlUserThreadStart
+   0.297026100s  INFO prepare_target{force=false package_id=kuchikiki v0.8.8-speedreader target="kuchikiki"}: cargo::core::compiler::fingerprint: fingerprint error for kuchikiki v0.8.8-speedreader/Build/TargetInner { ..: lib_target("kuchikiki", ["lib"], "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\kuchikiki-0.8.8-speedreader\\src\\lib.rs", Edition2018) }
+   0.297041100s  INFO prepare_target{force=false package_id=kuchikiki v0.8.8-speedreader target="kuchikiki"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\kuchikiki-82f6a1392bdf2491\lib-kuchikiki`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_filter_source_repo
+  14: git_filter_source_repo
+  15: git_filter_source_repo
+  16: git_libgit2_prerelease
+  17: <unknown>
+  18: <unknown>
+  19: <unknown>
+  20: <unknown>
+  21: git_midx_writer_dump
+  22: git_filter_source_repo
+  23: git_midx_writer_dump
+  24: BaseThreadInitThunk
+  25: RtlUserThreadStart
+   0.297292000s  INFO prepare_target{force=false package_id=cssparser v0.29.6 target="cssparser"}: cargo::core::compiler::fingerprint: fingerprint error for cssparser v0.29.6/Build/TargetInner { name_inferred: true, ..: lib_target("cssparser", ["lib"], "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\cssparser-0.29.6\\src\\lib.rs", Edition2018) }
+   0.297301300s  INFO prepare_target{force=false package_id=cssparser v0.29.6 target="cssparser"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\cssparser-dede61843b036634\lib-cssparser`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_filter_source_repo
+  14: git_filter_source_repo
+  15: git_filter_source_repo
+  16: git_filter_source_repo
+  17: git_libgit2_prerelease
+  18: <unknown>
+  19: <unknown>
+  20: <unknown>
+  21: <unknown>
+  22: git_midx_writer_dump
+  23: git_filter_source_repo
+  24: git_midx_writer_dump
+  25: BaseThreadInitThunk
+  26: RtlUserThreadStart
+   0.298737500s  INFO prepare_target{force=false package_id=phf v0.10.1 target="phf"}: cargo::core::compiler::fingerprint: fingerprint error for phf v0.10.1/Build/TargetInner { tested: false, ..: lib_target("phf", ["lib"], "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\phf-0.10.1\\src\\lib.rs", Edition2018) }
+   0.298770700s  INFO prepare_target{force=false package_id=phf v0.10.1 target="phf"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\phf-daea6ac5b2fd26e8\lib-phf`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_filter_source_repo
+  14: git_filter_source_repo
+  15: git_filter_source_repo
+  16: git_filter_source_repo
+  17: git_filter_source_repo
+  18: git_libgit2_prerelease
+  19: <unknown>
+  20: <unknown>
+  21: <unknown>
+  22: <unknown>
+  23: git_midx_writer_dump
+  24: git_filter_source_repo
+  25: git_midx_writer_dump
+  26: BaseThreadInitThunk
+  27: RtlUserThreadStart
+   0.299832600s  INFO prepare_target{force=false package_id=selectors v0.24.0 target="selectors"}: cargo::core::compiler::fingerprint: fingerprint error for selectors v0.24.0/Build/TargetInner { ..: lib_target("selectors", ["lib"], "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\selectors-0.24.0\\lib.rs", Edition2015) }
+   0.299845100s  INFO prepare_target{force=false package_id=selectors v0.24.0 target="selectors"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\selectors-de9fcc468c00e58c\lib-selectors`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_filter_source_repo
+  14: git_filter_source_repo
+  15: git_filter_source_repo
+  16: git_filter_source_repo
+  17: git_libgit2_prerelease
+  18: <unknown>
+  19: <unknown>
+  20: <unknown>
+  21: <unknown>
+  22: git_midx_writer_dump
+  23: git_filter_source_repo
+  24: git_midx_writer_dump
+  25: BaseThreadInitThunk
+  26: RtlUserThreadStart
+   0.302785300s  INFO prepare_target{force=false package_id=serde_with v3.15.1 target="serde_with"}: cargo::core::compiler::fingerprint: fingerprint error for serde_with v3.15.1/Build/TargetInner { ..: lib_target("serde_with", ["lib"], "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\serde_with-3.15.1\\src\\lib.rs", Edition2021) }
+   0.302800000s  INFO prepare_target{force=false package_id=serde_with v3.15.1 target="serde_with"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\serde_with-f2081ff59009abbf\lib-serde_with`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_filter_source_repo
+  14: git_filter_source_repo
+  15: git_filter_source_repo
+  16: git_libgit2_prerelease
+  17: <unknown>
+  18: <unknown>
+  19: <unknown>
+  20: <unknown>
+  21: git_midx_writer_dump
+  22: git_filter_source_repo
+  23: git_midx_writer_dump
+  24: BaseThreadInitThunk
+  25: RtlUserThreadStart
+   0.302990600s  INFO prepare_target{force=false package_id=serde_with_macros v3.15.1 target="serde_with_macros"}: cargo::core::compiler::fingerprint: fingerprint error for serde_with_macros v3.15.1/Build/TargetInner { for_host: true, proc_macro: true, ..: lib_target("serde_with_macros", ["proc-macro"], "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\serde_with_macros-3.15.1\\src\\lib.rs", Edition2021) }
+   0.303000100s  INFO prepare_target{force=false package_id=serde_with_macros v3.15.1 target="serde_with_macros"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\serde_with_macros-b6f713e365de8386\lib-serde_with_macros`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_filter_source_repo
+  14: git_filter_source_repo
+  15: git_filter_source_repo
+  16: git_filter_source_repo
+  17: git_libgit2_prerelease
+  18: <unknown>
+  19: <unknown>
+  20: <unknown>
+  21: <unknown>
+  22: git_midx_writer_dump
+  23: git_filter_source_repo
+  24: git_midx_writer_dump
+  25: BaseThreadInitThunk
+  26: RtlUserThreadStart
+   0.303172100s  INFO prepare_target{force=false package_id=darling v0.21.3 target="darling"}: cargo::core::compiler::fingerprint: fingerprint error for darling v0.21.3/Build/TargetInner { ..: lib_target("darling", ["lib"], "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\darling-0.21.3\\src\\lib.rs", Edition2021) }
+   0.303179300s  INFO prepare_target{force=false package_id=darling v0.21.3 target="darling"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\darling-59d15b22ff9b02f8\lib-darling`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_filter_source_repo
+  14: git_filter_source_repo
+  15: git_filter_source_repo
+  16: git_filter_source_repo
+  17: git_filter_source_repo
+  18: git_libgit2_prerelease
+  19: <unknown>
+  20: <unknown>
+  21: <unknown>
+  22: <unknown>
+  23: git_midx_writer_dump
+  24: git_filter_source_repo
+  25: git_midx_writer_dump
+  26: BaseThreadInitThunk
+  27: RtlUserThreadStart
+   0.303612200s  INFO prepare_target{force=false package_id=urlpattern v0.3.0 target="urlpattern"}: cargo::core::compiler::fingerprint: fingerprint error for urlpattern v0.3.0/Build/TargetInner { ..: lib_target("urlpattern", ["lib"], "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\urlpattern-0.3.0\\src\\lib.rs", Edition2021) }
+   0.303622000s  INFO prepare_target{force=false package_id=urlpattern v0.3.0 target="urlpattern"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\urlpattern-f30bc23d99780afb\lib-urlpattern`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_filter_source_repo
+  14: git_filter_source_repo
+  15: git_filter_source_repo
+  16: git_libgit2_prerelease
+  17: <unknown>
+  18: <unknown>
+  19: <unknown>
+  20: <unknown>
+  21: git_midx_writer_dump
+  22: git_filter_source_repo
+  23: git_midx_writer_dump
+  24: BaseThreadInitThunk
+  25: RtlUserThreadStart
+   0.306573500s  INFO prepare_target{force=false package_id=tauri v2.9.1 target="build-script-build"}: cargo::core::compiler::fingerprint: fingerprint error for tauri v2.9.1/RunCustomBuild/TargetInner { ..: custom_build_target("build-script-build", "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\tauri-2.9.1\\build.rs", Edition2021) }
+   0.306587300s  INFO prepare_target{force=false package_id=tauri v2.9.1 target="build-script-build"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\tauri-78a871deba9b08c1\run-build-script-build-script-build`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_filter_source_repo
+  14: git_libgit2_prerelease
+  15: <unknown>
+  16: <unknown>
+  17: <unknown>
+  18: <unknown>
+  19: git_midx_writer_dump
+  20: git_filter_source_repo
+  21: git_midx_writer_dump
+  22: BaseThreadInitThunk
+  23: RtlUserThreadStart
+   0.306799800s  INFO prepare_target{force=false package_id=tauri v2.9.1 target="build-script-build"}: cargo::core::compiler::fingerprint: fingerprint error for tauri v2.9.1/Build/TargetInner { ..: custom_build_target("build-script-build", "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\tauri-2.9.1\\build.rs", Edition2021) }
+   0.306807600s  INFO prepare_target{force=false package_id=tauri v2.9.1 target="build-script-build"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\tauri-205cd4ddc5263187\build-script-build-script-build`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_filter_source_repo
+  14: git_libgit2_prerelease
+  15: <unknown>
+  16: <unknown>
+  17: <unknown>
+  18: <unknown>
+  19: git_midx_writer_dump
+  20: git_filter_source_repo
+  21: git_midx_writer_dump
+  22: BaseThreadInitThunk
+  23: RtlUserThreadStart
+   0.307489000s  INFO prepare_target{force=false package_id=tauri-plugin-autostart v2.5.0 target="build-script-build"}: cargo::core::compiler::fingerprint: fingerprint error for tauri-plugin-autostart v2.5.0/RunCustomBuild/TargetInner { ..: custom_build_target("build-script-build", "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\tauri-plugin-autostart-2.5.0\\build.rs", Edition2021) }
+   0.307501400s  INFO prepare_target{force=false package_id=tauri-plugin-autostart v2.5.0 target="build-script-build"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\tauri-plugin-autostart-7e88e919cd24c385\run-build-script-build-script-build`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_filter_source_repo
+  14: git_libgit2_prerelease
+  15: <unknown>
+  16: <unknown>
+  17: <unknown>
+  18: <unknown>
+  19: git_midx_writer_dump
+  20: git_filter_source_repo
+  21: git_midx_writer_dump
+  22: BaseThreadInitThunk
+  23: RtlUserThreadStart
+   0.307830300s  INFO prepare_target{force=false package_id=tauri-plugin-autostart v2.5.0 target="build-script-build"}: cargo::core::compiler::fingerprint: fingerprint error for tauri-plugin-autostart v2.5.0/Build/TargetInner { ..: custom_build_target("build-script-build", "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\tauri-plugin-autostart-2.5.0\\build.rs", Edition2021) }
+   0.307848900s  INFO prepare_target{force=false package_id=tauri-plugin-autostart v2.5.0 target="build-script-build"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\tauri-plugin-autostart-f75497a6a3503cc5\build-script-build-script-build`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_filter_source_repo
+  14: git_libgit2_prerelease
+  15: <unknown>
+  16: <unknown>
+  17: <unknown>
+  18: <unknown>
+  19: git_midx_writer_dump
+  20: git_filter_source_repo
+  21: git_midx_writer_dump
+  22: BaseThreadInitThunk
+  23: RtlUserThreadStart
+   0.308447100s  INFO prepare_target{force=false package_id=tauri-plugin v2.5.1 target="tauri_plugin"}: cargo::core::compiler::fingerprint: fingerprint error for tauri-plugin v2.5.1/Build/TargetInner { ..: lib_target("tauri_plugin", ["lib"], "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\tauri-plugin-2.5.1\\src\\lib.rs", Edition2021) }
+   0.308461700s  INFO prepare_target{force=false package_id=tauri-plugin v2.5.1 target="tauri_plugin"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\tauri-plugin-bd58283cbbf3ab90\lib-tauri_plugin`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_filter_source_repo
+  14: git_filter_source_repo
+  15: git_libgit2_prerelease
+  16: <unknown>
+  17: <unknown>
+  18: <unknown>
+  19: <unknown>
+  20: git_midx_writer_dump
+  21: git_filter_source_repo
+  22: git_midx_writer_dump
+  23: BaseThreadInitThunk
+  24: RtlUserThreadStart
+   0.309013000s  INFO prepare_target{force=false package_id=tauri-plugin-dialog v2.4.0 target="build-script-build"}: cargo::core::compiler::fingerprint: fingerprint error for tauri-plugin-dialog v2.4.0/RunCustomBuild/TargetInner { ..: custom_build_target("build-script-build", "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\tauri-plugin-dialog-2.4.0\\build.rs", Edition2021) }
+   0.309024800s  INFO prepare_target{force=false package_id=tauri-plugin-dialog v2.4.0 target="build-script-build"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\tauri-plugin-dialog-b54ba04256fa73f4\run-build-script-build-script-build`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_filter_source_repo
+  14: git_libgit2_prerelease
+  15: <unknown>
+  16: <unknown>
+  17: <unknown>
+  18: <unknown>
+  19: git_midx_writer_dump
+  20: git_filter_source_repo
+  21: git_midx_writer_dump
+  22: BaseThreadInitThunk
+  23: RtlUserThreadStart
+   0.309196300s  INFO prepare_target{force=false package_id=tauri-plugin-dialog v2.4.0 target="build-script-build"}: cargo::core::compiler::fingerprint: fingerprint error for tauri-plugin-dialog v2.4.0/Build/TargetInner { ..: custom_build_target("build-script-build", "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\tauri-plugin-dialog-2.4.0\\build.rs", Edition2021) }
+   0.309203600s  INFO prepare_target{force=false package_id=tauri-plugin-dialog v2.4.0 target="build-script-build"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\tauri-plugin-dialog-a7dc4cb990e0a6b4\build-script-build-script-build`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_filter_source_repo
+  14: git_libgit2_prerelease
+  15: <unknown>
+  16: <unknown>
+  17: <unknown>
+  18: <unknown>
+  19: git_midx_writer_dump
+  20: git_filter_source_repo
+  21: git_midx_writer_dump
+  22: BaseThreadInitThunk
+  23: RtlUserThreadStart
+   0.309700700s  INFO prepare_target{force=false package_id=tauri-plugin-fs v2.4.2 target="build-script-build"}: cargo::core::compiler::fingerprint: fingerprint error for tauri-plugin-fs v2.4.2/RunCustomBuild/TargetInner { ..: custom_build_target("build-script-build", "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\tauri-plugin-fs-2.4.2\\build.rs", Edition2021) }
+   0.309711200s  INFO prepare_target{force=false package_id=tauri-plugin-fs v2.4.2 target="build-script-build"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\tauri-plugin-fs-bf16e50fcf29f360\run-build-script-build-script-build`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_filter_source_repo
+  14: git_filter_source_repo
+  15: git_libgit2_prerelease
+  16: <unknown>
+  17: <unknown>
+  18: <unknown>
+  19: <unknown>
+  20: git_midx_writer_dump
+  21: git_filter_source_repo
+  22: git_midx_writer_dump
+  23: BaseThreadInitThunk
+  24: RtlUserThreadStart
+   0.309891500s  INFO prepare_target{force=false package_id=tauri-plugin-fs v2.4.2 target="build-script-build"}: cargo::core::compiler::fingerprint: fingerprint error for tauri-plugin-fs v2.4.2/Build/TargetInner { ..: custom_build_target("build-script-build", "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\tauri-plugin-fs-2.4.2\\build.rs", Edition2021) }
+   0.309898400s  INFO prepare_target{force=false package_id=tauri-plugin-fs v2.4.2 target="build-script-build"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\tauri-plugin-fs-21f9fd4089c625db\build-script-build-script-build`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_filter_source_repo
+  14: git_filter_source_repo
+  15: git_libgit2_prerelease
+  16: <unknown>
+  17: <unknown>
+  18: <unknown>
+  19: <unknown>
+  20: git_midx_writer_dump
+  21: git_filter_source_repo
+  22: git_midx_writer_dump
+  23: BaseThreadInitThunk
+  24: RtlUserThreadStart
+   0.310412200s  INFO prepare_target{force=false package_id=tauri-plugin-opener v2.5.0 target="build-script-build"}: cargo::core::compiler::fingerprint: fingerprint error for tauri-plugin-opener v2.5.0/RunCustomBuild/TargetInner { ..: custom_build_target("build-script-build", "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\tauri-plugin-opener-2.5.0\\build.rs", Edition2021) }
+   0.310421400s  INFO prepare_target{force=false package_id=tauri-plugin-opener v2.5.0 target="build-script-build"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\tauri-plugin-opener-7c8c9182d83d5737\run-build-script-build-script-build`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_filter_source_repo
+  14: git_libgit2_prerelease
+  15: <unknown>
+  16: <unknown>
+  17: <unknown>
+  18: <unknown>
+  19: git_midx_writer_dump
+  20: git_filter_source_repo
+  21: git_midx_writer_dump
+  22: BaseThreadInitThunk
+  23: RtlUserThreadStart
+   0.310540200s  INFO prepare_target{force=false package_id=tauri-plugin-opener v2.5.0 target="build-script-build"}: cargo::core::compiler::fingerprint: fingerprint error for tauri-plugin-opener v2.5.0/Build/TargetInner { ..: custom_build_target("build-script-build", "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\tauri-plugin-opener-2.5.0\\build.rs", Edition2021) }
+   0.310546700s  INFO prepare_target{force=false package_id=tauri-plugin-opener v2.5.0 target="build-script-build"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\tauri-plugin-opener-b0ce246be2f4476c\build-script-build-script-build`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_filter_source_repo
+  14: git_libgit2_prerelease
+  15: <unknown>
+  16: <unknown>
+  17: <unknown>
+  18: <unknown>
+  19: git_midx_writer_dump
+  20: git_filter_source_repo
+  21: git_midx_writer_dump
+  22: BaseThreadInitThunk
+  23: RtlUserThreadStart
+   0.311034600s  INFO prepare_target{force=false package_id=tauri-plugin-window-state v2.4.0 target="build-script-build"}: cargo::core::compiler::fingerprint: fingerprint error for tauri-plugin-window-state v2.4.0/RunCustomBuild/TargetInner { ..: custom_build_target("build-script-build", "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\tauri-plugin-window-state-2.4.0\\build.rs", Edition2021) }
+   0.311043700s  INFO prepare_target{force=false package_id=tauri-plugin-window-state v2.4.0 target="build-script-build"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\tauri-plugin-window-state-4c955c97d9270333\run-build-script-build-script-build`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_filter_source_repo
+  14: git_libgit2_prerelease
+  15: <unknown>
+  16: <unknown>
+  17: <unknown>
+  18: <unknown>
+  19: git_midx_writer_dump
+  20: git_filter_source_repo
+  21: git_midx_writer_dump
+  22: BaseThreadInitThunk
+  23: RtlUserThreadStart
+   0.311178700s  INFO prepare_target{force=false package_id=tauri-plugin-window-state v2.4.0 target="build-script-build"}: cargo::core::compiler::fingerprint: fingerprint error for tauri-plugin-window-state v2.4.0/Build/TargetInner { ..: custom_build_target("build-script-build", "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\tauri-plugin-window-state-2.4.0\\build.rs", Edition2021) }
+   0.311185700s  INFO prepare_target{force=false package_id=tauri-plugin-window-state v2.4.0 target="build-script-build"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\tauri-plugin-window-state-f672455c6ed5b7d1\build-script-build-script-build`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_filter_source_repo
+  14: git_libgit2_prerelease
+  15: <unknown>
+  16: <unknown>
+  17: <unknown>
+  18: <unknown>
+  19: git_midx_writer_dump
+  20: git_filter_source_repo
+  21: git_midx_writer_dump
+  22: BaseThreadInitThunk
+  23: RtlUserThreadStart
+   0.314225300s  INFO prepare_target{force=false package_id=tauri v2.9.1 target="tauri"}: cargo::core::compiler::fingerprint: fingerprint error for tauri v2.9.1/Check { test: false }/TargetInner { ..: lib_target("tauri", ["lib"], "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\tauri-2.9.1\\src\\lib.rs", Edition2021) }
+   0.314240400s  INFO prepare_target{force=false package_id=tauri v2.9.1 target="tauri"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\tauri-ba51aae180125e45\lib-tauri`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_libgit2_prerelease
+  13: <unknown>
+  14: <unknown>
+  15: <unknown>
+  16: <unknown>
+  17: git_midx_writer_dump
+  18: git_filter_source_repo
+  19: git_midx_writer_dump
+  20: BaseThreadInitThunk
+  21: RtlUserThreadStart
+   0.317030200s  INFO prepare_target{force=false package_id=muda v0.17.1 target="muda"}: cargo::core::compiler::fingerprint: fingerprint error for muda v0.17.1/Check { test: false }/TargetInner { ..: lib_target("muda", ["lib"], "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\muda-0.17.1\\src\\lib.rs", Edition2021) }
+   0.317044800s  INFO prepare_target{force=false package_id=muda v0.17.1 target="muda"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\muda-7cdb5f579da11774\lib-muda`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_libgit2_prerelease
+  14: <unknown>
+  15: <unknown>
+  16: <unknown>
+  17: <unknown>
+  18: git_midx_writer_dump
+  19: git_filter_source_repo
+  20: git_midx_writer_dump
+  21: BaseThreadInitThunk
+  22: RtlUserThreadStart
+   0.318109600s  INFO prepare_target{force=false package_id=windows-sys v0.60.2 target="windows_sys"}: cargo::core::compiler::fingerprint: fingerprint error for windows-sys v0.60.2/Check { test: false }/TargetInner { tested: false, doctest: false, ..: lib_target("windows_sys", ["lib"], "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\windows-sys-0.60.2\\src\\lib.rs", Edition2021) }
+   0.318122300s  INFO prepare_target{force=false package_id=windows-sys v0.60.2 target="windows_sys"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\windows-sys-d526c768309a7bca\lib-windows_sys`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_filter_source_repo
+  14: git_libgit2_prerelease
+  15: <unknown>
+  16: <unknown>
+  17: <unknown>
+  18: <unknown>
+  19: git_midx_writer_dump
+  20: git_filter_source_repo
+  21: git_midx_writer_dump
+  22: BaseThreadInitThunk
+  23: RtlUserThreadStart
+   0.319027700s  INFO prepare_target{force=false package_id=tauri-macros v2.5.0 target="tauri_macros"}: cargo::core::compiler::fingerprint: fingerprint error for tauri-macros v2.5.0/Build/TargetInner { for_host: true, proc_macro: true, ..: lib_target("tauri_macros", ["proc-macro"], "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\tauri-macros-2.5.0\\src\\lib.rs", Edition2021) }
+   0.319040400s  INFO prepare_target{force=false package_id=tauri-macros v2.5.0 target="tauri_macros"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\tauri-macros-96d039d7acfa66f7\lib-tauri_macros`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_libgit2_prerelease
+  14: <unknown>
+  15: <unknown>
+  16: <unknown>
+  17: <unknown>
+  18: git_midx_writer_dump
+  19: git_filter_source_repo
+  20: git_midx_writer_dump
+  21: BaseThreadInitThunk
+  22: RtlUserThreadStart
+   0.319494200s  INFO prepare_target{force=false package_id=tauri-codegen v2.5.0 target="tauri_codegen"}: cargo::core::compiler::fingerprint: fingerprint error for tauri-codegen v2.5.0/Build/TargetInner { ..: lib_target("tauri_codegen", ["lib"], "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\tauri-codegen-2.5.0\\src\\lib.rs", Edition2021) }
+   0.319504800s  INFO prepare_target{force=false package_id=tauri-codegen v2.5.0 target="tauri_codegen"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\tauri-codegen-3c4c07ca94c6ca21\lib-tauri_codegen`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_filter_source_repo
+  14: git_libgit2_prerelease
+  15: <unknown>
+  16: <unknown>
+  17: <unknown>
+  18: <unknown>
+  19: git_midx_writer_dump
+  20: git_filter_source_repo
+  21: git_midx_writer_dump
+  22: BaseThreadInitThunk
+  23: RtlUserThreadStart
+   0.322531600s  INFO prepare_target{force=false package_id=tauri-runtime v2.9.1 target="tauri_runtime"}: cargo::core::compiler::fingerprint: fingerprint error for tauri-runtime v2.9.1/Check { test: false }/TargetInner { ..: lib_target("tauri_runtime", ["lib"], "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\tauri-runtime-2.9.1\\src\\lib.rs", Edition2021) }
+   0.322544800s  INFO prepare_target{force=false package_id=tauri-runtime v2.9.1 target="tauri_runtime"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\tauri-runtime-9e7fa0e1daa807ea\lib-tauri_runtime`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_libgit2_prerelease
+  14: <unknown>
+  15: <unknown>
+  16: <unknown>
+  17: <unknown>
+  18: git_midx_writer_dump
+  19: git_filter_source_repo
+  20: git_midx_writer_dump
+  21: BaseThreadInitThunk
+  22: RtlUserThreadStart
+   0.323226400s  INFO prepare_target{force=false package_id=tauri-utils v2.8.0 target="tauri_utils"}: cargo::core::compiler::fingerprint: fingerprint error for tauri-utils v2.8.0/Check { test: false }/TargetInner { ..: lib_target("tauri_utils", ["lib"], "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\tauri-utils-2.8.0\\src\\lib.rs", Edition2021) }
+   0.323242100s  INFO prepare_target{force=false package_id=tauri-utils v2.8.0 target="tauri_utils"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\tauri-utils-b09757499d6bdd8b\lib-tauri_utils`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_filter_source_repo
+  14: git_libgit2_prerelease
+  15: <unknown>
+  16: <unknown>
+  17: <unknown>
+  18: <unknown>
+  19: git_midx_writer_dump
+  20: git_filter_source_repo
+  21: git_midx_writer_dump
+  22: BaseThreadInitThunk
+  23: RtlUserThreadStart
+   0.324852300s  INFO prepare_target{force=false package_id=serde_with v3.15.1 target="serde_with"}: cargo::core::compiler::fingerprint: fingerprint error for serde_with v3.15.1/Check { test: false }/TargetInner { ..: lib_target("serde_with", ["lib"], "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\serde_with-3.15.1\\src\\lib.rs", Edition2021) }
+   0.324863300s  INFO prepare_target{force=false package_id=serde_with v3.15.1 target="serde_with"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\serde_with-1878add81555f9c4\lib-serde_with`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_filter_source_repo
+  14: git_filter_source_repo
+  15: git_libgit2_prerelease
+  16: <unknown>
+  17: <unknown>
+  18: <unknown>
+  19: <unknown>
+  20: git_midx_writer_dump
+  21: git_filter_source_repo
+  22: git_midx_writer_dump
+  23: BaseThreadInitThunk
+  24: RtlUserThreadStart
+   0.326702400s  INFO prepare_target{force=false package_id=urlpattern v0.3.0 target="urlpattern"}: cargo::core::compiler::fingerprint: fingerprint error for urlpattern v0.3.0/Check { test: false }/TargetInner { ..: lib_target("urlpattern", ["lib"], "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\urlpattern-0.3.0\\src\\lib.rs", Edition2021) }
+   0.326713100s  INFO prepare_target{force=false package_id=urlpattern v0.3.0 target="urlpattern"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\urlpattern-44ac6eaa6dcf87b9\lib-urlpattern`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_filter_source_repo
+  14: git_filter_source_repo
+  15: git_libgit2_prerelease
+  16: <unknown>
+  17: <unknown>
+  18: <unknown>
+  19: <unknown>
+  20: git_midx_writer_dump
+  21: git_filter_source_repo
+  22: git_midx_writer_dump
+  23: BaseThreadInitThunk
+  24: RtlUserThreadStart
+   0.327387000s  INFO prepare_target{force=false package_id=webview2-com v0.38.0 target="webview2_com"}: cargo::core::compiler::fingerprint: fingerprint error for webview2-com v0.38.0/Check { test: false }/TargetInner { ..: lib_target("webview2_com", ["lib"], "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\webview2-com-0.38.0\\src\\lib.rs", Edition2021) }
+   0.327396900s  INFO prepare_target{force=false package_id=webview2-com v0.38.0 target="webview2_com"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\webview2-com-ccf3ceaac07a99ff\lib-webview2_com`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_filter_source_repo
+  14: git_libgit2_prerelease
+  15: <unknown>
+  16: <unknown>
+  17: <unknown>
+  18: <unknown>
+  19: git_midx_writer_dump
+  20: git_filter_source_repo
+  21: git_midx_writer_dump
+  22: BaseThreadInitThunk
+  23: RtlUserThreadStart
+   0.327629300s  INFO prepare_target{force=false package_id=webview2-com-sys v0.38.0 target="webview2_com_sys"}: cargo::core::compiler::fingerprint: fingerprint error for webview2-com-sys v0.38.0/Check { test: false }/TargetInner { ..: lib_target("webview2_com_sys", ["lib"], "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\webview2-com-sys-0.38.0\\src\\lib.rs", Edition2021) }
+   0.327637900s  INFO prepare_target{force=false package_id=webview2-com-sys v0.38.0 target="webview2_com_sys"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\webview2-com-sys-77602a53b725a25b\lib-webview2_com_sys`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_filter_source_repo
+  14: git_filter_source_repo
+  15: git_libgit2_prerelease
+  16: <unknown>
+  17: <unknown>
+  18: <unknown>
+  19: <unknown>
+  20: git_midx_writer_dump
+  21: git_filter_source_repo
+  22: git_midx_writer_dump
+  23: BaseThreadInitThunk
+  24: RtlUserThreadStart
+   0.328136800s  INFO prepare_target{force=false package_id=windows v0.61.3 target="windows"}: cargo::core::compiler::fingerprint: fingerprint error for windows v0.61.3/Check { test: false }/TargetInner { tested: false, doctest: false, ..: lib_target("windows", ["lib"], "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\windows-0.61.3\\src\\lib.rs", Edition2021) }
+   0.328147500s  INFO prepare_target{force=false package_id=windows v0.61.3 target="windows"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\windows-ee3fbdc58ddbff3d\lib-windows`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_filter_source_repo
+  14: git_filter_source_repo
+  15: git_filter_source_repo
+  16: git_libgit2_prerelease
+  17: <unknown>
+  18: <unknown>
+  19: <unknown>
+  20: <unknown>
+  21: git_midx_writer_dump
+  22: git_filter_source_repo
+  23: git_midx_writer_dump
+  24: BaseThreadInitThunk
+  25: RtlUserThreadStart
+   0.329288000s  INFO prepare_target{force=false package_id=tauri-runtime-wry v2.9.1 target="tauri_runtime_wry"}: cargo::core::compiler::fingerprint: fingerprint error for tauri-runtime-wry v2.9.1/Check { test: false }/TargetInner { ..: lib_target("tauri_runtime_wry", ["lib"], "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\tauri-runtime-wry-2.9.1\\src\\lib.rs", Edition2021) }
+   0.329302000s  INFO prepare_target{force=false package_id=tauri-runtime-wry v2.9.1 target="tauri_runtime_wry"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\tauri-runtime-wry-e3d84e5d17c9d343\lib-tauri_runtime_wry`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_libgit2_prerelease
+  14: <unknown>
+  15: <unknown>
+  16: <unknown>
+  17: <unknown>
+  18: git_midx_writer_dump
+  19: git_filter_source_repo
+  20: git_midx_writer_dump
+  21: BaseThreadInitThunk
+  22: RtlUserThreadStart
+   0.330367700s  INFO prepare_target{force=false package_id=tao v0.34.5 target="tao"}: cargo::core::compiler::fingerprint: fingerprint error for tao v0.34.5/Check { test: false }/TargetInner { ..: lib_target("tao", ["lib"], "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\tao-0.34.5\\src\\lib.rs", Edition2021) }
+   0.330380300s  INFO prepare_target{force=false package_id=tao v0.34.5 target="tao"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\tao-7f825b516df0dde4\lib-tao`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_filter_source_repo
+  14: git_libgit2_prerelease
+  15: <unknown>
+  16: <unknown>
+  17: <unknown>
+  18: <unknown>
+  19: git_midx_writer_dump
+  20: git_filter_source_repo
+  21: git_midx_writer_dump
+  22: BaseThreadInitThunk
+  23: RtlUserThreadStart
+   0.331503000s  INFO prepare_target{force=false package_id=wry v0.53.5 target="wry"}: cargo::core::compiler::fingerprint: fingerprint error for wry v0.53.5/Check { test: false }/TargetInner { ..: lib_target("wry", ["lib"], "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\wry-0.53.5\\src\\lib.rs", Edition2021) }
+   0.331514800s  INFO prepare_target{force=false package_id=wry v0.53.5 target="wry"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\wry-762f7a0df3d45a16\lib-wry`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_filter_source_repo
+  14: git_libgit2_prerelease
+  15: <unknown>
+  16: <unknown>
+  17: <unknown>
+  18: <unknown>
+  19: git_midx_writer_dump
+  20: git_filter_source_repo
+  21: git_midx_writer_dump
+  22: BaseThreadInitThunk
+  23: RtlUserThreadStart
+   0.332171100s  INFO prepare_target{force=false package_id=tray-icon v0.21.2 target="tray_icon"}: cargo::core::compiler::fingerprint: fingerprint error for tray-icon v0.21.2/Check { test: false }/TargetInner { ..: lib_target("tray_icon", ["lib"], "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\tray-icon-0.21.2\\src\\lib.rs", Edition2021) }
+   0.332182100s  INFO prepare_target{force=false package_id=tray-icon v0.21.2 target="tray_icon"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\tray-icon-45edf721ec953ed4\lib-tray_icon`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_libgit2_prerelease
+  14: <unknown>
+  15: <unknown>
+  16: <unknown>
+  17: <unknown>
+  18: git_midx_writer_dump
+  19: git_filter_source_repo
+  20: git_midx_writer_dump
+  21: BaseThreadInitThunk
+  22: RtlUserThreadStart
+   0.332409200s  INFO prepare_target{force=false package_id=tauri-plugin-autostart v2.5.0 target="tauri_plugin_autostart"}: cargo::core::compiler::fingerprint: fingerprint error for tauri-plugin-autostart v2.5.0/Check { test: false }/TargetInner { ..: lib_target("tauri_plugin_autostart", ["lib"], "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\tauri-plugin-autostart-2.5.0\\src\\lib.rs", Edition2021) }
+   0.332418700s  INFO prepare_target{force=false package_id=tauri-plugin-autostart v2.5.0 target="tauri_plugin_autostart"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\tauri-plugin-autostart-9e8c10492e3b7e7e\lib-tauri_plugin_autostart`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_libgit2_prerelease
+  13: <unknown>
+  14: <unknown>
+  15: <unknown>
+  16: <unknown>
+  17: git_midx_writer_dump
+  18: git_filter_source_repo
+  19: git_midx_writer_dump
+  20: BaseThreadInitThunk
+  21: RtlUserThreadStart
+   0.334904000s  INFO prepare_target{force=false package_id=tauri-plugin-dialog v2.4.0 target="tauri_plugin_dialog"}: cargo::core::compiler::fingerprint: fingerprint error for tauri-plugin-dialog v2.4.0/Check { test: false }/TargetInner { ..: lib_target("tauri_plugin_dialog", ["lib"], "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\tauri-plugin-dialog-2.4.0\\src\\lib.rs", Edition2021) }
+   0.334920500s  INFO prepare_target{force=false package_id=tauri-plugin-dialog v2.4.0 target="tauri_plugin_dialog"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\tauri-plugin-dialog-9c171dffb9c9b76e\lib-tauri_plugin_dialog`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_libgit2_prerelease
+  13: <unknown>
+  14: <unknown>
+  15: <unknown>
+  16: <unknown>
+  17: git_midx_writer_dump
+  18: git_filter_source_repo
+  19: git_midx_writer_dump
+  20: BaseThreadInitThunk
+  21: RtlUserThreadStart
+   0.336005700s  INFO prepare_target{force=false package_id=tauri-plugin-fs v2.4.2 target="tauri_plugin_fs"}: cargo::core::compiler::fingerprint: fingerprint error for tauri-plugin-fs v2.4.2/Check { test: false }/TargetInner { ..: lib_target("tauri_plugin_fs", ["lib"], "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\tauri-plugin-fs-2.4.2\\src\\lib.rs", Edition2021) }
+   0.336019300s  INFO prepare_target{force=false package_id=tauri-plugin-fs v2.4.2 target="tauri_plugin_fs"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\tauri-plugin-fs-6590b3c6d982df29\lib-tauri_plugin_fs`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_filter_source_repo
+  13: git_libgit2_prerelease
+  14: <unknown>
+  15: <unknown>
+  16: <unknown>
+  17: <unknown>
+  18: git_midx_writer_dump
+  19: git_filter_source_repo
+  20: git_midx_writer_dump
+  21: BaseThreadInitThunk
+  22: RtlUserThreadStart
+   0.336708900s  INFO prepare_target{force=false package_id=tauri-plugin-opener v2.5.0 target="tauri_plugin_opener"}: cargo::core::compiler::fingerprint: fingerprint error for tauri-plugin-opener v2.5.0/Check { test: false }/TargetInner { ..: lib_target("tauri_plugin_opener", ["lib"], "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\tauri-plugin-opener-2.5.0\\src\\lib.rs", Edition2021) }
+   0.336722900s  INFO prepare_target{force=false package_id=tauri-plugin-opener v2.5.0 target="tauri_plugin_opener"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\tauri-plugin-opener-faee57420cadd7eb\lib-tauri_plugin_opener`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_libgit2_prerelease
+  13: <unknown>
+  14: <unknown>
+  15: <unknown>
+  16: <unknown>
+  17: git_midx_writer_dump
+  18: git_filter_source_repo
+  19: git_midx_writer_dump
+  20: BaseThreadInitThunk
+  21: RtlUserThreadStart
+   0.337380400s  INFO prepare_target{force=false package_id=tauri-plugin-window-state v2.4.0 target="tauri_plugin_window_state"}: cargo::core::compiler::fingerprint: fingerprint error for tauri-plugin-window-state v2.4.0/Check { test: false }/TargetInner { ..: lib_target("tauri_plugin_window_state", ["lib"], "C:\\Users\\ckvam\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\tauri-plugin-window-state-2.4.0\\src\\lib.rs", Edition2021) }
+   0.337391700s  INFO prepare_target{force=false package_id=tauri-plugin-window-state v2.4.0 target="tauri_plugin_window_state"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\tauri-plugin-window-state-b3bbb29a48d39212\lib-tauri_plugin_window_state`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_libgit2_prerelease
+  13: <unknown>
+  14: <unknown>
+  15: <unknown>
+  16: <unknown>
+  17: git_midx_writer_dump
+  18: git_filter_source_repo
+  19: git_midx_writer_dump
+  20: BaseThreadInitThunk
+  21: RtlUserThreadStart
+   0.338017500s  INFO prepare_target{force=false package_id=chronica v0.1.0-alpha (C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri) target="chronica_lib"}: cargo::core::compiler::fingerprint: fingerprint error for chronica v0.1.0-alpha (C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri)/Check { test: true }/TargetInner { ..: lib_target("chronica_lib", ["staticlib", "cdylib", "rlib"], "C:\\Users\\ckvam\\Documents\\Development\\Active\\Chronica\\Chronica-CC\\tauri\\src\\lib.rs", Edition2021) }
+   0.338030600s  INFO prepare_target{force=false package_id=chronica v0.1.0-alpha (C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri) target="chronica_lib"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\chronica-1052b8c9733e50f6\test-lib-chronica_lib`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_libgit2_prerelease
+  12: <unknown>
+  13: <unknown>
+  14: <unknown>
+  15: <unknown>
+  16: git_midx_writer_dump
+  17: git_filter_source_repo
+  18: git_midx_writer_dump
+  19: BaseThreadInitThunk
+  20: RtlUserThreadStart
+   0.338762400s  INFO prepare_target{force=false package_id=chronica v0.1.0-alpha (C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri) target="chronica"}: cargo::core::compiler::fingerprint: fingerprint error for chronica v0.1.0-alpha (C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri)/Check { test: false }/TargetInner { name: "chronica", doc: true, ..: with_path("C:\\Users\\ckvam\\Documents\\Development\\Active\\Chronica\\Chronica-CC\\tauri\\src\\main.rs", Edition2021) }
+   0.338778000s  INFO prepare_target{force=false package_id=chronica v0.1.0-alpha (C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri) target="chronica"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\chronica-9e0aa673aab3bb66\bin-chronica`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_libgit2_prerelease
+  12: <unknown>
+  13: <unknown>
+  14: <unknown>
+  15: <unknown>
+  16: git_midx_writer_dump
+  17: git_filter_source_repo
+  18: git_midx_writer_dump
+  19: BaseThreadInitThunk
+  20: RtlUserThreadStart
+   0.339508900s  INFO prepare_target{force=false package_id=chronica v0.1.0-alpha (C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri) target="chronica"}: cargo::core::compiler::fingerprint: fingerprint error for chronica v0.1.0-alpha (C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri)/Check { test: true }/TargetInner { name: "chronica", doc: true, ..: with_path("C:\\Users\\ckvam\\Documents\\Development\\Active\\Chronica\\Chronica-CC\\tauri\\src\\main.rs", Edition2021) }
+   0.339518600s  INFO prepare_target{force=false package_id=chronica v0.1.0-alpha (C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri) target="chronica"}: cargo::core::compiler::fingerprint:     err: failed to read `C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri\target\debug\.fingerprint\chronica-ad9d2058263d31e3\test-bin-chronica`
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_libgit2_prerelease
+  12: <unknown>
+  13: <unknown>
+  14: <unknown>
+  15: <unknown>
+  16: git_midx_writer_dump
+  17: git_filter_source_repo
+  18: git_midx_writer_dump
+  19: BaseThreadInitThunk
+  20: RtlUserThreadStart
+   Compiling darling v0.21.3
+   Compiling phf v0.10.1
+   Compiling markup5ever v0.14.1
+    Checking windows v0.61.3
+   Compiling idna v1.1.0
+    Checking windows-sys v0.60.2
+    Checking urlpattern v0.3.0
+   Compiling cssparser v0.29.6
+   Compiling serde_with_macros v3.15.1
+   Compiling url v2.5.7
+   Compiling selectors v0.24.0
+   Compiling html5ever v0.29.1
+   Compiling schemars v0.8.22
+   Compiling serde_with v3.15.1
+   Compiling kuchikiki v0.8.8-speedreader
+    Checking tauri-utils v2.8.0
+    Checking muda v0.17.1
+    Checking tray-icon v0.21.2
+   Compiling tauri-plugin v2.5.1
+   Compiling tauri-build v2.5.1
+   Compiling tauri-codegen v2.5.0
+   Compiling tauri v2.9.1
+   Compiling tauri-macros v2.5.0
+   Compiling tauri-plugin-fs v2.4.2
+   Compiling tauri-plugin-dialog v2.4.0
+   Compiling tauri-plugin-autostart v2.5.0
+   Compiling tauri-plugin-window-state v2.4.0
+   Compiling tauri-plugin-opener v2.5.0
+   Compiling chronica v0.1.0-alpha (C:\Users\ckvam\Documents\Development\Active\Chronica\Chronica-CC\tauri)
+    Checking webview2-com-sys v0.38.0
+    Checking tao v0.34.5
+    Checking webview2-com v0.38.0
+    Checking wry v0.53.5
+    Checking tauri-runtime v2.9.1
+    Checking tauri-runtime-wry v2.9.1
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 47.16s

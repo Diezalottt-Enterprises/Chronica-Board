@@ -1,4 +1,24 @@
-Use the below tempalte to write a commit message for your version in Chronica-CC\docs\commits. Create a file in that folder for the version. IE "0.1.0-alpha.n.md." Inside that file should be the commands to upload to gitlab. So a "git add ." line, then a commit command. This command should work in powershell. 
+Use the below template to write a commit message for your version in Chronica-CC\docs\commits. Create a file in that folder for the version. IE "0.1.0-alpha.n.md." Inside that file should be the commands to upload to gitlab. So a "git add ." line, then a commit command. This command should work in powershell.
+
+## PowerShell Format Example
+
+```powershell
+git add .
+
+$commitMessage = @"
+0.1.0-alpha.n <Summary of changes>
+
+<Body explaining what and why>
+
+> Generated with Claude Code (https://claude.com/claude-code)
+
+Co-authored-by: Claude <noreply@anthropic.com>
+"@
+
+git commit -m $commitMessage
+```
+
+**IMPORTANT:** Use PowerShell here-string syntax (`$commitMessage = @"..."@`) NOT bash heredoc (`cat <<'EOF'`). PowerShell doesn't support bash heredoc. 
 
 # Title: Version,  Summary, imperative, start upper case, don't end with a period
 

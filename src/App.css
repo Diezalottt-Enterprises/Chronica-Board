@@ -167,6 +167,8 @@ button.primary:hover {
 button.icon {
   padding: var(--spacing-xs);
   font-size: var(--font-md);
+  flex-shrink: 0;
+  min-width: 0;
 }
 
 /* Opacity slider */
@@ -333,6 +335,30 @@ button.icon {
   flex-direction: column;
   gap: var(--spacing-sm);
   max-height: 100%;
+  container-type: inline-size;
+  container-name: column;
+}
+
+/* Scale down column header elements in narrow columns */
+@container column (max-width: 250px) {
+  button.icon {
+    padding: 4px;
+    font-size: var(--font-sm);
+  }
+
+  .color-swatch {
+    width: 16px;
+    height: 16px;
+  }
+
+  .drag-grip {
+    font-size: var(--font-sm);
+  }
+
+  .column-count {
+    font-size: 10px;
+    padding: 1px 6px;
+  }
 }
 
 /* Add column container */
@@ -369,6 +395,9 @@ button.icon {
   justify-content: space-between;
   align-items: center;
   margin-bottom: var(--spacing-sm);
+  gap: 4px;
+  min-width: 0;
+  position: relative;
 }
 
 .column-title {
@@ -381,6 +410,29 @@ button.icon {
   overflow: hidden;
   text-overflow: ellipsis;
   word-break: normal;
+  min-width: 0;
+  flex-shrink: 1;
+}
+
+.column-title-input {
+  font-weight: 600;
+  font-size: var(--font-base);
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--color-cyan);
+  border-radius: var(--radius-sm);
+  padding: 2px 6px;
+  outline: none;
+  min-width: 0;
+  flex-shrink: 1;
+  flex: 1;
+}
+
+.column-title-input:focus {
+  border-color: var(--color-cyan);
+  box-shadow: 0 0 0 2px rgba(111, 194, 219, 0.2);
 }
 
 .drag-grip {
@@ -847,4 +899,182 @@ button.icon {
 .color-swatch:focus {
   outline: 2px solid var(--color-cyan);
   outline-offset: 2px;
+}
+
+/* Overflow Menu */
+.overflow-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  min-width: 180px;
+  z-index: 1000;
+  padding: 4px 0;
+}
+
+.overflow-menu-items {
+  display: flex;
+  flex-direction: column;
+}
+
+.overflow-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 12px;
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: var(--font-sm);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.overflow-menu-item:hover {
+  background: var(--bg-tertiary);
+}
+
+.overflow-menu-item:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+
+.overflow-menu-item.destructive {
+  color: #f43f5e;
+}
+
+.overflow-menu-item.checked .overflow-menu-label {
+  font-weight: 600;
+}
+
+.overflow-menu-icon {
+  font-size: var(--font-base);
+  flex-shrink: 0;
+  width: 16px;
+  text-align: center;
+}
+
+.overflow-menu-label {
+  flex: 1;
+}
+
+.overflow-menu-check {
+  margin-left: auto;
+  color: var(--color-cyan);
+  font-size: var(--font-sm);
+}
+
+.overflow-menu-divider {
+  height: 1px;
+  background: var(--border-color);
+  margin: 4px 0;
+}
+
+.overflow-menu-parent {
+  cursor: default;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 4px 12px;
+}
+
+.overflow-menu-parent:hover {
+  background: none;
+}
+
+.overflow-menu-subitem {
+  padding-left: 28px;
+}
+
+/* Color chip - simpler alternative to color swatch button */
+.color-chip {
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  border: 2px solid var(--border-color);
+  cursor: pointer;
+  transition: transform 0.15s;
+  padding: 0;
+  flex-shrink: 0;
+  background: transparent;
+}
+
+.color-chip:hover {
+  transform: scale(1.15);
+}
+
+.color-chip:focus {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 1px;
+}
+
+/* Overflow menu button */
+.overflow-menu-btn {
+  padding: 4px 8px;
+  font-size: var(--font-md);
+  line-height: 1;
+  color: var(--text-secondary);
+  opacity: 0.6;
+  transition: opacity 0.15s, background 0.15s;
+  border-radius: var(--radius-sm);
+  position: relative;
+}
+
+.overflow-menu-btn:hover {
+  opacity: 1;
+  background: var(--bg-tertiary);
+}
+
+.overflow-menu-btn.active {
+  opacity: 1;
+  background: var(--bg-tertiary);
+}
+
+/* Collapsed Column */
+.column-collapsed {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-md) 8px;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.column-collapsed:hover {
+  background: var(--bg-tertiary);
+  transform: scale(1.02);
+}
+
+.column-collapsed-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.column-collapsed-title {
+  font-weight: 600;
+  font-size: var(--font-base);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.column-collapsed-count {
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+  background: var(--bg-tertiary);
+  padding: 4px 6px;
+  border-radius: 12px;
+  writing-mode: horizontal-tb;
+  min-width: 24px;
+  text-align: center;
 }

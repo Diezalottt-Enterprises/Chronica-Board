@@ -2,4 +2,4 @@
 import "@testing-library/jest-dom/vitest";
 
 // Mock Tauri API for testing
-global.window.__TAURI_INTERNALS__ = {} as never;
+(globalThis.window as any).__TAURI_INTERNALS__ = {} as never;

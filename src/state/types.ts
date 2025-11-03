@@ -15,6 +15,7 @@ export interface Column {
   title: string;
   order: number;
   color?: string | null; // hex like "#3b82f6"; null/undefined = default
+  collapsed?: boolean; // Column collapsed to thin vertical bar
 }
 
 /**
@@ -65,7 +66,6 @@ export interface Config {
   pinned: boolean;
   opacity: number; // 0.7 - 1.0
   autostart: boolean;
-  showStarterCards: boolean; // Settings toggle
   sidebarPinned: boolean; // Sidebar pin/unpin state
   columnsLocked: boolean; // Column dragging lock state
   uiScale: number; // Global UI/font scale: 0.8 - 1.2 (default 1.0)

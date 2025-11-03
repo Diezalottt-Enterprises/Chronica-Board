@@ -10,6 +10,7 @@ export const ColumnSchema = z.object({
   title: z.string(),
   order: z.number(),
   color: z.string().nullable().optional(),
+  collapsed: z.boolean().optional(),
 });
 
 /**
@@ -99,7 +100,7 @@ export const ConfigSchema = z.object({
   pinned: z.boolean(),
   opacity: z.number().min(0.7).max(1.0),
   autostart: z.boolean(),
-  showStarterCards: z.boolean(),
+  showStarterCards: z.boolean().optional(), // Legacy field, no longer used
   sidebarPinned: z.boolean().optional(),
   columnsLocked: z.boolean().optional(),
   uiScale: z.number().min(0.8).max(1.2).optional(),

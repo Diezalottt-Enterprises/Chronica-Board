@@ -12,27 +12,40 @@ export function sanitizeText(input: string): string {
   return DOMPurify.sanitize(input, {
     ALLOWED_TAGS: [], // No HTML tags allowed
     ALLOWED_ATTR: [], // No attributes allowed
-  });
+  }).trim();
+}
+
+/**
+ * Sanitize rich text content to prevent XSS
+ * Allows safe formatting tags (b, i, em, strong, u, br, p)
+ */
+export function sanitizeRichText(input: string): string {
+  return DOMPurify.sanitize(input, {
+    ALLOWED_TAGS: ["b", "i", "em", "strong", "u", "br", "p"],
+    ALLOWED_ATTR: [],
+  }).trim();
 }
 
 /**
  * Validate and sanitize color
- * Allows predefined color names (mint, cyan, salmon, lavender, slate) or valid #RRGGBB hex format
- * Returns sanitized color or undefined if invalid
+ * Allows predefined color names (mint, cyan, salmon, lavender, slate) or valid hex format (#RGB or #RRGGBB)
+ * Returns sanitized color or default cyan if invalid
  */
-export function sanitizeColor(color: string | undefined): string | undefined {
-  if (!color) return undefined;
+export function sanitizeColor(color: string | undefined): string {
+  const DEFAULT_COLOR = "#6fc2db"; // cyan
+
+  if (!color || color.trim() === "") return DEFAULT_COLOR;
 
   // Check if it's a predefined color name
   if (color in PREDEFINED_COLORS) {
     return color;
   }
 
-  // Only allow valid hex colors (#RRGGBB format)
-  const hexRegex = /^#[0-9A-Fa-f]{6}$/;
+  // Allow valid hex colors (#RGB or #RRGGBB format)
+  const hexRegex = /^#[0-9A-Fa-f]{3}$|^#[0-9A-Fa-f]{6}$/;
   if (!hexRegex.test(color)) {
     console.warn(`[Security] Invalid color format rejected: ${color}`);
-    return undefined;
+    return DEFAULT_COLOR;
   }
 
   return color;
@@ -87,11 +100,11 @@ export function sanitizeTitle(title: string): string {
 
 /**
  * Sanitize card description
- * Max 2000 characters
+ * Max 5000 characters, allows safe HTML formatting
  */
 export function sanitizeDescription(description: string | undefined): string | undefined {
   if (!description) return undefined;
 
-  const sanitized = sanitizeText(description);
-  return sanitized.length > 0 ? sanitized.slice(0, 2000) : undefined;
+  const sanitized = sanitizeRichText(description);
+  return sanitized.length > 0 ? sanitized.slice(0, 5000) : undefined;
 }

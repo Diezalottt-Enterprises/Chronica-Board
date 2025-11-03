@@ -24,6 +24,7 @@ import { useConfigStore } from "../stores/configStore";
 import { Card } from "./Card";
 import { SortableCard } from "./SortableCard";
 import { ColorPicker } from "./ColorPicker";
+import { OverflowMenu, type MenuItem } from "./OverflowMenu";
 import type { Card as CardType, Column, ColumnKey } from "../state/types";
 import { DEFAULT_RANK, RANK_GAP } from "../constants/ranks";
 import { getColumnColorStyles } from "../utils/theme";
@@ -62,10 +63,14 @@ interface SortableColumnProps {
   theme: Theme;
   onEditCard: (card: CardType) => void;
   onNewCard: (column: ColumnKey) => void;
+  renameColumn: (columnKey: string, newTitle: string) => void;
   onRenameColumn: (columnKey: string, currentTitle: string) => void;
   onDeleteColumn: (columnKey: string, columnTitle: string) => void;
   onToggleLock: () => void;
   onSetColor: (columnKey: string, color: string | null) => void;
+  onDuplicateColumn: (columnKey: string) => void;
+  onSortCards: (columnKey: string, direction: "asc" | "desc") => void;
+  onToggleCollapse: (columnKey: string) => void;
   columnsCount: number;
 }
 
@@ -76,13 +81,21 @@ function SortableColumn({
   theme,
   onEditCard,
   onNewCard,
+  renameColumn,
   onRenameColumn,
   onDeleteColumn,
   onToggleLock,
   onSetColor,
+  onDuplicateColumn,
+  onSortCards,
+  onToggleCollapse,
   columnsCount,
 }: SortableColumnProps) {
   const [showColorPicker, setShowColorPicker] = useState(false);
+  const [showOverflowMenu, setShowOverflowMenu] = useState(false);
+  const [menuAnchor, setMenuAnchor] = useState<HTMLElement | null>(null);
+  const [isEditingTitle, setIsEditingTitle] = useState(false);
+  const [editedTitle, setEditedTitle] = useState(column.title);
 
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: `column-${column.key}`,
@@ -90,6 +103,141 @@ function SortableColumn({
   });
 
   const colorStyles = getColumnColorStyles(column.color, theme);
+
+  // Title editing handlers
+  const handleTitleClick = () => {
+    if (!locked) {
+      setIsEditingTitle(true);
+      setEditedTitle(column.title);
+    }
+  };
+
+  const handleTitleSave = () => {
+    const trimmed = editedTitle.trim();
+    if (trimmed && trimmed !== column.title) {
+      renameColumn(column.key, trimmed);
+    }
+    setIsEditingTitle(false);
+    setEditedTitle(column.title);
+  };
+
+  const handleTitleCancel = () => {
+    setIsEditingTitle(false);
+    setEditedTitle(column.title);
+  };
+
+  const handleTitleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleTitleSave();
+    } else if (e.key === "Escape") {
+      e.preventDefault();
+      handleTitleCancel();
+    }
+  };
+
+  // Build overflow menu items
+  const menuItems: MenuItem[] = useMemo(
+    () => [
+      {
+        id: "add-card",
+        label: "Add Card",
+        icon: "➕",
+        onClick: () => {
+          onNewCard(column.key);
+        },
+      },
+      {
+        id: "rename",
+        label: "Rename Column",
+        icon: "✏️",
+        onClick: () => {
+          onRenameColumn(column.key, column.title);
+        },
+      },
+      {
+        id: "set-color",
+        label: "Set Color",
+        icon: "🎨",
+        onClick: () => {
+          setShowColorPicker(true);
+        },
+      },
+      {
+        id: "sort",
+        label: "Sort Cards",
+        icon: "↕️",
+        onClick: () => {},
+        submenu: [
+          {
+            id: "sort-asc",
+            label: "A → Z",
+            icon: "↑",
+            onClick: () => {
+              onSortCards(column.key, "asc");
+            },
+          },
+          {
+            id: "sort-desc",
+            label: "Z → A",
+            icon: "↓",
+            onClick: () => {
+              onSortCards(column.key, "desc");
+            },
+          },
+        ],
+        divider: true,
+      },
+      {
+        id: "lock",
+        label: locked ? "Unlock Columns" : "Lock Columns",
+        icon: locked ? "🔒" : "🔓",
+        onClick: onToggleLock,
+        checked: locked,
+      },
+      {
+        id: "duplicate",
+        label: "Duplicate Column",
+        icon: "📋",
+        onClick: () => {
+          onDuplicateColumn(column.key);
+        },
+      },
+      {
+        id: "collapse",
+        label: column.collapsed ? "Expand Column" : "Collapse Column",
+        icon: column.collapsed ? "↔️" : "↔️",
+        onClick: () => {
+          onToggleCollapse(column.key);
+        },
+        divider: true,
+      },
+      {
+        id: "delete",
+        label: "Delete Column",
+        icon: "🗑️",
+        onClick: () => {
+          onDeleteColumn(column.key, column.title);
+        },
+        destructive: true,
+        disabled: columnsCount <= 1,
+      },
+    ],
+    [
+      column.key,
+      column.title,
+      column.collapsed,
+      locked,
+      columnsCount,
+      onNewCard,
+      onRenameColumn,
+      onSortCards,
+      onToggleLock,
+      onDuplicateColumn,
+      onToggleCollapse,
+      onDeleteColumn,
+    ]
+  );
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -105,14 +253,50 @@ function SortableColumn({
     color: colorStyles.textColor || undefined,
   };
 
+  // Render collapsed column as thin vertical bar
+  if (column.collapsed) {
+    const collapsedStyle = {
+      ...style,
+      minWidth: "40px",
+      maxWidth: "40px",
+      cursor: "pointer",
+    };
+
+    return (
+      <div
+        ref={setNodeRef}
+        style={collapsedStyle}
+        className="kanban-column column-collapsed"
+        onClick={() => {
+          onToggleCollapse(column.key);
+        }}
+        title={`Expand ${column.title}`}
+      >
+        <div className="column-collapsed-content">
+          <span className="column-collapsed-title">{column.title}</span>
+          <span className="column-collapsed-count">{cards.length}</span>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div ref={setNodeRef} style={style} className="kanban-column">
       <div className="column-header" style={headerStyle}>
-        <div style={{ display: "flex", alignItems: "center", gap: "8px", flex: 1 }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
+            flex: 1,
+            minWidth: 0,
+            overflow: "hidden",
+          }}
+        >
           {!locked && (
             <span
               className="drag-grip"
-              style={{ cursor: "grab", opacity: 0.4 }}
+              style={{ cursor: "grab", opacity: 0.4, flexShrink: 0 }}
               {...attributes}
               {...listeners}
               title="Drag to reorder"
@@ -120,14 +304,35 @@ function SortableColumn({
               ⋮⋮
             </span>
           )}
-          <span className="column-title" style={{ cursor: locked ? "default" : "pointer" }}>
-            {column.title}
+          {isEditingTitle ? (
+            <input
+              type="text"
+              className="column-title-input"
+              value={editedTitle}
+              onChange={(e) => {
+                setEditedTitle(e.target.value);
+              }}
+              onKeyDown={handleTitleKeyDown}
+              onBlur={handleTitleSave}
+              autoFocus
+              style={{ minWidth: 0 }}
+            />
+          ) : (
+            <span
+              className="column-title"
+              style={{ cursor: locked ? "default" : "pointer", minWidth: 0 }}
+              onClick={handleTitleClick}
+            >
+              {column.title}
+            </span>
+          )}
+          <span className="column-count" style={{ flexShrink: 0 }}>
+            {cards.length}
           </span>
-          <span className="column-count">{cards.length}</span>
         </div>
-        <div style={{ display: "flex", gap: "4px", alignItems: "center" }}>
+        <div style={{ display: "flex", gap: "6px", alignItems: "center", flexShrink: 0 }}>
           <button
-            className="color-swatch"
+            className="color-chip"
             onClick={() => {
               setShowColorPicker(true);
             }}
@@ -135,32 +340,28 @@ function SortableColumn({
             aria-label={`Set column color for ${column.title}`}
             style={{ backgroundColor: column.color || "#d0d0d0" }}
           />
-          <button
-            className="icon"
-            onClick={onToggleLock}
-            title={locked ? "Unlock columns" : "Lock columns"}
-          >
-            {locked ? "🔒" : "🔓"}
-          </button>
-          <button
-            className="icon"
-            onClick={() => {
-              onRenameColumn(column.key, column.title);
-            }}
-            title="Rename column"
-          >
-            ✏️
-          </button>
-          <button
-            className="icon"
-            onClick={() => {
-              onDeleteColumn(column.key, column.title);
-            }}
-            title="Delete column"
-            disabled={columnsCount <= 1}
-          >
-            🗑️
-          </button>
+          <div style={{ position: "relative" }}>
+            <button
+              className={`overflow-menu-btn ${showOverflowMenu ? "active" : ""}`}
+              onClick={(e) => {
+                setMenuAnchor(e.currentTarget);
+                setShowOverflowMenu(!showOverflowMenu);
+              }}
+              title="More actions"
+              aria-label="Column actions menu"
+            >
+              ⋯
+            </button>
+            {showOverflowMenu && (
+              <OverflowMenu
+                items={menuItems}
+                onClose={() => {
+                  setShowOverflowMenu(false);
+                }}
+                anchorEl={menuAnchor}
+              />
+            )}
+          </div>
         </div>
       </div>
 
@@ -216,6 +417,9 @@ export function KanbanBoard({ onEditCard, onNewCard, theme }: KanbanBoardProps) 
     deleteColumn,
     reorderColumns,
     setColumnColor,
+    duplicateColumn,
+    sortCards,
+    setColumnCollapsed,
   } = useBoardStore();
   const { showPrompt, showConfirm } = useUIStore();
   const { config, setColumnsLocked } = useConfigStore();
@@ -389,12 +593,19 @@ export function KanbanBoard({ onEditCard, onNewCard, theme }: KanbanBoardProps) 
                 theme={theme}
                 onEditCard={onEditCard}
                 onNewCard={onNewCard}
+                renameColumn={renameColumn}
                 onRenameColumn={handleRenameColumn}
                 onDeleteColumn={handleDeleteColumn}
                 onToggleLock={() => {
                   setColumnsLocked(!columnsLocked);
                 }}
                 onSetColor={setColumnColor}
+                onDuplicateColumn={duplicateColumn}
+                onSortCards={sortCards}
+                onToggleCollapse={(columnKey) => {
+                  const currentColumn = activeBoard.columns.find(col => col.key === columnKey);
+                  setColumnCollapsed(columnKey, !(currentColumn?.collapsed ?? false));
+                }}
                 columnsCount={activeBoard.columns.length}
               />
             );

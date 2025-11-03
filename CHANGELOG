@@ -4,6 +4,49 @@ All notable changes to Chronica will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.1.0-alpha.4] - 2025-11-03
+
+Column management overhaul with comprehensive operations, enhanced version control infrastructure, and critical bug fixes for state management.
+
+### Added
+- Column management system with overflow menu (3-dot icon)
+  - Rename column via inline edit or menu
+  - Add new column button
+  - Delete column with card migration prompt
+  - Duplicate column with all cards copied
+  - Sort cards A-Z or Z-A within column
+  - Collapse/expand column to vertical bar view
+  - Lock/unlock column reordering toggle
+  - Set column color via color picker
+- OverflowMenu component with submenu support and click-outside-to-close
+- Column collapsed state persisted across app restarts
+- Testing documentation: Column-Management-Testing.md checklist
+- Version sync script validation for semantic version format
+- Documentation clarifying Tauri version intentionally not synced during alpha
+
+### Changed
+- Column keys now use UUID instead of title-based slugs (prevents collisions)
+- Column title inline editing: blur now saves instead of cancels
+- CLAUDE.md version reference updated to point to src/version.ts as single source of truth
+- Menu items memoized with useMemo for performance
+- Legacy showStarterCards field marked optional in schema
+
+### Fixed
+- Critical stale closure bug in onToggleCollapse causing unresponsive columns
+- State corruption causing board to revert to default 3-column layout after delete
+- Intermittent column interaction failures due to captured stale state
+- Column collapsed state not persisting (added to schema validation)
+- Duplicate column key generation from similar titles
+
+### Removed
+- src/state/store.ts (dead code, replaced by modular stores)
+
+### Technical
+- Enhanced sync-version.js with semver validation and error messages
+- Added collapsed field to ColumnSchema (Zod validation)
+- Column operations in boardStore: duplicateColumn, sortCards, setColumnCollapsed
+- SortableColumn component refactored with proper React hooks dependencies
+
 ## [0.1.0-alpha.3] - 2025-10-26
 
 Comprehensive codebase modernization for GitLab readiness. Established production-ready infrastructure with strict TypeScript, automated testing, code quality tooling, and CI/CD pipeline. Professional documentation suite with ADRs and contribution guidelines.

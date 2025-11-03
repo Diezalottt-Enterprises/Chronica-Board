@@ -19,14 +19,12 @@ export function SettingsModal({ onClose, theme, onThemeChange }: SettingsModalPr
   const {
     config,
     setAutostart,
-    setShowStarterCards,
     setPinned: updatePinned,
     setOpacity: updateOpacity,
     setUIScale,
   } = useConfigStore();
   const [activeTab, setActiveTab] = useState<Tab>("general");
   const [autostart, setAutostartLocal] = useState(config?.autostart || false);
-  const [showStarters, setShowStartersLocal] = useState(config?.showStarterCards ?? true);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -50,12 +48,6 @@ export function SettingsModal({ onClose, theme, onThemeChange }: SettingsModalPr
     } catch (error) {
       console.error("Failed to update autostart:", error);
     }
-  };
-
-  const handleShowStartersToggle = () => {
-    const newValue = !showStarters;
-    setShowStartersLocal(newValue);
-    setShowStarterCards(newValue);
   };
 
   const handlePinToggle = async () => {
@@ -264,20 +256,6 @@ export function SettingsModal({ onClose, theme, onThemeChange }: SettingsModalPr
                   />
                   <label htmlFor="autostart" style={{ textTransform: "none" }}>
                     Start Chronica on login
-                  </label>
-                </div>
-              </div>
-
-              <div className="form-group">
-                <div className="form-checkbox">
-                  <input
-                    type="checkbox"
-                    id="showStarters"
-                    checked={showStarters}
-                    onChange={handleShowStartersToggle}
-                  />
-                  <label htmlFor="showStarters" style={{ textTransform: "none" }}>
-                    Show starter cards on first launch
                   </label>
                 </div>
               </div>

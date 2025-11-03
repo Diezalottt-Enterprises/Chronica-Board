@@ -96,10 +96,9 @@ function App() {
           console.log("[Chronica] Loaded boards:", loadedBoards);
           setBoards(loadedBoards);
         } else {
-          // Create first board with starter cards if enabled
+          // Create first board (no starter cards)
           console.log("[Chronica] Creating first board...");
-          const shouldShowStarters = loadedConfig.showStarterCards ?? true;
-          createBoard("Untitled Board", shouldShowStarters);
+          createBoard("Untitled Board", false);
           console.log("[Chronica] First board created");
         }
 

@@ -17,7 +17,6 @@ interface ConfigState {
   setPinned: (pinned: boolean) => void;
   setOpacity: (opacity: number) => void;
   setAutostart: (autostart: boolean) => void;
-  setShowStarterCards: (show: boolean) => void;
   setSidebarPinned: (pinned: boolean) => void;
   setColumnsLocked: (locked: boolean) => void;
   setUIScale: (scale: number) => void;
@@ -64,12 +63,6 @@ export const useConfigStore = create<ConfigState>((set, get) => ({
     const state = get();
     if (!state.config) return;
     set({ config: { ...state.config, autostart } });
-  },
-
-  setShowStarterCards: (show) => {
-    const state = get();
-    if (!state.config) return;
-    set({ config: { ...state.config, showStarterCards: show } });
   },
 
   setSidebarPinned: (pinned) => {
@@ -137,7 +130,6 @@ export function getDefaultConfig(): Config {
     pinned: false,
     opacity: 1.0,
     autostart: false,
-    showStarterCards: true,
     sidebarPinned: true,
     columnsLocked: false,
     uiScale: 1.0,

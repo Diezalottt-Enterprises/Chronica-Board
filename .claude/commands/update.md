@@ -46,13 +46,7 @@ Only include section headers (Added, Changed, Fixed, etc.) that are applicable t
 ## Step 5: Create Commit Message File
 1. First, read the commit message template from `Chronica-CC\docs\commits\Commit-Message-Template.md`
 2. Create a new markdown file in the `Chronica-CC\docs\commits` folder named after your version (e.g., "0.1.0-alpha.2.md")
-3. The file should contain copy/paste ready terminal commands in this format:
-
-```
-git add .
-
-<git commit message following the template>
-```
+3. The file should contain copy/paste ready terminal commands in the format shown in tthe template file.
 
 ## Step 6: Final Report
 Once all steps are complete, provide a summary message in this format:

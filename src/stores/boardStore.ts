@@ -70,6 +70,9 @@ interface BoardState {
   deleteColumn: (columnKey: string) => void;
   reorderColumns: (newOrder: Column[]) => void;
   setColumnColor: (columnKey: string, color: string | null) => void;
+  duplicateColumn: (columnKey: string) => void;
+  sortCards: (columnKey: string, direction: "asc" | "desc") => void;
+  setColumnCollapsed: (columnKey: string, collapsed: boolean) => void;
 }
 
 /**
@@ -241,8 +244,8 @@ export const useBoardStore = create<BoardState>((set, get) => ({
     const state = get();
     if (!state.activeBoard) return;
 
-    // Generate unique column key from title
-    const key = title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+    // Generate unique column key using UUID
+    const key = uuidv4();
     const maxOrder = Math.max(...state.activeBoard.columns.map((c) => c.order), -1);
 
     const newColumn: Column = {
@@ -313,6 +316,99 @@ export const useBoardStore = create<BoardState>((set, get) => ({
       ...state.activeBoard,
       columns: state.activeBoard.columns.map((col) =>
         col.key === columnKey ? { ...col, color } : col
+      ),
+    };
+
+    const boards = state.boards.map((b) => (b.id === updatedBoard.id ? updatedBoard : b));
+
+    set({ boards, activeBoard: updatedBoard });
+  },
+
+  duplicateColumn: (columnKey) => {
+    const state = get();
+    if (!state.activeBoard) return;
+
+    const originalColumn = state.activeBoard.columns.find((col) => col.key === columnKey);
+    if (!originalColumn) return;
+
+    // Generate new column with unique key
+    const newColumnKey = `${columnKey}_copy_${Date.now()}`;
+    const newColumn: Column = {
+      ...originalColumn,
+      key: newColumnKey,
+      title: `${originalColumn.title} (Copy)`,
+      order: originalColumn.order + 1,
+    };
+
+    // Deep copy all cards in the column with new IDs
+    const originalCards = state.activeBoard.cards.filter((card) => card.column === columnKey);
+    const newCards: Card[] = originalCards.map((card) => ({
+      ...card,
+      id: uuidv4(),
+      column: newColumnKey,
+    }));
+
+    // Insert new column after original
+    const updatedColumns = [...state.activeBoard.columns];
+    const insertIndex = updatedColumns.findIndex((col) => col.key === columnKey) + 1;
+    updatedColumns.splice(insertIndex, 0, newColumn);
+
+    // Reorder columns after insertion
+    const reorderedColumns = updatedColumns.map((col, idx) => ({ ...col, order: idx }));
+
+    const updatedBoard: Board = {
+      ...state.activeBoard,
+      columns: reorderedColumns,
+      cards: [...state.activeBoard.cards, ...newCards],
+    };
+
+    const boards = state.boards.map((b) => (b.id === updatedBoard.id ? updatedBoard : b));
+
+    set({ boards, activeBoard: updatedBoard });
+  },
+
+  sortCards: (columnKey, direction) => {
+    const state = get();
+    if (!state.activeBoard) return;
+
+    const columnCards = state.activeBoard.cards.filter((card) => card.column === columnKey);
+
+    // Sort by title
+    const sorted = [...columnCards].sort((a, b) => {
+      const compareResult = a.title.localeCompare(b.title);
+      return direction === "asc" ? compareResult : -compareResult;
+    });
+
+    // Recalculate rank values (1000, 2000, 3000...)
+    const RANK_START = 1000;
+    const RANK_INCREMENT = 1000;
+    const updatedCards = sorted.map((card, index) => ({
+      ...card,
+      rank: RANK_START + index * RANK_INCREMENT,
+    }));
+
+    // Merge with other cards
+    const otherCards = state.activeBoard.cards.filter((card) => card.column !== columnKey);
+    const allCards = [...otherCards, ...updatedCards];
+
+    const updatedBoard: Board = {
+      ...state.activeBoard,
+      cards: allCards,
+    };
+
+    const boards = state.boards.map((b) => (b.id === updatedBoard.id ? updatedBoard : b));
+
+    set({ boards, activeBoard: updatedBoard });
+  },
+
+  setColumnCollapsed: (columnKey, collapsed) => {
+    const state = get();
+    if (!state.activeBoard) return;
+
+    const updatedBoard: Board = {
+      ...state.activeBoard,
+      columns: state.activeBoard.columns.map((col) =>
+        col.key === columnKey ? { ...col, collapsed } : col
       ),
     };
 
