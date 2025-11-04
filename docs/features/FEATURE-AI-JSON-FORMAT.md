@@ -27,13 +27,16 @@
 ## Feature Overview
 
 ### What
+
 Enhance the export format with an AI-optimized structure that makes it easy for Claude Code and other AI assistants to:
+
 - Understand project structure and status
 - Generate new boards from requirements
 - Update card details automatically
 - Track project progress and suggest next actions
 
 ### Why
+
 - **AI Integration:** Enable Claude Code to read/write Chronica boards programmatically
 - **Automation:** AI can execute tasks and update status automatically
 - **Context Sharing:** Provide full project context to AI in one file
@@ -41,6 +44,7 @@ Enhance the export format with an AI-optimized structure that makes it easy for 
 - **Documentation:** Self-documenting project state for team/AI
 
 ### User Benefit
+
 - AI assistant can manage tasks automatically
 - Project tracking integrated with development workflow
 - Intelligent task suggestions based on project state
@@ -103,11 +107,13 @@ Enhance the export format with an AI-optimized structure that makes it easy for 
 **Scenario:** Developer asks Claude Code to run tests and update board
 
 **User Command:**
+
 ```
 Claude, run all tests and update the "Testing" board. Move passed tests to Done, failed tests get error details in description.
 ```
 
 **AI Workflow:**
+
 1. Read `chronica_testing_ai.json`
 2. Parse cards in "In Progress" column
 3. Execute tests for each card
@@ -116,6 +122,7 @@ Claude, run all tests and update the "Testing" board. Move passed tests to Done,
 6. User imports updated board
 
 **Required Format Features:**
+
 - Nested structure (column contains cards)
 - Writable JSON (AI can modify easily)
 - Clear card identifiers
@@ -128,6 +135,7 @@ Claude, run all tests and update the "Testing" board. Move passed tests to Done,
 **Scenario:** Product owner provides requirements, AI creates sprint board
 
 **User Command:**
+
 ```
 Claude, create a sprint board with these user stories:
 1. User login
@@ -139,6 +147,7 @@ Add acceptance criteria, estimates, and assign to columns based on priority.
 ```
 
 **AI Workflow:**
+
 1. Parse user stories from command
 2. Generate Chronica board structure
 3. Create columns: Backlog, To Do, In Progress, Review, Done
@@ -147,6 +156,7 @@ Add acceptance criteria, estimates, and assign to columns based on priority.
 6. User imports into Chronica
 
 **Required Format Features:**
+
 - Template structure (AI knows all required fields)
 - Custom field definitions
 - Clear schema documentation
@@ -159,6 +169,7 @@ Add acceptance criteria, estimates, and assign to columns based on priority.
 **Scenario:** Developer asks AI to add details to existing cards
 
 **User Command:**
+
 ```
 Claude, for each card in "To Do" column, add:
 - Acceptance criteria (3-5 bullet points)
@@ -168,6 +179,7 @@ Claude, for each card in "To Do" column, add:
 ```
 
 **AI Workflow:**
+
 1. Read board JSON
 2. For each card in "To Do":
    - Generate acceptance criteria
@@ -178,6 +190,7 @@ Claude, for each card in "To Do" column, add:
 4. User imports
 
 **Required Format Features:**
+
 - Custom fields schema in export
 - Links array structure
 - Tags array
@@ -190,6 +203,7 @@ Claude, for each card in "To Do" column, add:
 **Scenario:** Daily standup, AI generates progress report
 
 **User Command:**
+
 ```
 Claude, analyze the "Q4 Roadmap" board and give me:
 - % complete
@@ -199,6 +213,7 @@ Claude, analyze the "Q4 Roadmap" board and give me:
 ```
 
 **AI Workflow:**
+
 1. Read board JSON
 2. Calculate statistics:
    - Total cards, done cards, % complete
@@ -208,6 +223,7 @@ Claude, analyze the "Q4 Roadmap" board and give me:
 4. Suggest: "Assign card X to dev Y", "Merge card A and B (duplicates)", etc.
 
 **Required Format Features:**
+
 - Timestamps for trend analysis
 - Column statistics
 - Card metadata (assignee via custom fields)
@@ -220,6 +236,7 @@ Claude, analyze the "Q4 Roadmap" board and give me:
 ### Current Export Format Limitations
 
 **Flat Structure:**
+
 ```json
 {
   "meta": {...},
@@ -235,6 +252,7 @@ Claude, analyze the "Q4 Roadmap" board and give me:
 ```
 
 **Problems for AI:**
+
 1. **Flat arrays:** AI must join columns ↔ cards manually
 2. **No nesting:** Cards not grouped by column
 3. **No context:** Minimal metadata, no timestamps
@@ -243,32 +261,33 @@ Claude, analyze the "Q4 Roadmap" board and give me:
 ### What AI Needs
 
 1. **Nested Structure:**
+
    ```json
    {
      "columns": [
        {
          "title": "To Do",
-         "cards": [
-           {"title": "Card 1"},
-           {"title": "Card 2"}
-         ]
+         "cards": [{ "title": "Card 1" }, { "title": "Card 2" }]
        }
      ]
    }
    ```
 
 2. **Redundant Counts:**
+
    ```json
    {
      "statistics": {
        "total_cards": 10,
-       "cards_per_column": {"To Do": 5, "Done": 5}
+       "cards_per_column": { "To Do": 5, "Done": 5 }
      }
    }
    ```
+
    (AI can verify parsing correctness)
 
 3. **Temporal Data:**
+
    ```json
    {
      "board": {
@@ -406,10 +425,13 @@ export interface AIOptimizedMultiboardExportFormat {
  */
 function convertToAIOptimized(board: Board, includeTimestamps = true): AIOptimizedBoardEntry {
   // Group cards by column
-  const cardsByColumn = board.columns.reduce((acc, column) => {
-    acc[column.key] = board.cards.filter((card) => card.column === column.key);
-    return acc;
-  }, {} as Record<string, Card[]>);
+  const cardsByColumn = board.columns.reduce(
+    (acc, column) => {
+      acc[column.key] = board.cards.filter((card) => card.column === column.key);
+      return acc;
+    },
+    {} as Record<string, Card[]>
+  );
 
   // Convert columns with nested cards
   const aiColumns: AIOptimizedColumn[] = board.columns
@@ -631,7 +653,12 @@ function convertFromAIOptimized(aiBoard: AIOptimizedBoardEntry): {
  */
 export function importAIOptimizedFromJSON(jsonContent: string): {
   format: "single" | "multi";
-  singleBoard?: { name: string; columns: Column[]; cards: Card[]; fields?: Record<string, FieldDefinition> };
+  singleBoard?: {
+    name: string;
+    columns: Column[];
+    cards: Card[];
+    fields?: Record<string, FieldDefinition>;
+  };
   multiBoard?: {
     boards: Array<{ id: string; name: string; columns: Column[]; cards: Card[] }>;
     fields?: Record<string, FieldDefinition>;
@@ -691,9 +718,7 @@ interface AIExportModalProps {
 }
 
 export function AIExportModal({ boards, activeBoard, onExport, onClose }: AIExportModalProps) {
-  const [selectedBoardId, setSelectedBoardId] = useState<string | "all">(
-    activeBoard?.id || "all"
-  );
+  const [selectedBoardId, setSelectedBoardId] = useState<string | "all">(activeBoard?.id || "all");
   const [aiOptimized, setAIOptimized] = useState(true); // Default to AI-optimized
   const [readme, setReadme] = useState("");
   const [isExporting, setIsExporting] = useState(false);
@@ -767,7 +792,13 @@ export function AIExportModal({ boards, activeBoard, onExport, onClose }: AIExpo
             <div className="form-group">
               <label className="form-label">
                 AI Instructions (Optional)
-                <span style={{ fontSize: "var(--font-sm)", color: "var(--text-muted)", marginLeft: "var(--space-2)" }}>
+                <span
+                  style={{
+                    fontSize: "var(--font-sm)",
+                    color: "var(--text-muted)",
+                    marginLeft: "var(--space-2)",
+                  }}
+                >
                   Provide context for AI assistants
                 </span>
               </label>
@@ -822,6 +853,7 @@ export function AIExportModal({ boards, activeBoard, onExport, onClose }: AIExpo
 3. Add `convertFromAIOptimized()` function (for import)
 
 **Verification:**
+
 - Unit test: Convert sample board, verify nested structure
 - Unit test: Convert back, verify no data loss
 
@@ -836,8 +868,9 @@ export function AIExportModal({ boards, activeBoard, onExport, onClose }: AIExpo
 3. Test with sample boards
 
 **Verification:**
+
 - Export produces valid JSON
-- File name includes "_ai" suffix
+- File name includes "\_ai" suffix
 - Statistics match manual count
 
 ---
@@ -850,6 +883,7 @@ export function AIExportModal({ boards, activeBoard, onExport, onClose }: AIExpo
 2. Integrate with existing `importFromJSON()` universal function
 
 **Verification:**
+
 - Export AI-optimized → Import → Verify board identical
 - Nested structure correctly flattened
 
@@ -866,6 +900,7 @@ export function AIExportModal({ boards, activeBoard, onExport, onClose }: AIExpo
 5. Wire up export handlers
 
 **Verification:**
+
 - Modal renders correctly
 - Checkbox toggles AI format
 - Readme field shows/hides based on checkbox
@@ -889,16 +924,18 @@ const [showAIExportModal, setShowAIExportModal] = useState(false);
   title="Export Board"
 >
   ↓
-</button>
+</button>;
 
-{showAIExportModal && (
-  <AIExportModal
-    boards={boards}
-    activeBoard={activeBoard}
-    onExport={handleAIExport}
-    onClose={() => setShowAIExportModal(false)}
-  />
-)}
+{
+  showAIExportModal && (
+    <AIExportModal
+      boards={boards}
+      activeBoard={activeBoard}
+      onExport={handleAIExport}
+      onClose={() => setShowAIExportModal(false)}
+    />
+  );
+}
 ```
 
 **File:** `src/App.tsx`
@@ -906,11 +943,7 @@ const [showAIExportModal, setShowAIExportModal] = useState(false);
 Update export handler:
 
 ```typescript
-const handleAIExport = async (
-  boardId: string | "all",
-  aiOptimized: boolean,
-  readme?: string
-) => {
+const handleAIExport = async (boardId: string | "all", aiOptimized: boolean, readme?: string) => {
   try {
     if (aiOptimized) {
       if (boardId === "all") {
@@ -938,6 +971,7 @@ const handleAIExport = async (
 ```
 
 **Verification:**
+
 - Export modal opens on button click
 - AI checkbox works
 - Export creates correct file format
@@ -976,6 +1010,7 @@ const handleImport = (content: string) => {
 ```
 
 **Verification:**
+
 - Import AI-optimized file → works correctly
 - Import standard file → works as before
 - Import detects format automatically
@@ -1034,6 +1069,7 @@ const handleImport = (content: string) => {
 # Update Testing Board
 
 Read `chronica_testing_ai.json`, run all tests for cards in "In Progress" column, update card status:
+
 - Passed tests → move to "Done"
 - Failed tests → add error details to description, add "failed" tag
 
@@ -1041,6 +1077,7 @@ Export updated board to `chronica_testing_ai_updated.json`.
 ```
 
 **Claude Code Workflow:**
+
 1. Read AI-optimized JSON
 2. Parse nested structure: `board.columns[1].cards`
 3. For each card, run test command
@@ -1052,6 +1089,7 @@ Export updated board to `chronica_testing_ai_updated.json`.
 ### Example 2: Board Generation
 
 **User Prompt:**
+
 ```
 Create a new Chronica board for Q4 roadmap with these features:
 1. User authentication
@@ -1064,6 +1102,7 @@ Add acceptance criteria for each feature.
 ```
 
 **Claude Response (generates JSON):**
+
 ```json
 {
   "meta": {
@@ -1121,6 +1160,7 @@ Add acceptance criteria for each feature.
 ### Example 3: Card Enrichment
 
 **User Prompt:**
+
 ```
 For each card in "To Do" column of my_project_ai.json:
 - Add 3-5 acceptance criteria bullet points
@@ -1129,6 +1169,7 @@ For each card in "To Do" column of my_project_ai.json:
 ```
 
 **Claude Code Script:**
+
 ```python
 import json
 
@@ -1168,11 +1209,13 @@ with open("my_project_ai_enriched.json", "w") as f:
 ### Example 4: Progress Report
 
 **User Prompt:**
+
 ```
 Analyze q4_roadmap_ai.json and give me a progress report.
 ```
 
 **Claude Response:**
+
 ```
 # Q4 Roadmap Progress Report
 Generated: 2025-11-03 10:30 AM
@@ -1218,7 +1261,7 @@ Most used tags: `backend (8), frontend (6), security (4)`
 - [ ] AI-optimized export creates nested structure
 - [ ] Statistics match manual count
 - [ ] Readme field included when provided
-- [ ] File name has "_ai" suffix
+- [ ] File name has "\_ai" suffix
 - [ ] JSON is pretty-printed (readable)
 - [ ] Timestamps in ISO8601 format
 - [ ] Custom fields included in metadata

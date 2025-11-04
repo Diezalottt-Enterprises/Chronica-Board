@@ -32,6 +32,7 @@ Each feature file follows a standardized template:
 ```
 
 This structure ensures every feature document is:
+
 - **Self-contained:** No need to read other docs first
 - **Actionable:** Clear implementation steps, not just concepts
 - **Testable:** Explicit success criteria and test cases
@@ -42,6 +43,7 @@ This structure ensures every feature document is:
 ## Feature Files
 
 ### 1. Style Guide Alignment
+
 **File:** [`FEATURE-STYLE-GUIDE-ALIGNMENT.md`](./FEATURE-STYLE-GUIDE-ALIGNMENT.md)
 **Status:** 📋 Planned
 **Priority:** High
@@ -51,6 +53,7 @@ This structure ensures every feature document is:
 Migrate Chronica's ad-hoc color system to align with the Stack Junkie Universal Style Guide v0.3. Replace hardcoded hex colors with semantic design tokens (primary, accent, success, warning, danger, info) and implement proper light/dark/high-contrast theme support.
 
 **Key Changes:**
+
 - Create token files: `tokens/base.css`, `tokens/light.css`, `tokens/dark.css`, `tokens/high-contrast.css`
 - Replace 19+ hardcoded colors in `App.css`
 - Fix card component to respect themes (currently hardcoded white background)
@@ -58,6 +61,7 @@ Migrate Chronica's ad-hoc color system to align with the Stack Junkie Universal 
 - Implement high-contrast theme option
 
 **Why This Matters:**
+
 - **Consistency:** Unified color language across the app
 - **Maintainability:** Single source of truth for colors
 - **Accessibility:** High-contrast mode for users with visual impairments
@@ -66,6 +70,7 @@ Migrate Chronica's ad-hoc color system to align with the Stack Junkie Universal 
 ---
 
 ### 2. Multi-Board Export
+
 **File:** [`FEATURE-MULTI-BOARD-EXPORT.md`](./FEATURE-MULTI-BOARD-EXPORT.md)
 **Status:** 📋 Planned
 **Priority:** High
@@ -75,6 +80,7 @@ Migrate Chronica's ad-hoc color system to align with the Stack Junkie Universal 
 Enhance export/import functionality to support exporting multiple boards at once or all boards in the workspace. Add dropdown selector UI with "All Boards" option. Update import flow to handle multiple boards with conflict resolution.
 
 **Key Changes:**
+
 - New `MultiboardExportFormat` schema with `boards[]` array
 - `ExportSelector` component with dropdown UI
 - `exportAllBoards()` and `exportSelectedBoards()` functions
@@ -82,17 +88,20 @@ Enhance export/import functionality to support exporting multiple boards at once
 - Backward compatibility with single-board exports
 
 **Why This Matters:**
+
 - **Workflow Efficiency:** Export entire workspace in one operation
 - **Backup Strategy:** Full workspace backups for disaster recovery
 - **AI Integration:** Enable AI tools to access all project boards
 - **Collaboration:** Share complete project structure with team
 
 **Dependencies:**
+
 - Used by FEATURE-AI-JSON-FORMAT for workspace exports
 
 ---
 
 ### 3. AI-Optimized JSON Format
+
 **File:** [`FEATURE-AI-JSON-FORMAT.md`](./FEATURE-AI-JSON-FORMAT.md)
 **Status:** 📋 Planned
 **Priority:** High
@@ -102,6 +111,7 @@ Enhance export/import functionality to support exporting multiple boards at once
 Create an AI-friendly export format optimized for Claude Code and other AI tools. Nested structure (columns contain cards), timestamps, statistics, and optional readme field for AI instructions. Supports task automation, board generation, card enrichment, and project tracking use cases.
 
 **Key Changes:**
+
 - `AIOptimizedExportFormat` with nested `columns[].cards[]` structure
 - `statistics` object with redundant counts for AI verification
 - `readme` field for custom AI instructions
@@ -109,23 +119,27 @@ Create an AI-friendly export format optimized for Claude Code and other AI tools
 - Conversion utilities: `toAIOptimized()` and `fromAIOptimized()`
 
 **Why This Matters:**
+
 - **AI Integration:** Direct Claude Code integration for project management
 - **Automation:** AI can run tests, update cards, track progress
 - **Generation:** AI can create boards from requirements documents
 - **Enrichment:** AI adds estimates, priorities, subtasks automatically
 
 **Use Cases:**
+
 1. **Task Automation:** AI runs tests, updates cards with results
 2. **Board Generation:** "Create sprint board from PRD.md"
 3. **Card Enrichment:** AI adds time estimates, dependencies
 4. **Project Tracking:** AI analyzes velocity, suggests actions
 
 **Dependencies:**
+
 - Requires FEATURE-MULTI-BOARD-EXPORT for workspace-level exports
 
 ---
 
 ### 4. Column Color Mode Toggle
+
 **File:** [`FEATURE-COLUMN-COLOR-MODE.md`](./FEATURE-COLUMN-COLOR-MODE.md)
 **Status:** 📋 Planned
 **Priority:** Medium
@@ -135,24 +149,70 @@ Create an AI-friendly export format optimized for Claude Code and other AI tools
 Add user setting to toggle between "Subtle" (current low-opacity) and "Vibrant" (higher-opacity, bolder) column color modes. Provides visual customization while maintaining good color theory and readability.
 
 **Key Changes:**
+
 - Add `columnColorMode: "subtle" | "vibrant"` to Config
 - Update `getColumnColorStyles()` with mode parameter and vibrant alpha values
 - Add toggle in Settings → Appearance section
 - Vibrant mode: 0.4-0.8 opacity range (vs. current 0.06-0.45)
 
 **Why This Matters:**
+
 - **Personalization:** Users control visual intensity of their workspace
 - **Accessibility:** Vibrant mode improves color distinction for low vision
 - **Flexibility:** Subtle for professional environments, vibrant for personal
 - **Color Theory:** Both modes maintain WCAG AA contrast ratios
 
 **Visual Comparison:**
+
 - **Subtle:** Gentle tints, professional, text-focused (current behavior)
 - **Vibrant:** Bold colors, high saturation, distinct columns (new option)
 
 **Independence:**
+
 - No dependencies, can be implemented standalone
 - May interact with FEATURE-STYLE-GUIDE-ALIGNMENT if semantic tokens replace hex colors
+
+---
+
+### 5. Windows Installer Build and Distribution
+
+**File:** [`FEATURE-INSTALLER-BUILD.md`](./FEATURE-INSTALLER-BUILD.md)
+**Status:** 📋 Partially Implemented (needs documentation)
+**Priority:** High (required for beta)
+**Effort:** 4-6 hours
+
+**Summary:**
+Document and automate the Windows installer build process. Tauri already generates MSI, NSIS, and standalone .exe installers, but the process needs documentation, automation scripts, and distribution guidelines.
+
+**Key Changes:**
+
+- Create `scripts/build-release.ps1` automation script
+- Document build prerequisites (Rust, Visual Studio Build Tools)
+- Code signing guide (self-signed, standard, EV certificates)
+- Distribution methods (GitLab Releases, package managers)
+- Testing checklist for clean Windows VM
+- Future: Auto-update integration
+
+**Why This Matters:**
+
+- **Beta Readiness:** Users need one-click installation
+- **Professionalism:** Proper Windows integration (Start Menu, uninstaller)
+- **Trust:** Code signing avoids SmartScreen warnings
+- **Distribution:** Standardized release artifacts
+
+**Current State:**
+
+- ✅ Tauri builds MSI/NSIS/standalone automatically
+- ✅ Installers work correctly
+- ❌ No build documentation
+- ❌ No automation script
+- ❌ Not code signed
+- ❌ No distribution workflow
+
+**Independence:**
+
+- No code dependencies, purely documentation and tooling
+- Required before any beta release
 
 ---
 
@@ -161,6 +221,7 @@ Add user setting to toggle between "Subtle" (current low-opacity) and "Vibrant" 
 ### Recommended Order
 
 **Option A: User-Facing Features First (Recommended)**
+
 1. **Column Color Mode** (1-2 days) - Quick win, immediate user value
 2. **Multi-Board Export** (2-3 days) - Enables workspace backups
 3. **AI-Optimized Format** (2-3 days) - Builds on multi-board export
@@ -173,6 +234,7 @@ Add user setting to toggle between "Subtle" (current low-opacity) and "Vibrant" 
 ---
 
 **Option B: Foundation First**
+
 1. **Style Guide Alignment** (2-3 days) - Clean foundation
 2. **Column Color Mode** (1-2 days) - Uses new token system
 3. **Multi-Board Export** (2-3 days) - Core export functionality
@@ -185,6 +247,7 @@ Add user setting to toggle between "Subtle" (current low-opacity) and "Vibrant" 
 ---
 
 **Option C: AI Integration Focus**
+
 1. **Multi-Board Export** (2-3 days) - Required for AI use cases
 2. **AI-Optimized Format** (2-3 days) - Core AI integration
 3. **Column Color Mode** (1-2 days) - Quick UX improvement
@@ -210,6 +273,7 @@ If you're an AI assistant tasked with implementing a feature:
 6. **Update cross-references** - Modify related docs if you change interfaces
 
 **Example Workflow:**
+
 ```
 1. User: "Implement FEATURE-COLUMN-COLOR-MODE"
 2. AI: Read FEATURE-COLUMN-COLOR-MODE.md entirely
@@ -281,11 +345,13 @@ FEATURE-COLUMN-COLOR-MODE (independent)
 ### Implementation Conflicts
 
 **Style Guide + Column Color Mode:**
+
 - If implementing Style Guide first, Column Color Mode should use semantic tokens
 - If implementing Column Color Mode first, later migrate hex colors to tokens
 - No blocking conflict, just coordination needed
 
 **Multi-Board + AI Format:**
+
 - AI Format depends on Multi-Board schema
 - Must implement Multi-Board first, or implement both together
 - Can implement Multi-Board without AI Format (AI Format is optional extension)
@@ -294,13 +360,14 @@ FEATURE-COLUMN-COLOR-MODE (independent)
 
 ## Feature File Statistics
 
-| Feature                       | File                                | Lines | Status     | Priority | Dependencies          |
-| ----------------------------- | ----------------------------------- | ----- | ---------- | -------- | --------------------- |
-| Style Guide Alignment         | FEATURE-STYLE-GUIDE-ALIGNMENT.md    | ~850  | Planned    | High     | None                  |
-| Multi-Board Export            | FEATURE-MULTI-BOARD-EXPORT.md       | ~620  | Planned    | High     | None                  |
-| AI-Optimized JSON Format      | FEATURE-AI-JSON-FORMAT.md           | ~700  | Planned    | High     | Multi-Board Export    |
-| Column Color Mode Toggle      | FEATURE-COLUMN-COLOR-MODE.md        | ~600  | Planned    | Medium   | None (may use tokens) |
-| **Total**                     | **4 feature files**                 | **~2770 lines** | **All Planned** | - | - |
+| Feature                  | File                             | Lines           | Status                   | Priority    | Dependencies          |
+| ------------------------ | -------------------------------- | --------------- | ------------------------ | ----------- | --------------------- |
+| Style Guide Alignment    | FEATURE-STYLE-GUIDE-ALIGNMENT.md | ~850            | Planned                  | High        | None                  |
+| Multi-Board Export       | FEATURE-MULTI-BOARD-EXPORT.md    | ~620            | Planned                  | High        | None                  |
+| AI-Optimized JSON Format | FEATURE-AI-JSON-FORMAT.md        | ~700            | Planned                  | High        | Multi-Board Export    |
+| Column Color Mode Toggle | FEATURE-COLUMN-COLOR-MODE.md     | ~600            | Planned                  | Medium      | None (may use tokens) |
+| Windows Installer Build  | FEATURE-INSTALLER-BUILD.md       | ~900            | Partially Implemented    | High (beta) | None                  |
+| **Total**                | **5 feature files**              | **~3670 lines** | **1 Partial, 4 Planned** | -           | -                     |
 
 ---
 
@@ -342,9 +409,10 @@ If you encounter issues with these feature documents:
 | Version | Date       | Changes                                          | Author      |
 | ------- | ---------- | ------------------------------------------------ | ----------- |
 | 1.0     | 2025-11-03 | Initial creation with 4 feature files            | Claude Code |
+| 1.1     | 2025-11-04 | Added FEATURE-INSTALLER-BUILD.md (5 files total) | Claude Code |
 
 ---
 
-**Last Updated:** 2025-11-03
+**Last Updated:** 2025-11-04
 **Maintained By:** Chronica Development Team
-**Document Count:** 4 feature files + 1 index
+**Document Count:** 5 feature files + 1 index

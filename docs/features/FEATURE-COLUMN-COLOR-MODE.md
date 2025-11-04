@@ -77,12 +77,12 @@ export function getColumnColorStyles(color: string | null | undefined, theme: Th
 
 **Current Alpha Values:**
 
-| Element   | Light Theme | Dark Theme | Purpose                     |
-| --------- | ----------- | ---------- | --------------------------- |
-| headerBg  | 0.16 (16%)  | 0.24 (24%) | Column title background     |
-| bodyBg    | 0.06 (6%)   | 0.12 (12%) | Cards area background       |
-| border    | 0.35 (35%)  | 0.45 (45%) | Column border outline       |
-| rail      | 1.0 (100%)  | 1.0 (100%) | Collapsed column indicator  |
+| Element   | Light Theme | Dark Theme | Purpose                      |
+| --------- | ----------- | ---------- | ---------------------------- |
+| headerBg  | 0.16 (16%)  | 0.24 (24%) | Column title background      |
+| bodyBg    | 0.06 (6%)   | 0.12 (12%) | Cards area background        |
+| border    | 0.35 (35%)  | 0.45 (45%) | Column border outline        |
+| rail      | 1.0 (100%)  | 1.0 (100%) | Collapsed column indicator   |
 | textColor | Dynamic     | Dynamic    | Column title text (contrast) |
 
 **Usage Location:** `src/ui/KanbanBoard.tsx:104`
@@ -94,12 +94,14 @@ const colorStyles = getColumnColorStyles(column.color, theme);
 ### Visual Characteristics
 
 **Subtle Mode (Current):**
+
 - Very transparent backgrounds (6-16% header, 6-12% body)
 - Creates gentle color tints
 - Professional, understated appearance
 - Low visual weight, text-focused
 
 **Problem:**
+
 - Some users want more color vibrancy
 - Hard to distinguish columns at a glance with low saturation
 - Color choices feel "washed out" for users who prefer bold aesthetics
@@ -172,15 +174,16 @@ export interface Config {
 
 Based on user specification (0.4-0.8 range) and color theory best practices:
 
-| Element   | Light Subtle | Dark Subtle | Light Vibrant | Dark Vibrant | Notes                              |
-| --------- | ------------ | ----------- | ------------- | ------------ | ---------------------------------- |
-| headerBg  | 0.16         | 0.24        | 0.50          | 0.60         | Medium opacity, readable text      |
-| bodyBg    | 0.06         | 0.12        | 0.15          | 0.25         | Low enough to not obscure cards    |
-| border    | 0.35         | 0.45        | 0.70          | 0.80         | High visibility, distinct columns  |
-| rail      | 1.0          | 1.0         | 1.0           | 1.0          | Always solid (unchanged)           |
-| textColor | Dynamic      | Dynamic     | Dynamic       | Dynamic      | Contrast-based (unchanged)         |
+| Element   | Light Subtle | Dark Subtle | Light Vibrant | Dark Vibrant | Notes                             |
+| --------- | ------------ | ----------- | ------------- | ------------ | --------------------------------- |
+| headerBg  | 0.16         | 0.24        | 0.50          | 0.60         | Medium opacity, readable text     |
+| bodyBg    | 0.06         | 0.12        | 0.15          | 0.25         | Low enough to not obscure cards   |
+| border    | 0.35         | 0.45        | 0.70          | 0.80         | High visibility, distinct columns |
+| rail      | 1.0          | 1.0         | 1.0           | 1.0          | Always solid (unchanged)          |
+| textColor | Dynamic      | Dynamic     | Dynamic       | Dynamic      | Contrast-based (unchanged)        |
 
 **Rationale:**
+
 - **headerBg:** 50-60% opacity provides bold color while keeping text readable
 - **bodyBg:** 15-25% maintains card readability (cards still need to stand out)
 - **border:** 70-80% creates strong visual separation between columns
@@ -205,7 +208,7 @@ export function getColumnColorStyles(
   color: string | null | undefined,
   theme: Theme,
   mode: ColumnColorMode = "subtle"
-)
+);
 ```
 
 **Full Implementation:**
@@ -242,9 +245,9 @@ export function getColumnColorStyles(
 
   // Alpha values for vibrant mode (bolder appearance)
   const vibrantAlphas = {
-    headerBg: isLightTheme ? 0.50 : 0.60,
+    headerBg: isLightTheme ? 0.5 : 0.6,
     bodyBg: isLightTheme ? 0.15 : 0.25,
-    border: isLightTheme ? 0.70 : 0.80,
+    border: isLightTheme ? 0.7 : 0.8,
   };
 
   const alphas = mode === "vibrant" ? vibrantAlphas : subtleAlphas;
@@ -340,11 +343,13 @@ import { getColumnColorStyles, type ColumnColorMode } from "../utils/theme";
 **Update SortableColumn function (line 104):**
 
 **BEFORE:**
+
 ```typescript
 const colorStyles = getColumnColorStyles(column.color, theme);
 ```
 
 **AFTER:**
+
 ```typescript
 export function KanbanBoard({ onEditCard, onNewCard, theme }: KanbanBoardProps) {
   const { activeBoard, updateCard, updateColumn, reorderColumns, sortColumnCards, deleteCard } =
@@ -458,11 +463,12 @@ Insert between line 159 and line 161:
 5. Test function with both modes manually
 
 **Verification:**
+
 ```typescript
 // Test in browser console
 import { getColumnColorStyles } from "./utils/theme";
-getColumnColorStyles("#3b82f6", "light", "subtle");   // Current behavior
-getColumnColorStyles("#3b82f6", "light", "vibrant");  // New behavior
+getColumnColorStyles("#3b82f6", "light", "subtle"); // Current behavior
+getColumnColorStyles("#3b82f6", "light", "vibrant"); // New behavior
 ```
 
 #### Step 3: Update Config Store (10 minutes)
@@ -497,6 +503,7 @@ getColumnColorStyles("#3b82f6", "light", "vibrant");  // New behavior
 5. Follow existing pattern (checkbox + label + description)
 
 **Visual Structure:**
+
 ```
 Appearance
 ├── [✓] Dark mode (existing)
@@ -563,6 +570,7 @@ Appearance
 #### Color Testing
 
 Test each predefined color (src/state/types.ts:101-107):
+
 - [ ] Mint (#98D8C8) - subtle & vibrant
 - [ ] Cyan (#6FC2DB) - subtle & vibrant
 - [ ] Salmon (#F88379) - subtle & vibrant
@@ -570,6 +578,7 @@ Test each predefined color (src/state/types.ts:101-107):
 - [ ] Slate (#8D99AE) - subtle & vibrant
 
 Custom colors:
+
 - [ ] Red (#ff0000)
 - [ ] Green (#00ff00)
 - [ ] Blue (#0000ff)
@@ -721,11 +730,13 @@ describe("getColumnColorStyles", () => {
 - Large text (18pt+): 3:1 contrast ratio
 
 **Column titles (14px default, scaled by uiScale):**
+
 - Dynamic text color ensures contrast: `isDark(color) ? "#ffffff" : "#000000"`
 - With 50-60% header background, text contrast remains sufficient
 - Tested with all predefined colors
 
 **Card text (white background):**
+
 - Cards maintain white background, unaffected by mode
 - BodyBg (15-25%) tints background but doesn't affect card surfaces
 
@@ -758,14 +769,14 @@ describe("getColumnColorStyles", () => {
 
 ## Code Change Summary
 
-| File                                  | Lines Changed | Type       | Description                            |
-| ------------------------------------- | ------------- | ---------- | -------------------------------------- |
-| `src/state/types.ts`                  | +1            | Type       | Add columnColorMode field to Config    |
-| `src/utils/theme.ts`                  | +20           | Logic      | Add mode parameter, alpha configs      |
-| `src/stores/configStore.ts`           | +6            | Store      | Add setColumnColorMode action          |
-| `src/ui/KanbanBoard.tsx`              | +2            | Component  | Pass mode to getColumnColorStyles      |
-| `src/ui/SettingsModal.tsx`            | +25           | Component  | Add toggle UI and handler              |
-| **Total**                             | **~54 lines** | **5 files** | **Minimal, focused changes**           |
+| File                        | Lines Changed | Type        | Description                         |
+| --------------------------- | ------------- | ----------- | ----------------------------------- |
+| `src/state/types.ts`        | +1            | Type        | Add columnColorMode field to Config |
+| `src/utils/theme.ts`        | +20           | Logic       | Add mode parameter, alpha configs   |
+| `src/stores/configStore.ts` | +6            | Store       | Add setColumnColorMode action       |
+| `src/ui/KanbanBoard.tsx`    | +2            | Component   | Pass mode to getColumnColorStyles   |
+| `src/ui/SettingsModal.tsx`  | +25           | Component   | Add toggle UI and handler           |
+| **Total**                   | **~54 lines** | **5 files** | **Minimal, focused changes**        |
 
 ---
 
@@ -773,12 +784,12 @@ describe("getColumnColorStyles", () => {
 
 ### Visual Reference Table
 
-| Theme       | Mode    | HeaderBg | BodyBg | Border | Visual Effect                   |
-| ----------- | ------- | -------- | ------ | ------ | ------------------------------- |
-| Light       | Subtle  | 0.16     | 0.06   | 0.35   | Gentle tint, professional       |
-| Light       | Vibrant | 0.50     | 0.15   | 0.70   | Bold color, high saturation     |
-| Dark        | Subtle  | 0.24     | 0.12   | 0.45   | Soft glow, muted colors         |
-| Dark        | Vibrant | 0.60     | 0.25   | 0.80   | Strong presence, distinct columns |
+| Theme | Mode    | HeaderBg | BodyBg | Border | Visual Effect                     |
+| ----- | ------- | -------- | ------ | ------ | --------------------------------- |
+| Light | Subtle  | 0.16     | 0.06   | 0.35   | Gentle tint, professional         |
+| Light | Vibrant | 0.50     | 0.15   | 0.70   | Bold color, high saturation       |
+| Dark  | Subtle  | 0.24     | 0.12   | 0.45   | Soft glow, muted colors           |
+| Dark  | Vibrant | 0.60     | 0.25   | 0.80   | Strong presence, distinct columns |
 
 ### Example Color Rendering
 

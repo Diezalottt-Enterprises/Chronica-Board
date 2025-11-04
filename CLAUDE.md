@@ -12,6 +12,7 @@ Chronica is a desktop sticky kanban widget built with Tauri 2, React 19, and Typ
 **Completion:** ~90% ready for beta release
 
 ### What's Complete (100%)
+
 - Multi-board kanban with drag-and-drop
 - Custom fields system (FieldManager UI, validation, persistence)
 - System tray integration (autostart, hide/show)
@@ -20,6 +21,7 @@ Chronica is a desktop sticky kanban widget built with Tauri 2, React 19, and Typ
 - Dark mode and UI scaling
 
 ### What's Missing
+
 - **Test coverage** (2.26% vs 80% target) - biggest gap
 - **Custom field display** on cards (stored but not rendered)
 - **Planned features** (4 docs in `docs/features/` ready to implement):
@@ -29,6 +31,7 @@ Chronica is a desktop sticky kanban widget built with Tauri 2, React 19, and Typ
   4. Style guide alignment (2-3 days)
 
 ### Known Issues
+
 - 73 console.log statements need cleanup/removal
 - 6 ESLint errors (coverage files need exclusion)
 - No accessibility audit done
@@ -39,11 +42,13 @@ Chronica is a desktop sticky kanban widget built with Tauri 2, React 19, and Typ
 ## Development Commands
 
 ### Core Development
+
 - `pnpm install` - Install dependencies (requires Node 22+, pnpm 9+)
 - `pnpm tauri dev` - Run app in development mode (requires Rust)
 - `pnpm tauri build` - Build production executable
 
 ### Testing & Quality
+
 - `pnpm test` - Run all tests with Vitest
 - `pnpm test:watch` - Run tests in watch mode
 - `pnpm test:ui` - Run tests with UI
@@ -53,6 +58,7 @@ Chronica is a desktop sticky kanban widget built with Tauri 2, React 19, and Typ
 - `pnpm format` / `pnpm format:fix` - Check/fix Prettier formatting
 
 ### Build & Preview
+
 - `pnpm build` - Build frontend only (syncs version, runs TypeScript, builds with Vite)
 - `pnpm dev` - Start Vite dev server only (for frontend testing)
 - `pnpm preview` - Preview production build
@@ -140,6 +146,7 @@ Three core stores manage application state:
 ### UI Components (`src/ui/`)
 
 React components organized by feature:
+
 - **KanbanBoard** - Main board view with drag-and-drop (@dnd-kit)
 - **Card** - Individual task cards
 - **Column** - Kanban columns with add/rename/delete/sort actions
@@ -150,6 +157,7 @@ React components organized by feature:
 ### Type System (`src/state/types.ts`)
 
 Core domain types:
+
 - `Card` - Task card with title, description, column, color, tags, rank, due date, links, customFields
 - `Column` - Column definition with key, title, order, color, collapsed state
 - `Board` - Contains columns and cards arrays
@@ -167,6 +175,7 @@ Core domain types:
 ## Path Aliases
 
 TypeScript/Vite aliases (configured in `tsconfig.json` and `vite.config.ts`):
+
 - `@/` → `src/`
 - `@ui/` → `src/ui/`
 - `@stores/` → `src/stores/`
@@ -188,24 +197,28 @@ TypeScript/Vite aliases (configured in `tsconfig.json` and `vite.config.ts`):
 ## Common Patterns
 
 ### Adding a New Store Action
+
 1. Add action to store interface in the store file
 2. Implement in Zustand `create()` callback
 3. Update derived state (boards/activeBoard) immutably
 4. Trigger persistence via `storage.ts` if needed
 
 ### Adding a New Persistence Operation
+
 1. Define Zod schema in `src/io/schema.ts`
 2. Add load/save functions in `persistence.ts`
 3. Integrate with `saveQueue` for writes
 4. Add high-level API in `storage.ts`
 
 ### Adding a New Modal
+
 1. Create modal component in `src/ui/modals/`
 2. Add visibility state to `uiStore`
 3. Add open/close actions to `uiStore`
 4. Import and conditionally render in `App.tsx`
 
 ### Drag-and-Drop (Cards)
+
 - Uses `@dnd-kit` library (core, sortable, utilities)
 - Card moves update `rank` for lexicographic ordering
 - Rank calculation in `src/utils/ranking.ts`

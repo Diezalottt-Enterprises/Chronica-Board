@@ -13,6 +13,7 @@
 **Purpose:** Ship fast without visual chaos. One consistent Chris‑made look that flexes across projects.
 
 **Principles:**
+
 - **Clear.** Use plain English. Specific dates. Short paragraphs.
 - **Calm.** Neutrals do most of the work. Accents used sparingly.
 - **Useful.** Every element carries a job. Remove decorative noise.
@@ -26,6 +27,7 @@
 ## 1) Brand Architecture
 
 **Framework layer (universal):**
+
 - Tokens for color, space, type, radius, shadow
 - Layout rules and grid
 - Typography stacks
@@ -34,6 +36,7 @@
 - Accessibility standards
 
 **Brand layer (per product):**
+
 - Color accents. One to two maximum
 - Logo and mark
 - Illustration mood
@@ -41,6 +44,7 @@
 - Voice variations
 
 **Modes:**
+
 - Light. Default
 - Dark
 - High contrast. Accessibility variant
@@ -54,7 +58,7 @@ Site controls must read and set this attribute. Components must resolve styles t
 
 **Tone:** Plain English. Short paragraphs.  
 **Dates:** Use absolute dates. Example. Nov 3, 2025  
-**Voice:** Active voice. Example. Click Save  
+**Voice:** Active voice. Example. Click Save
 
 **Grammar:** Oxford comma. No mid sentence dashes. One space after period.
 
@@ -83,7 +87,9 @@ External links open in a new tab. Include an external link icon when space allow
 ## 4) Color System
 
 ### Framework neutrals
+
 **Light mode:**
+
 - Ink 900 `#0B0C10` primary text
 - Ink 700 `#1F232B` secondary text
 - Ink 500 `#5B6575` muted text
@@ -93,6 +99,7 @@ External links open in a new tab. Include an external link icon when space allow
 - White `#FFFFFF` base surface
 
 **Dark mode:**
+
 - Night 900 `#0A0B0D` darkest
 - Night 800 `#0F1117` base
 - Night 700 `#141821` elevated
@@ -103,6 +110,7 @@ External links open in a new tab. Include an external link icon when space allow
 - Cloud 400 `#9AA5B5` muted text
 
 ### Semantic tokens (light → dark values)
+
 - `--color-primary`: `#2563EB` → `#3B82F6`
 - `--color-accent`: `#3B82F6` → `#60A5FA`
 - `--color-success`: `#16A34A` → `#22C55E`
@@ -111,11 +119,13 @@ External links open in a new tab. Include an external link icon when space allow
 - `--color-info`: `#0284C7` → `#38BDF8`
 
 ### Brand accents (examples)
+
 - **Juniper Canvas Studio:** Indigo 500 `#6366F1`, Electric Blue `#3B82F6`
 - **Lantern Suite:** Emerald 500 `#10B981`, Lime 400 `#A3E635`
 - **VibeFixer:** Violet 500 `#8B5CF6`, Magenta 500 `#DB2777`
 
 ### Gradients
+
 `--gradient-start` defaults to `--color-primary`. `--gradient-end` defaults to `--color-accent`.
 
 **Rules:** Limit accents to two. Neutrals do 80 percent of the work. Always check contrast in both themes. Do not rely on color alone.
@@ -125,6 +135,7 @@ External links open in a new tab. Include an external link icon when space allow
 ## 5) Typography
 
 ### Stacks
+
 **Headings:** `Inter, Poppins, system-ui, -apple-system, sans-serif`  
 Weights 600 to 800. Tracking tight from −0.02em to −0.03em  
 **Body:** `Inter, system-ui, -apple-system, sans-serif`  
@@ -132,9 +143,11 @@ Weights 400 to 600. Size 16 to 18 px. Line height 1.5 to 1.7
 **Monospace:** `'JetBrains Mono', 'Fira Code', ui-monospace, monospace`
 
 ### Loading fonts
+
 Use Google Fonts with `font-display: swap`. Subset if possible. Consider self hosting for production.
 
 ### Type scale tokens
+
 Base 16 px.
 
 `--text-xs` 12 px. `--text-sm` 14 px. `--text-base` 16 px. `--text-lg` 18 px. `--text-xl` 20 px. `--text-2xl` 24 px. `--text-3xl` 30 px. `--text-4xl` 36 px. `--text-5xl` 48 px. `--text-6xl` 60 px. `--text-7xl` 72 px.
@@ -160,6 +173,7 @@ Spacing tokens. `--space-0` 0. `--space-1` 4 px. `--space-2` 8 px. `--space-3` 1
 **Radius tokens:** `--radius-xs` 4 px. `--radius-sm` 6 px. `--radius-md` 8 px. `--radius-lg` 12 px. `--radius-xl` 16 px. `--radius-2xl` 24 px. `--radius-full` 9999 px.
 
 **Shadow tokens — light mode:**
+
 ```
 --shadow-xs: 0 1px 2px rgba(0,0,0,0.05)
 --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08)
@@ -167,6 +181,7 @@ Spacing tokens. `--space-0` 0. `--space-1` 4 px. `--space-2` 8 px. `--space-3` 1
 --shadow-lg: 0 10px 15px rgba(0,0,0,0.10), 0 4px 6px rgba(0,0,0,0.05)
 --shadow-xl: 0 20px 25px rgba(0,0,0,0.10), 0 10px 10px rgba(0,0,0,0.04)
 ```
+
 **Shadow tokens — dark mode:** darker alphas. See CSS in section 15 for exact values.
 
 **Overlay tokens:** `--overlay` rgba(10,11,13,0.35) for light. `--overlay` rgba(5,7,10,0.65) for dark.
@@ -215,7 +230,7 @@ Mood is minimal, geometric, clean. Limited palette. Thin strokes. Avoid skeuomor
 
 **Buttons:** Primary, secondary, quiet, destructive. One primary per screen. Minimum hit area 44 by 44 px. Show loading state. Combine icon and text when space allows.
 
-**Inputs:** Label above. Helper text under. States include default, focus, error, success, disabled. Error copy is specific. Example. Email must include @  
+**Inputs:** Label above. Helper text under. States include default, focus, error, success, disabled. Error copy is specific. Example. Email must include @
 
 **Links:** Underlined by default for inline links. Use `--link` and `--link-hover`. External links open in a new tab with an indicator.
 
@@ -244,29 +259,80 @@ Mood is minimal, geometric, clean. Limited palette. Thin strokes. Avoid skeuomor
 Tokens are named design decisions that compile to platform outputs.
 
 **Example JSON (Style Dictionary friendly):**
+
 ```json
 {
   "color": {
-    "primary": {"value": "#2563EB"},
-    "accent": {"value": "#3B82F6"},
-    "success": {"value": "#16A34A"},
-    "warning": {"value": "#D97706"},
-    "danger": {"value": "#DC2626"},
-    "info": {"value": "#0284C7"},
-    "bg": {"surface": {"value": "#FFFFFF"}, "elevated": {"value": "#F5F7FA"}, "elevated2": {"value": "#EDF1F5"}},
-    "text": {"primary": {"value": "#0B0C10"}, "secondary": {"value": "#1F232B"}, "muted": {"value": "#5B6575"}},
-    "border": {"value": "#CBD4DF"},
-    "link": {"value": "{color.primary}"},
-    "linkHover": {"value": "{color.accent}"},
-    "ring": {"value": "rgba(37,99,235,0.45)"},
-    "shadow": {"xs": {"value": "0 1px 2px rgba(0,0,0,0.05)"}, "sm": {"value": "0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08)"}, "md": {"value": "0 4px 6px rgba(0,0,0,0.10)"}, "lg": {"value": "0 10px 15px rgba(0,0,0,0.10)"}, "xl": {"value": "0 20px 25px rgba(0,0,0,0.10)"}},
-    "overlay": {"value": "rgba(10,11,13,0.35)"},
-    "gradient": {"start": {"value": "{color.primary}"}, "end": {"value": "{color.accent}"}},
-    "selection": {"bg": {"value": "rgba(37,99,235,0.18)"}, "text": {"value": "{color.text.primary}"}}
+    "primary": { "value": "#2563EB" },
+    "accent": { "value": "#3B82F6" },
+    "success": { "value": "#16A34A" },
+    "warning": { "value": "#D97706" },
+    "danger": { "value": "#DC2626" },
+    "info": { "value": "#0284C7" },
+    "bg": {
+      "surface": { "value": "#FFFFFF" },
+      "elevated": { "value": "#F5F7FA" },
+      "elevated2": { "value": "#EDF1F5" }
+    },
+    "text": {
+      "primary": { "value": "#0B0C10" },
+      "secondary": { "value": "#1F232B" },
+      "muted": { "value": "#5B6575" }
+    },
+    "border": { "value": "#CBD4DF" },
+    "link": { "value": "{color.primary}" },
+    "linkHover": { "value": "{color.accent}" },
+    "ring": { "value": "rgba(37,99,235,0.45)" },
+    "shadow": {
+      "xs": { "value": "0 1px 2px rgba(0,0,0,0.05)" },
+      "sm": { "value": "0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08)" },
+      "md": { "value": "0 4px 6px rgba(0,0,0,0.10)" },
+      "lg": { "value": "0 10px 15px rgba(0,0,0,0.10)" },
+      "xl": { "value": "0 20px 25px rgba(0,0,0,0.10)" }
+    },
+    "overlay": { "value": "rgba(10,11,13,0.35)" },
+    "gradient": { "start": { "value": "{color.primary}" }, "end": { "value": "{color.accent}" } },
+    "selection": {
+      "bg": { "value": "rgba(37,99,235,0.18)" },
+      "text": { "value": "{color.text.primary}" }
+    }
   },
-  "space": {"0": {"value": "0"}, "1": {"value": "4px"}, "2": {"value": "8px"}, "3": {"value": "12px"}, "4": {"value": "16px"}, "5": {"value": "20px"}, "6": {"value": "24px"}, "8": {"value": "32px"}, "10": {"value": "40px"}, "12": {"value": "48px"}, "16": {"value": "64px"}, "20": {"value": "80px"}},
-  "radius": {"xs": {"value": "4px"}, "sm": {"value": "6px"}, "md": {"value": "8px"}, "lg": {"value": "12px"}, "xl": {"value": "16px"}, "2xl": {"value": "24px"}, "full": {"value": "9999px"}},
-  "fontSize": {"xs": {"value": "12px"}, "sm": {"value": "14px"}, "base": {"value": "16px"}, "lg": {"value": "18px"}, "xl": {"value": "20px"}, "2xl": {"value": "24px"}, "3xl": {"value": "30px"}, "4xl": {"value": "36px"}, "5xl": {"value": "48px"}, "6xl": {"value": "60px"}, "7xl": {"value": "72px"}}
+  "space": {
+    "0": { "value": "0" },
+    "1": { "value": "4px" },
+    "2": { "value": "8px" },
+    "3": { "value": "12px" },
+    "4": { "value": "16px" },
+    "5": { "value": "20px" },
+    "6": { "value": "24px" },
+    "8": { "value": "32px" },
+    "10": { "value": "40px" },
+    "12": { "value": "48px" },
+    "16": { "value": "64px" },
+    "20": { "value": "80px" }
+  },
+  "radius": {
+    "xs": { "value": "4px" },
+    "sm": { "value": "6px" },
+    "md": { "value": "8px" },
+    "lg": { "value": "12px" },
+    "xl": { "value": "16px" },
+    "2xl": { "value": "24px" },
+    "full": { "value": "9999px" }
+  },
+  "fontSize": {
+    "xs": { "value": "12px" },
+    "sm": { "value": "14px" },
+    "base": { "value": "16px" },
+    "lg": { "value": "18px" },
+    "xl": { "value": "20px" },
+    "2xl": { "value": "24px" },
+    "3xl": { "value": "30px" },
+    "4xl": { "value": "36px" },
+    "5xl": { "value": "48px" },
+    "6xl": { "value": "60px" },
+    "7xl": { "value": "72px" }
+  }
 }
 ```
 
@@ -277,52 +343,115 @@ Tokens are named design decisions that compile to platform outputs.
 ## 15) CSS variables output
 
 **Light theme**
+
 ```css
-:root{
-  --bg-surface:#FFFFFF; --bg-elevated:#F5F7FA; --bg-elevated-2:#EDF1F5;
-  --text-primary:#0B0C10; --text-secondary:#1F232B; --text-muted:#5B6575;
-  --border:#CBD4DF;
-  --color-primary:#2563EB; --color-accent:#3B82F6; --color-success:#16A34A; --color-warning:#D97706; --color-danger:#DC2626; --color-info:#0284C7;
-  --link:var(--color-primary); --link-hover:var(--color-accent); --ring:rgba(37,99,235,0.45);
-  --shadow-xs:0 1px 2px rgba(0,0,0,0.05); --shadow-sm:0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08);
-  --shadow-md:0 4px 6px rgba(0,0,0,0.10), 0 2px 4px rgba(0,0,0,0.06);
-  --shadow-lg:0 10px 15px rgba(0,0,0,0.10), 0 4px 6px rgba(0,0,0,0.05);
-  --shadow-xl:0 20px 25px rgba(0,0,0,0.10), 0 10px 10px rgba(0,0,0,0.04);
-  --overlay:rgba(10,11,13,0.35);
-  --selection-bg:rgba(37,99,235,0.18); --selection-text:var(--text-primary);
-  --gradient-start:var(--color-primary); --gradient-end:var(--color-accent);
-  --radius-xs:4px; --radius-sm:6px; --radius-md:8px; --radius-lg:12px; --radius-xl:16px; --radius-2xl:24px; --radius-full:9999px;
-  --text-xs:12px; --text-sm:14px; --text-base:16px; --text-lg:18px; --text-xl:20px; --text-2xl:24px; --text-3xl:30px; --text-4xl:36px; --text-5xl:48px; --text-6xl:60px; --text-7xl:72px;
-  --icon-xs:16px; --icon-sm:20px; --icon-md:24px; --icon-lg:32px; --icon-xl:40px;
-  --duration-fast:100ms; --duration-base:200ms; --duration-slow:300ms;
-  --ease-in:cubic-bezier(0.4,0,1,1); --ease-out:cubic-bezier(0,0,0.2,1); --ease-in-out:cubic-bezier(0.4,0,0.2,1); --ease-spring:cubic-bezier(0.34,1.56,0.64,1);
+:root {
+  --bg-surface: #ffffff;
+  --bg-elevated: #f5f7fa;
+  --bg-elevated-2: #edf1f5;
+  --text-primary: #0b0c10;
+  --text-secondary: #1f232b;
+  --text-muted: #5b6575;
+  --border: #cbd4df;
+  --color-primary: #2563eb;
+  --color-accent: #3b82f6;
+  --color-success: #16a34a;
+  --color-warning: #d97706;
+  --color-danger: #dc2626;
+  --color-info: #0284c7;
+  --link: var(--color-primary);
+  --link-hover: var(--color-accent);
+  --ring: rgba(37, 99, 235, 0.45);
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+  --overlay: rgba(10, 11, 13, 0.35);
+  --selection-bg: rgba(37, 99, 235, 0.18);
+  --selection-text: var(--text-primary);
+  --gradient-start: var(--color-primary);
+  --gradient-end: var(--color-accent);
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+  --text-3xl: 30px;
+  --text-4xl: 36px;
+  --text-5xl: 48px;
+  --text-6xl: 60px;
+  --text-7xl: 72px;
+  --icon-xs: 16px;
+  --icon-sm: 20px;
+  --icon-md: 24px;
+  --icon-lg: 32px;
+  --icon-xl: 40px;
+  --duration-fast: 100ms;
+  --duration-base: 200ms;
+  --duration-slow: 300ms;
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 ```
 
 **Dark theme**
+
 ```css
-[data-theme="dark"]{
-  --bg-surface:#0A0B0D; --bg-elevated:#141821; --bg-elevated-2:#1C2230;
-  --text-primary:#F5F7FA; --text-secondary:#D9E1ED; --text-muted:#9AA5B5;
-  --border:#2C3442;
-  --color-primary:#3B82F6; --color-accent:#60A5FA; --color-success:#22C55E; --color-warning:#F59E0B; --color-danger:#EF4444; --color-info:#38BDF8;
-  --link:var(--color-accent); --link-hover:var(--color-primary); --ring:rgba(96,165,250,0.55);
-  --shadow-xs:0 1px 2px rgba(0,0,0,0.50); --shadow-sm:0 1px 3px rgba(0,0,0,0.50), 0 1px 2px rgba(0,0,0,0.40);
-  --shadow-md:0 4px 6px rgba(0,0,0,0.50), 0 2px 4px rgba(0,0,0,0.40);
-  --shadow-lg:0 10px 15px rgba(0,0,0,0.60), 0 4px 6px rgba(0,0,0,0.50);
-  --shadow-xl:0 20px 25px rgba(0,0,0,0.70), 0 10px 10px rgba(0,0,0,0.60);
-  --overlay:rgba(5,7,10,0.65);
-  --selection-bg:rgba(96,165,250,0.25); --selection-text:var(--text-primary);
+[data-theme="dark"] {
+  --bg-surface: #0a0b0d;
+  --bg-elevated: #141821;
+  --bg-elevated-2: #1c2230;
+  --text-primary: #f5f7fa;
+  --text-secondary: #d9e1ed;
+  --text-muted: #9aa5b5;
+  --border: #2c3442;
+  --color-primary: #3b82f6;
+  --color-accent: #60a5fa;
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --color-info: #38bdf8;
+  --link: var(--color-accent);
+  --link-hover: var(--color-primary);
+  --ring: rgba(96, 165, 250, 0.55);
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.6), 0 4px 6px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.7), 0 10px 10px rgba(0, 0, 0, 0.6);
+  --overlay: rgba(5, 7, 10, 0.65);
+  --selection-bg: rgba(96, 165, 250, 0.25);
+  --selection-text: var(--text-primary);
 }
 ```
 
 **High contrast theme**
+
 ```css
-[data-theme="high-contrast"]{
-  --bg-surface:#FFFFFF; --bg-elevated:#FFFFFF; --bg-elevated-2:#F0F0F0;
-  --text-primary:#000000; --text-secondary:#000000; --text-muted:#333333;
-  --border:#000000;
-  --color-primary:#0000EE; --color-danger:#CC0000; --link:#0000EE; --link-hover:#0000EE; --ring:rgba(0,0,238,0.5);
+[data-theme="high-contrast"] {
+  --bg-surface: #ffffff;
+  --bg-elevated: #ffffff;
+  --bg-elevated-2: #f0f0f0;
+  --text-primary: #000000;
+  --text-secondary: #000000;
+  --text-muted: #333333;
+  --border: #000000;
+  --color-primary: #0000ee;
+  --color-danger: #cc0000;
+  --link: #0000ee;
+  --link-hover: #0000ee;
+  --ring: rgba(0, 0, 238, 0.5);
 }
 ```
 
@@ -346,18 +475,30 @@ export default {
         border: "var(--border)",
       },
       borderRadius: {
-        sm: "var(--radius-sm)", md: "var(--radius-md)", lg: "var(--radius-lg)", xl: "var(--radius-xl)",
+        sm: "var(--radius-sm)",
+        md: "var(--radius-md)",
+        lg: "var(--radius-lg)",
+        xl: "var(--radius-xl)",
       },
       boxShadow: {
-        xs: "var(--shadow-xs)", sm: "var(--shadow-sm)", md: "var(--shadow-md)", lg: "var(--shadow-lg)", xl: "var(--shadow-xl)",
+        xs: "var(--shadow-xs)",
+        sm: "var(--shadow-sm)",
+        md: "var(--shadow-md)",
+        lg: "var(--shadow-lg)",
+        xl: "var(--shadow-xl)",
       },
       spacing: {
-        1: "var(--space-1)", 2: "var(--space-2)", 3: "var(--space-3)", 4: "var(--space-4)", 5: "var(--space-5)", 6: "var(--space-6)",
-      }
-    }
+        1: "var(--space-1)",
+        2: "var(--space-2)",
+        3: "var(--space-3)",
+        4: "var(--space-4)",
+        5: "var(--space-5)",
+        6: "var(--space-6)",
+      },
+    },
   },
-  plugins: []
-}
+  plugins: [],
+};
 ```
 
 ---
@@ -374,6 +515,7 @@ Default language is TypeScript with strict mode. Use ESLint and Prettier. Unit t
 ## 18) Asset Management
 
 **Folders:**
+
 ```
 /design-system
   /brand
@@ -428,11 +570,11 @@ Include a sample hero and layout snippet per brand. Keep accent use under contro
 
 ## 21) Starter artifacts
 
-- Figma library with variables and component variants  
-- `tokens.json` in the repo as the source of truth  
-- Generated CSS files per theme  
-- Tailwind config that maps to tokens  
-- Lucide subset and React components  
+- Figma library with variables and component variants
+- `tokens.json` in the repo as the source of truth
+- Generated CSS files per theme
+- Tailwind config that maps to tokens
+- Lucide subset and React components
 - Sample pages. Landing. Documentation. Dashboard. Email
 
 ---
@@ -463,4 +605,3 @@ Community. Create a dedicated channel. Hold weekly office hours. Keep a shared b
 ---
 
 **This is a living document. Next review on Feb 1, 2026.**
-

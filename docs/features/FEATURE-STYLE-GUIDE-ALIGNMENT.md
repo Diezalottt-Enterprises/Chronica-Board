@@ -28,9 +28,11 @@
 ## Feature Overview
 
 ### What
+
 Migrate Chronica's entire color, spacing, typography, and component system from the current ad-hoc CSS implementation to the **Stack Junkie Universal Style Guide v0.3** token-based system.
 
 ### Why
+
 - **Consistency:** Align with Chris's universal design system across all projects
 - **Maintainability:** Centralized token management instead of scattered hardcoded values
 - **Themability:** Proper light/dark/high-contrast mode support
@@ -38,6 +40,7 @@ Migrate Chronica's entire color, spacing, typography, and component system from 
 - **Professionalism:** Follow industry best practices with design tokens
 
 ### User Benefit
+
 - Better visual consistency across the app
 - Improved accessibility with high-contrast mode
 - Smoother theme transitions
@@ -50,6 +53,7 @@ Migrate Chronica's entire color, spacing, typography, and component system from 
 ### Style Guide Compliance Checklist
 
 #### 1. Color System (Section 4 of style guide)
+
 - [x] Replace all ad-hoc color variables with semantic tokens
 - [x] Implement framework neutrals (Ink/Mist for light, Night/Cloud for dark)
 - [x] Add semantic tokens (primary, accent, success, warning, danger, info)
@@ -59,6 +63,7 @@ Migrate Chronica's entire color, spacing, typography, and component system from 
 - [x] No hardcoded hex values in components (use tokens only)
 
 #### 2. Typography System (Section 5)
+
 - [x] Use Inter font stack for headings and body
 - [x] Implement complete type scale (xs through 7xl)
 - [x] Set base size to 16px minimum
@@ -66,29 +71,35 @@ Migrate Chronica's entire color, spacing, typography, and component system from 
 - [x] Proper font weights (400-600 for body, 600-800 for headings)
 
 #### 3. Spacing System (Section 6)
+
 - [x] Base unit: 4px
 - [x] Spacing tokens: 0, 1, 2, 3, 4, 5, 6, 8, 10, 12, 16, 20
 - [x] Replace fluid clamp() spacing with fixed token values
 
 #### 4. Radius & Shadows (Section 7)
+
 - [x] 7 radius levels: xs (4px) through 2xl (24px), plus full (9999px)
 - [x] 5 shadow levels: xs, sm, md, lg, xl
 - [x] Different shadow opacity for light vs dark themes
 
 #### 5. Motion & Animation (Section 8)
+
 - [x] Duration tokens: fast (100ms), base (200ms), slow (300-400ms)
 - [x] Easing functions: ease-in, ease-out, ease-in-out, ease-spring
 - [x] Respect `prefers-reduced-motion`
 
 #### 6. Iconography (Section 9)
+
 - [x] Icon size tokens: xs (16px), sm (20px), md (24px), lg (32px), xl (40px)
 
 #### 7. Component Standards (Section 12)
+
 - [x] Focus rings visible in all themes
 - [x] Proper interactive states (hover, active, disabled)
 - [x] Minimum 44x44px hit targets
 
 #### 8. Accessibility (Section 3)
+
 - [x] WCAG 2.2 AA minimum contrast (4.5:1 normal, 3:1 large)
 - [x] High-contrast theme for accessibility
 - [x] No meaning conveyed by color alone
@@ -100,39 +111,42 @@ Migrate Chronica's entire color, spacing, typography, and component system from 
 ### Current Color Variables (App.css lines 10-76)
 
 **Light Theme (lines 10-26):**
+
 ```css
---color-mint: #98d8c8;        /* Product color - REMOVE */
---color-cyan: #6fc2db;        /* Product color - REMOVE */
---color-salmon: #f88379;      /* Product color - REMOVE */
---color-lavender: #b4a7d6;    /* Product color - REMOVE */
---color-slate: #8d99ae;       /* Product color - REMOVE */
---bg: #f7f7f9;                /* → --bg-surface */
---surface: #ffffff;           /* → --bg-surface */
---bg-primary: #ffffff;        /* → --bg-surface */
---bg-secondary: #f5f5f5;      /* → --bg-elevated */
---bg-tertiary: #e8e8e8;       /* → --bg-elevated-2 */
---border-color: #e5e7eb;      /* → --border */
---text-primary: #111827;      /* → --text-primary (Ink 900) */
---text-secondary: #6c757d;    /* → --text-secondary (Ink 700) */
+--color-mint: #98d8c8; /* Product color - REMOVE */
+--color-cyan: #6fc2db; /* Product color - REMOVE */
+--color-salmon: #f88379; /* Product color - REMOVE */
+--color-lavender: #b4a7d6; /* Product color - REMOVE */
+--color-slate: #8d99ae; /* Product color - REMOVE */
+--bg: #f7f7f9; /* → --bg-surface */
+--surface: #ffffff; /* → --bg-surface */
+--bg-primary: #ffffff; /* → --bg-surface */
+--bg-secondary: #f5f5f5; /* → --bg-elevated */
+--bg-tertiary: #e8e8e8; /* → --bg-elevated-2 */
+--border-color: #e5e7eb; /* → --border */
+--text-primary: #111827; /* → --text-primary (Ink 900) */
+--text-secondary: #6c757d; /* → --text-secondary (Ink 700) */
 --shadow: rgba(0, 0, 0, 0.1); /* → --shadow-* tokens */
 ```
 
 **Dark Theme (lines 64-76):**
+
 ```css
---bg: #0b1020;                /* → --bg-surface (Night 800) */
---surface: #141824;           /* → --bg-surface (Night 700) */
---bg-primary: #141824;        /* → --bg-surface */
---bg-elevated: #1a1f2e;       /* → --bg-elevated (Night 600) */
---bg-tertiary: #222836;       /* → --bg-elevated-2 */
---border-color: #2b3240;      /* → --border (Night 400) */
---text-primary: #e5e7eb;      /* → --text-primary (Cloud 100) */
---text-secondary: #9ca3af;    /* → --text-secondary (Cloud 200) */
+--bg: #0b1020; /* → --bg-surface (Night 800) */
+--surface: #141824; /* → --bg-surface (Night 700) */
+--bg-primary: #141824; /* → --bg-surface */
+--bg-elevated: #1a1f2e; /* → --bg-elevated (Night 600) */
+--bg-tertiary: #222836; /* → --bg-elevated-2 */
+--border-color: #2b3240; /* → --border (Night 400) */
+--text-primary: #e5e7eb; /* → --text-primary (Cloud 100) */
+--text-secondary: #9ca3af; /* → --text-secondary (Cloud 200) */
 --shadow: rgba(0, 0, 0, 0.3); /* → --shadow-* tokens */
 ```
 
 ### Hardcoded Color Locations (19+ occurrences)
 
 **File: App.css**
+
 1. Line 159: `background: var(--color-cyan)` → `background: var(--color-primary)`
 2. Line 164: `background: #5ab0c9` → `background: var(--color-primary-hover)` or calculate
 3. Line 190, 198: `background: var(--color-cyan)` → `background: var(--color-primary)`
@@ -149,17 +163,13 @@ Migrate Chronica's entire color, spacing, typography, and component system from 
 14. Line 948: Destructive menu → `var(--color-danger)`
 15. Lines 852, 900, 1012: Focus outlines → `var(--ring)`
 
-**File: Header.tsx (line 19)**
-16. `color: "var(--color-salmon)"` → `color: "var(--color-danger)"`
+**File: Header.tsx (line 19)** 16. `color: "var(--color-salmon)"` → `color: "var(--color-danger)"`
 
-**File: SettingsModal.tsx (lines 103-104, 120-121)**
-17. Active tab: cyan → primary
+**File: SettingsModal.tsx (lines 103-104, 120-121)** 17. Active tab: cyan → primary
 
-**File: ImportModal.tsx (lines 196-197)**
-18. Error display: `#ffe5e5`, `#d32f2f` → danger tokens
+**File: ImportModal.tsx (lines 196-197)** 18. Error display: `#ffe5e5`, `#d32f2f` → danger tokens
 
-**File: ColorPicker.tsx (lines 12-19)**
-19. Quick swatches: Replace with semantic + brand colors
+**File: ColorPicker.tsx (lines 12-19)** 19. Quick swatches: Replace with semantic + brand colors
 
 ### Missing Token Categories
 
@@ -179,6 +189,7 @@ Migrate Chronica's entire color, spacing, typography, and component system from 
 ### 1. Token File Structure
 
 **New Files:**
+
 ```
 src/
   styles/
@@ -191,6 +202,7 @@ src/
 ```
 
 **Modified Files:**
+
 - `src/App.css` → Import `styles/index.css`, remove all color definitions
 - `src/main.tsx` → Import `styles/index.css` instead of `App.css`
 
@@ -268,7 +280,7 @@ src/
 :root {
   --font-heading: Inter, Poppins, system-ui, -apple-system, sans-serif;
   --font-body: Inter, system-ui, -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+  --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
 }
 ```
 
@@ -279,13 +291,13 @@ src/
 
 :root {
   /* Framework Neutrals */
-  --ink-900: #0B0C10;
-  --ink-700: #1F232B;
-  --ink-500: #5B6575;
-  --mist-100: #F5F7FA;
-  --mist-200: #EDF1F5;
-  --mist-400: #CBD4DF;
-  --white: #FFFFFF;
+  --ink-900: #0b0c10;
+  --ink-700: #1f232b;
+  --ink-500: #5b6575;
+  --mist-100: #f5f7fa;
+  --mist-200: #edf1f5;
+  --mist-400: #cbd4df;
+  --white: #ffffff;
 
   /* Semantic Mapping */
   --text-primary: var(--ink-900);
@@ -299,12 +311,12 @@ src/
   --border: var(--mist-400);
 
   /* Semantic Colors */
-  --color-primary: #2563EB;
-  --color-accent: #3B82F6;
-  --color-success: #16A34A;
-  --color-warning: #D97706;
-  --color-danger: #DC2626;
-  --color-info: #0284C7;
+  --color-primary: #2563eb;
+  --color-accent: #3b82f6;
+  --color-success: #16a34a;
+  --color-warning: #d97706;
+  --color-danger: #dc2626;
+  --color-info: #0284c7;
 
   /* Interactive States */
   --link: var(--color-primary);
@@ -314,9 +326,9 @@ src/
   /* Shadows */
   --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.08);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.10), 0 2px 4px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.10), 0 4px 6px rgba(0, 0, 0, 0.05);
-  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.10), 0 10px 10px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
 
   /* Overlay */
   --overlay: rgba(10, 11, 13, 0.35);
@@ -338,14 +350,14 @@ src/
 
 [data-theme="dark"] {
   /* Framework Neutrals */
-  --night-900: #0A0B0D;
-  --night-800: #0F1117;
+  --night-900: #0a0b0d;
+  --night-800: #0f1117;
   --night-700: #141821;
-  --night-600: #1C2230;
-  --night-400: #2C3442;
-  --cloud-100: #F5F7FA;
-  --cloud-200: #D9E1ED;
-  --cloud-400: #9AA5B5;
+  --night-600: #1c2230;
+  --night-400: #2c3442;
+  --cloud-100: #f5f7fa;
+  --cloud-200: #d9e1ed;
+  --cloud-400: #9aa5b5;
 
   /* Semantic Mapping */
   --text-primary: var(--cloud-100);
@@ -359,12 +371,12 @@ src/
   --border: var(--night-400);
 
   /* Semantic Colors - Brighter for dark mode */
-  --color-primary: #3B82F6;
-  --color-accent: #60A5FA;
-  --color-success: #22C55E;
-  --color-warning: #F59E0B;
-  --color-danger: #EF4444;
-  --color-info: #38BDF8;
+  --color-primary: #3b82f6;
+  --color-accent: #60a5fa;
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --color-info: #38bdf8;
 
   /* Interactive States */
   --link: var(--color-accent);
@@ -372,11 +384,11 @@ src/
   --ring: rgba(96, 165, 250, 0.55);
 
   /* Shadows - Darker for depth */
-  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.50);
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.50), 0 1px 2px rgba(0, 0, 0, 0.40);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.50), 0 2px 4px rgba(0, 0, 0, 0.40);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.60), 0 4px 6px rgba(0, 0, 0, 0.50);
-  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.70), 0 10px 10px rgba(0, 0, 0, 0.60);
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.6), 0 4px 6px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.7), 0 10px 10px rgba(0, 0, 0, 0.6);
 
   /* Overlay */
   --overlay: rgba(5, 7, 10, 0.65);
@@ -402,23 +414,23 @@ src/
   --text-secondary: #000000;
   --text-muted: #333333;
 
-  --bg-surface: #FFFFFF;
-  --bg-elevated: #FFFFFF;
-  --bg-elevated-2: #F0F0F0;
+  --bg-surface: #ffffff;
+  --bg-elevated: #ffffff;
+  --bg-elevated-2: #f0f0f0;
 
   --border: #000000;
 
   /* Semantic Colors - Web-safe high-contrast */
-  --color-primary: #0000EE;      /* Classic blue link */
-  --color-accent: #0000EE;
-  --color-success: #008000;      /* Green */
-  --color-warning: #FFA500;      /* Orange */
-  --color-danger: #CC0000;       /* Red */
-  --color-info: #0000EE;
+  --color-primary: #0000ee; /* Classic blue link */
+  --color-accent: #0000ee;
+  --color-success: #008000; /* Green */
+  --color-warning: #ffa500; /* Orange */
+  --color-danger: #cc0000; /* Red */
+  --color-info: #0000ee;
 
   /* Interactive States */
-  --link: #0000EE;
-  --link-hover: #0000EE;
+  --link: #0000ee;
+  --link-hover: #0000ee;
   --ring: rgba(0, 0, 238, 0.5);
 
   /* Shadows - Minimal, use borders instead */
@@ -432,7 +444,7 @@ src/
   --overlay: rgba(0, 0, 0, 0.8);
 
   /* Selection */
-  --selection-bg: #FFFF00;      /* Yellow highlight */
+  --selection-bg: #ffff00; /* Yellow highlight */
   --selection-text: #000000;
 
   /* Gradients - Disabled in high-contrast */
@@ -446,6 +458,7 @@ src/
 #### App.css Changes (Remove all color definitions, use tokens)
 
 **BEFORE (lines 10-26):**
+
 ```css
 :root {
   --color-mint: #98d8c8;
@@ -456,6 +469,7 @@ src/
 ```
 
 **AFTER:**
+
 ```css
 /* All color definitions removed - see src/styles/tokens/ */
 
@@ -488,6 +502,7 @@ src/
 **File:** `src/App.css` lines 492-570
 
 **BEFORE (line 493):**
+
 ```css
 .card {
   background: white; /* ← HARDCODED, breaks dark mode */
@@ -497,6 +512,7 @@ src/
 ```
 
 **AFTER:**
+
 ```css
 .card {
   background: var(--bg-surface); /* ← Respects theme */
@@ -504,8 +520,9 @@ src/
   padding: var(--space-4);
   box-shadow: var(--shadow-sm);
   cursor: pointer;
-  transition: transform var(--duration-base) var(--ease-out),
-              box-shadow var(--duration-base) var(--ease-out);
+  transition:
+    transform var(--duration-base) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out);
   border-left: 4px solid var(--border);
   color: var(--text-primary); /* ← Respects theme */
 }
@@ -548,6 +565,7 @@ src/
 #### Button Updates
 
 **BEFORE (line 159-165):**
+
 ```css
 button.primary {
   background: var(--color-cyan); /* ← Product color */
@@ -560,6 +578,7 @@ button.primary:hover {
 ```
 
 **AFTER:**
+
 ```css
 button.primary {
   background: var(--color-primary);
@@ -574,6 +593,7 @@ button.primary:hover {
 #### Focus States
 
 **BEFORE (line 435):**
+
 ```css
 .column-title-input:focus {
   border-color: var(--color-cyan);
@@ -582,6 +602,7 @@ button.primary:hover {
 ```
 
 **AFTER:**
+
 ```css
 .column-title-input:focus {
   border-color: var(--color-primary);
@@ -592,6 +613,7 @@ button.primary:hover {
 #### Error States
 
 **BEFORE (line 877, 881):**
+
 ```css
 .error-text {
   color: #f43f5e; /* ← Hardcoded */
@@ -603,6 +625,7 @@ button.primary:hover {
 ```
 
 **AFTER:**
+
 ```css
 .error-text {
   color: var(--color-danger);
@@ -618,6 +641,7 @@ button.primary:hover {
 #### Update PREDEFINED_COLORS (src/state/types.ts)
 
 **BEFORE (lines 102-108):**
+
 ```typescript
 export const PREDEFINED_COLORS = {
   mint: "#98d8c8",
@@ -629,6 +653,7 @@ export const PREDEFINED_COLORS = {
 ```
 
 **AFTER:**
+
 ```typescript
 // Semantic colors from tokens (used for column/card colors)
 export const PREDEFINED_COLORS = {
@@ -655,14 +680,13 @@ export const LEGACY_COLOR_MAP = {
 **File:** `src/ui/ColorPicker.tsx` lines 12-19
 
 **BEFORE:**
+
 ```typescript
-const QUICK_SWATCHES = [
-  "#3b82f6", "#06b6d4", "#10b981",
-  "#f59e0b", "#a855f7", "#f43f5e",
-];
+const QUICK_SWATCHES = ["#3b82f6", "#06b6d4", "#10b981", "#f59e0b", "#a855f7", "#f43f5e"];
 ```
 
 **AFTER:**
+
 ```typescript
 // Use semantic colors from tokens
 const QUICK_SWATCHES = [
@@ -686,6 +710,7 @@ const QUICK_SWATCHES = [
 **Duration:** 1-2 hours
 
 1. Create directory structure:
+
    ```bash
    mkdir -p src/styles/tokens
    ```
@@ -699,15 +724,17 @@ const QUICK_SWATCHES = [
 5. Create `src/styles/tokens/high-contrast.css` with high-contrast theme (copy from above)
 
 6. Create `src/styles/index.css`:
+
    ```css
    /* Import all token files */
-   @import './tokens/base.css';
-   @import './tokens/light.css';
-   @import './tokens/dark.css';
-   @import './tokens/high-contrast.css';
+   @import "./tokens/base.css";
+   @import "./tokens/light.css";
+   @import "./tokens/dark.css";
+   @import "./tokens/high-contrast.css";
    ```
 
 7. Update `src/main.tsx` (line 3):
+
    ```typescript
    // BEFORE
    import "./App.css";
@@ -733,6 +760,7 @@ const QUICK_SWATCHES = [
 4. **Keep** lines 51-53 (sidebar widths)
 
 5. **Update** root block (lines 9-62):
+
    ```css
    :root {
      /* UI Scale - user-configurable */
@@ -773,6 +801,7 @@ const QUICK_SWATCHES = [
 **CRITICAL:** This fixes cards being white in dark mode.
 
 1. Update `.card` class (lines 492-512):
+
    ```css
    .card {
      background: var(--bg-surface);
@@ -794,6 +823,7 @@ const QUICK_SWATCHES = [
    ```
 
 2. Update `.card-title` (lines 534-542):
+
    ```css
    .card-title {
      font-weight: 600;
@@ -804,6 +834,7 @@ const QUICK_SWATCHES = [
    ```
 
 3. Update `.card-description` (lines 544-554):
+
    ```css
    .card-description {
      font-size: var(--font-sm);
@@ -841,6 +872,7 @@ const QUICK_SWATCHES = [
 **App.css Replacements:**
 
 1. **Primary buttons** (lines 158-165):
+
    ```css
    /* FIND */
    background: var(--color-cyan);
@@ -854,6 +886,7 @@ const QUICK_SWATCHES = [
    ```
 
 2. **Slider thumbs** (lines 190, 198):
+
    ```css
    /* FIND */
    background: var(--color-cyan);
@@ -862,6 +895,7 @@ const QUICK_SWATCHES = [
    ```
 
 3. **Active board item** (line 293):
+
    ```css
    /* FIND */
    background: var(--color-cyan);
@@ -870,6 +904,7 @@ const QUICK_SWATCHES = [
    ```
 
 4. **Add column hover** (lines 388-389):
+
    ```css
    /* FIND */
    border-color: var(--color-cyan);
@@ -880,6 +915,7 @@ const QUICK_SWATCHES = [
    ```
 
 5. **Focus states** (lines 424, 434-435, 852, 900, 1012):
+
    ```css
    /* FIND */
    border-color: var(--color-cyan);
@@ -895,6 +931,7 @@ const QUICK_SWATCHES = [
    ```
 
 6. **Error states** (lines 757-758, 877, 881, 948):
+
    ```css
    /* FIND */
    background: #ffe5e5;
@@ -917,10 +954,10 @@ File: `src/ui/Header.tsx` line 19
 
 ```typescript
 // FIND
-color: "var(--color-salmon)"
+color: "var(--color-salmon)";
 
 // REPLACE WITH
-color: "var(--color-danger)"
+color: "var(--color-danger)";
 ```
 
 **SettingsModal.tsx Replacements:**
@@ -952,6 +989,7 @@ color: "var(--color-danger)",
 ```
 
 **Verification:** Use VSCode search (`Ctrl+Shift+F`):
+
 - Search for `#[0-9a-fA-F]{3,6}` (regex) → Should find 0 results in component files
 - Search for `var(--color-cyan)` → Should find 0 results
 - Search for `var(--color-salmon)` → Should find 0 results
@@ -969,7 +1007,7 @@ color: "var(--color-danger)",
 
 // Semantic colors from design tokens
 export const PREDEFINED_COLORS = {
-  primary: "#2563EB",    // Resolved value for color picker
+  primary: "#2563EB", // Resolved value for color picker
   accent: "#3B82F6",
   success: "#16A34A",
   warning: "#D97706",
@@ -1004,6 +1042,7 @@ export type PredefinedColorName = keyof typeof PREDEFINED_COLORS;
 **Solution:**
 
 1. Update QUICK_SWATCHES (lines 12-19):
+
    ```typescript
    import { PREDEFINED_COLORS } from "@state/types";
 
@@ -1019,17 +1058,19 @@ export type PredefinedColorName = keyof typeof PREDEFINED_COLORS;
 
 2. Update swatch rendering to show name on hover:
    ```tsx
-   {QUICK_SWATCHES.map((swatch) => (
-     <button
-       key={swatch.value}
-       type="button"
-       className="quick-swatch"
-       style={{ backgroundColor: swatch.value }}
-       onClick={() => setColor(swatch.value)}
-       title={swatch.name} // ← Add tooltip
-       aria-label={`${swatch.name} color`}
-     />
-   ))}
+   {
+     QUICK_SWATCHES.map((swatch) => (
+       <button
+         key={swatch.value}
+         type="button"
+         className="quick-swatch"
+         style={{ backgroundColor: swatch.value }}
+         onClick={() => setColor(swatch.value)}
+         title={swatch.name} // ← Add tooltip
+         aria-label={`${swatch.name} color`}
+       />
+     ));
+   }
    ```
 
 **Verification:** Color picker shows 6 semantic color swatches with tooltips.
@@ -1041,6 +1082,7 @@ export type PredefinedColorName = keyof typeof PREDEFINED_COLORS;
 **Duration:** 2 hours
 
 **Files to Modify:**
+
 - `src/App.tsx`
 - `src/utils/theme.ts`
 - `src/ui/SettingsModal.tsx`
@@ -1085,27 +1127,28 @@ export function detectInitialTheme(): Theme {
 Add after dark mode toggle (around line 150):
 
 ```tsx
-{/* Theme Selector */}
+{
+  /* Theme Selector */
+}
 <div className="form-group">
   <label className="form-label">Theme</label>
-  <select
-    className="form-select"
-    value={theme}
-    onChange={(e) => setTheme(e.target.value as Theme)}
-  >
+  <select className="form-select" value={theme} onChange={(e) => setTheme(e.target.value as Theme)}>
     <option value="light">Light</option>
     <option value="dark">Dark</option>
     <option value="high-contrast">High Contrast</option>
   </select>
-  <p style={{ fontSize: "var(--text-sm)", color: "var(--text-muted)", marginTop: "var(--space-2)" }}>
+  <p
+    style={{ fontSize: "var(--text-sm)", color: "var(--text-muted)", marginTop: "var(--space-2)" }}
+  >
     High contrast mode improves accessibility for users with visual impairments.
   </p>
-</div>
+</div>;
 ```
 
 **Note:** Remove the old "Dark mode" checkbox, replace with dropdown.
 
 **Verification:**
+
 1. Settings modal shows theme dropdown
 2. Selecting "High Contrast" applies high-contrast.css tokens
 3. UI has maximum contrast (black text on white, strong borders)
@@ -1119,6 +1162,7 @@ Add after dark mode toggle (around line 150):
 **File:** `src/App.css` lines 28-34
 
 **BEFORE:**
+
 ```css
 --spacing-xs: clamp(3px, 0.4vw, 4px);
 --spacing-sm: clamp(6px, 0.8vw, 8px);
@@ -1128,6 +1172,7 @@ Add after dark mode toggle (around line 150):
 ```
 
 **AFTER:**
+
 ```css
 /* Removed - use tokens from base.css instead */
 /* All components should use --space-* tokens directly */
@@ -1136,6 +1181,7 @@ Add after dark mode toggle (around line 150):
 **Component Updates:**
 
 Search for `var(--spacing-` and replace with `var(--space-`:
+
 - `--spacing-xs` → `--space-1`
 - `--spacing-sm` → `--space-2`
 - `--spacing-md` → `--space-4`
@@ -1143,6 +1189,7 @@ Search for `var(--spacing-` and replace with `var(--space-`:
 - `--spacing-xl` → `--space-8`
 
 **Verification:**
+
 - Spacing remains consistent across all screen sizes
 - No fluid spacing, all fixed 4px increments
 
@@ -1257,6 +1304,7 @@ See [Testing Checklist](#testing-checklist) section below.
 ### Visual Regression Testing
 
 #### Light Theme
+
 - [ ] App background is `#FFFFFF` (white)
 - [ ] Text is `#0B0C10` (Ink 900)
 - [ ] Cards have white background with proper shadows
@@ -1267,6 +1315,7 @@ See [Testing Checklist](#testing-checklist) section below.
 - [ ] Borders are `#CBD4DF` (Mist 400)
 
 #### Dark Theme
+
 - [ ] App background is `#0F1117` (Night 800)
 - [ ] Text is `#F5F7FA` (Cloud 100)
 - [ ] Cards have `#141821` background (Night 700)
@@ -1277,6 +1326,7 @@ See [Testing Checklist](#testing-checklist) section below.
 - [ ] All borders visible against dark background
 
 #### High-Contrast Theme
+
 - [ ] Maximum contrast (black on white)
 - [ ] All text is `#000000`
 - [ ] All backgrounds are `#FFFFFF` or `#F0F0F0`
@@ -1289,6 +1339,7 @@ See [Testing Checklist](#testing-checklist) section below.
 ### Component Testing
 
 #### Cards
+
 - [ ] Card background respects theme (not always white)
 - [ ] Card text readable in all 3 themes
 - [ ] Card hover effects work
@@ -1296,30 +1347,35 @@ See [Testing Checklist](#testing-checklist) section below.
 - [ ] Card border colors work with column colors
 
 #### Buttons
+
 - [ ] Primary buttons use primary color
 - [ ] Hover states work
 - [ ] Disabled states visible
 - [ ] Icon buttons have proper hit area (44x44px minimum)
 
 #### Inputs & Forms
+
 - [ ] Focus states visible in all themes
 - [ ] Error states show danger color
 - [ ] Placeholders readable
 - [ ] Form labels proper contrast
 
 #### Modals
+
 - [ ] Modal backgrounds respect theme
 - [ ] Modal text readable
 - [ ] Overlay darkness appropriate for theme
 - [ ] Close buttons visible
 
 #### Color Picker
+
 - [ ] Shows 6 semantic color swatches
 - [ ] Swatches have tooltips (Primary, Accent, etc.)
 - [ ] Selected color preview works
 - [ ] Hex input validates properly
 
 #### Settings Modal
+
 - [ ] Theme dropdown shows 3 options
 - [ ] Changing theme applies immediately
 - [ ] Theme preference persists on reload
@@ -1396,6 +1452,7 @@ See [Testing Checklist](#testing-checklist) section below.
 ### Handling Legacy Board Data
 
 **Problem:** Existing board files may contain old color names:
+
 - "cyan", "mint", "salmon", "lavender", "slate"
 
 **Solution:** Import logic with fallback mapping
@@ -1438,6 +1495,7 @@ function normalizeColor(color?: string): string | undefined {
 ```
 
 **Verification:**
+
 1. Export a board with old color names
 2. Edit JSON to use "cyan", "mint", etc.
 3. Import the board
@@ -1451,6 +1509,7 @@ function normalizeColor(color?: string): string | undefined {
 ## [0.2.0] - 2025-XX-XX
 
 ### Changed
+
 - **BREAKING:** Migrated to Stack Junkie Universal Style Guide v0.3
 - Color system now uses semantic tokens (primary, accent, success, warning, danger, info)
 - Legacy color names (cyan, mint, salmon, lavender, slate) automatically migrate to semantic equivalents
@@ -1458,11 +1517,13 @@ function normalizeColor(color?: string): string | undefined {
 - Added high-contrast theme for accessibility
 
 ### Added
+
 - Three theme options: Light, Dark, High Contrast
 - Comprehensive design token system for colors, spacing, typography, and more
 - Theme selector in Settings → Appearance
 
 ### Fixed
+
 - Cards were unreadable in dark mode (always white background)
 - Inconsistent color usage across components
 - Missing focus indicators in some themes
@@ -1479,6 +1540,7 @@ function normalizeColor(color?: string): string | undefined {
 ### If Migration Fails
 
 **Symptoms:**
+
 - App won't load
 - Colors completely broken
 - TypeScript errors blocking build
@@ -1486,17 +1548,20 @@ function normalizeColor(color?: string): string | undefined {
 **Rollback Steps:**
 
 1. **Revert Token Files:**
+
    ```bash
    git checkout HEAD -- src/styles/
    rm -rf src/styles/tokens/
    ```
 
 2. **Revert Main CSS:**
+
    ```bash
    git checkout HEAD -- src/App.css
    ```
 
 3. **Revert Component Files:**
+
    ```bash
    git checkout HEAD -- src/ui/Header.tsx
    git checkout HEAD -- src/ui/SettingsModal.tsx
@@ -1505,12 +1570,14 @@ function normalizeColor(color?: string): string | undefined {
    ```
 
 4. **Revert Type Definitions:**
+
    ```bash
    git checkout HEAD -- src/state/types.ts
    git checkout HEAD -- src/utils/theme.ts
    ```
 
 5. **Revert Main Entry:**
+
    ```bash
    git checkout HEAD -- src/main.tsx
    ```
@@ -1532,18 +1599,21 @@ If tokens work but components broken:
 ### Safe Checkpoint Strategy
 
 **Before starting:**
+
 ```bash
 git checkout -b feature/style-guide-migration
 git commit -m "Checkpoint: Before style guide migration"
 ```
 
 **After each step:**
+
 ```bash
 git add .
 git commit -m "Step X: [description]"
 ```
 
 **If Step X breaks:**
+
 ```bash
 git reset --hard HEAD~1  # Undo last commit
 ```
@@ -1553,6 +1623,7 @@ git reset --hard HEAD~1  # Undo last commit
 ## Additional Resources
 
 ### Stack Junkie Style Guide
+
 - **Location:** `docs/stack-junkie-style-guide.md`
 - **Sections to Reference:**
   - Section 4: Color System
@@ -1563,15 +1634,18 @@ git reset --hard HEAD~1  # Undo last commit
   - Section 15: CSS Variables Output
 
 ### Contrast Checker Tools
+
 - **WebAIM:** https://webaim.org/resources/contrastchecker/
 - **Colorable:** https://colorable.jxnblk.com/
 - **Contrast Ratio:** https://contrast-ratio.com/
 
 ### CSS Variables Resources
+
 - **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties
 - **Data Theme Attribute:** https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*
 
 ### Testing Tools
+
 - **Axe DevTools:** Browser extension for accessibility testing
 - **WAVE:** Web accessibility evaluation tool
 - **Lighthouse:** Chrome DevTools audit
@@ -1587,6 +1661,7 @@ git reset --hard HEAD~1  # Undo last commit
 ### Q: What if I want different brand colors?
 
 **A:** Modify `src/styles/tokens/light.css` and `dark.css`:
+
 ```css
 --color-primary: #YOUR_COLOR;
 --color-accent: #YOUR_ACCENT;
@@ -1597,6 +1672,7 @@ All components will automatically use new colors.
 ### Q: How do I add a new theme (e.g., "midnight")?
 
 **A:**
+
 1. Create `src/styles/tokens/midnight.css`
 2. Define all color tokens with `[data-theme="midnight"]` selector
 3. Update `Theme` type in `theme.ts`
@@ -1605,17 +1681,23 @@ All components will automatically use new colors.
 ### Q: Cards still white in dark mode after migration?
 
 **A:** Check line 493 of `App.css`:
+
 ```css
 /* WRONG */
-.card { background: white; }
+.card {
+  background: white;
+}
 
 /* CORRECT */
-.card { background: var(--bg-surface); }
+.card {
+  background: var(--bg-surface);
+}
 ```
 
 ### Q: Focus rings not visible?
 
 **A:** Ensure all interactive elements use `var(--ring)`:
+
 ```css
 button:focus {
   outline: 2px solid var(--ring);

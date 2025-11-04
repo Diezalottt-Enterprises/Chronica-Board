@@ -27,9 +27,11 @@
 ## Feature Overview
 
 ### What
+
 Replace the single-board export system with a dropdown board selector that allows users to export individual boards OR all boards at once in a single JSON file.
 
 ### Why
+
 - **Backup Convenience:** Export entire workspace with one click
 - **Portability:** Move all project data between machines easily
 - **Version Control:** Commit all boards to git in one file
@@ -37,6 +39,7 @@ Replace the single-board export system with a dropdown board selector that allow
 - **Migration:** Simplify moving from old versions or other tools
 
 ### User Benefit
+
 - One-click full workspace backup
 - Easy project handoff
 - Better integration with version control
@@ -93,10 +96,11 @@ export async function exportBoard(
   columns: Column[],
   cards: Card[],
   fields?: Record<string, FieldDefinition>
-): Promise<void>
+): Promise<void>;
 ```
 
 **Limitations:**
+
 1. Only exports **one board** (active board)
 2. Takes board data as parameters (not board ID)
 3. No board selection UI
@@ -107,17 +111,13 @@ export async function exportBoard(
 **Location:** `src/ui/Sidebar.tsx` lines 140-146
 
 ```tsx
-<button
-  className="icon"
-  onClick={onExport}
-  disabled={!activeBoard}
-  title="Export Board"
->
+<button className="icon" onClick={onExport} disabled={!activeBoard} title="Export Board">
   ↓
 </button>
 ```
 
 **Limitations:**
+
 - Simple button, no selection
 - Always exports active board
 - No "all boards" option
@@ -127,11 +127,13 @@ export async function exportBoard(
 **Location:** `src/ui/ImportModal.tsx` lines 1-220
 
 **Features:**
+
 - Two tabs: "From File", "Paste JSON"
 - Preview: board name, column count, card count
 - Creates new board (doesn't replace)
 
 **Limitations:**
+
 - Can only import one board per operation
 - No multi-board file support
 - No board selection UI for multi-board imports
@@ -159,6 +161,7 @@ interface ExportFormat {
 ```
 
 **Limitations:**
+
 - Schema only supports single board
 - No board ID in metadata
 - Field definitions global but only one board
@@ -225,9 +228,7 @@ interface ExportSelectorProps {
 }
 
 export function ExportSelector({ boards, activeBoard, onExport }: ExportSelectorProps) {
-  const [selectedBoardId, setSelectedBoardId] = useState<string | "all">(
-    activeBoard?.id || "all"
-  );
+  const [selectedBoardId, setSelectedBoardId] = useState<string | "all">(activeBoard?.id || "all");
   const [isExporting, setIsExporting] = useState(false);
 
   const handleExport = async () => {
@@ -290,28 +291,16 @@ import { ExportSelector } from "./ExportSelector";
 
 // In Sidebar component JSX (replace lines 140-146):
 <div className="sidebar-footer">
-  <ExportSelector
-    boards={boards}
-    activeBoard={activeBoard}
-    onExport={handleExport}
-  />
+  <ExportSelector boards={boards} activeBoard={activeBoard} onExport={handleExport} />
 
-  <button
-    className="icon"
-    onClick={onImport}
-    title="Import Board"
-  >
+  <button className="icon" onClick={onImport} title="Import Board">
     ↑
   </button>
 
-  <button
-    className="icon"
-    onClick={onSettings}
-    title="Settings"
-  >
+  <button className="icon" onClick={onSettings} title="Settings">
     ⚙
   </button>
-</div>
+</div>;
 ```
 
 ### 3. Export Function Updates
@@ -563,56 +552,72 @@ const handleImport = (content: string) => {
 };
 
 // Add multi-board selection UI in modal body
-{importFormat === "multi" && multiBoardData && (
-  <div className="form-group">
-    <label className="form-label">Select Boards to Import</label>
-    <div style={{ maxHeight: "200px", overflow: "auto", border: "1px solid var(--border)", borderRadius: "var(--radius-sm)", padding: "var(--space-3)" }}>
-      {multiBoardData.boards.map((board) => (
-        <div key={board.id} className="form-checkbox" style={{ marginBottom: "var(--space-2)" }}>
-          <input
-            type="checkbox"
-            checked={selectedBoardIds.has(board.id)}
-            onChange={(e) => {
-              const newSet = new Set(selectedBoardIds);
-              if (e.target.checked) {
-                newSet.add(board.id);
-              } else {
-                newSet.delete(board.id);
-              }
-              setSelectedBoardIds(newSet);
-            }}
-          />
-          <label>
-            {board.name}
-            <span style={{ color: "var(--text-muted)", fontSize: "var(--font-sm)", marginLeft: "var(--space-2)" }}>
-              ({board.cards.length} cards, {board.columns.length} columns)
-            </span>
-          </label>
-        </div>
-      ))}
-    </div>
+{
+  importFormat === "multi" && multiBoardData && (
+    <div className="form-group">
+      <label className="form-label">Select Boards to Import</label>
+      <div
+        style={{
+          maxHeight: "200px",
+          overflow: "auto",
+          border: "1px solid var(--border)",
+          borderRadius: "var(--radius-sm)",
+          padding: "var(--space-3)",
+        }}
+      >
+        {multiBoardData.boards.map((board) => (
+          <div key={board.id} className="form-checkbox" style={{ marginBottom: "var(--space-2)" }}>
+            <input
+              type="checkbox"
+              checked={selectedBoardIds.has(board.id)}
+              onChange={(e) => {
+                const newSet = new Set(selectedBoardIds);
+                if (e.target.checked) {
+                  newSet.add(board.id);
+                } else {
+                  newSet.delete(board.id);
+                }
+                setSelectedBoardIds(newSet);
+              }}
+            />
+            <label>
+              {board.name}
+              <span
+                style={{
+                  color: "var(--text-muted)",
+                  fontSize: "var(--font-sm)",
+                  marginLeft: "var(--space-2)",
+                }}
+              >
+                ({board.cards.length} cards, {board.columns.length} columns)
+              </span>
+            </label>
+          </div>
+        ))}
+      </div>
 
-    <button
-      className="primary"
-      onClick={() => {
-        const selectedBoards = multiBoardData.boards.filter((b) => selectedBoardIds.has(b.id));
-        selectedBoards.forEach((board) => {
-          // Import each selected board
-          onImport(board.name, board.columns, board.cards);
-        });
-        // Merge fields
-        if (multiBoardData.fields) {
-          // ... field merging logic
-        }
-        onClose();
-      }}
-      disabled={selectedBoardIds.size === 0}
-      style={{ marginTop: "var(--space-4)", width: "100%" }}
-    >
-      Import {selectedBoardIds.size} Board{selectedBoardIds.size !== 1 ? "s" : ""}
-    </button>
-  </div>
-)}
+      <button
+        className="primary"
+        onClick={() => {
+          const selectedBoards = multiBoardData.boards.filter((b) => selectedBoardIds.has(b.id));
+          selectedBoards.forEach((board) => {
+            // Import each selected board
+            onImport(board.name, board.columns, board.cards);
+          });
+          // Merge fields
+          if (multiBoardData.fields) {
+            // ... field merging logic
+          }
+          onClose();
+        }}
+        disabled={selectedBoardIds.size === 0}
+        style={{ marginTop: "var(--space-4)", width: "100%" }}
+      >
+        Import {selectedBoardIds.size} Board{selectedBoardIds.size !== 1 ? "s" : ""}
+      </button>
+    </div>
+  );
+}
 ```
 
 ### 6. App.tsx Integration
@@ -655,6 +660,7 @@ const handleExport = async (boardId: string | "all") => {
 4. Export all new types
 
 **Verification:**
+
 - TypeScript compiles without errors
 - No "Cannot find type" errors
 
@@ -703,6 +709,7 @@ export const MultiboardExportFormatSchema = z.object({
 ```
 
 **Verification:**
+
 - Import schema in `importExport.ts`
 - TypeScript compiles
 
@@ -717,6 +724,7 @@ export const MultiboardExportFormatSchema = z.object({
 3. Update imports to include `MultiboardExportFormat`, `BoardExportEntry`
 
 **Verification:**
+
 - Functions compile without errors
 - Test with mock data:
   ```typescript
@@ -739,6 +747,7 @@ export const MultiboardExportFormatSchema = z.object({
 4. Update imports to include schemas
 
 **Verification:**
+
 - Export 2 boards with "All Boards" option
 - Import the file
 - Check console for correct detection: `format: "multi"`
@@ -755,6 +764,7 @@ export const MultiboardExportFormatSchema = z.object({
 4. Add prop types and TypeScript interfaces
 
 **Verification:**
+
 - Component renders in Storybook (if available)
 - Or test by temporarily adding to Sidebar
 
@@ -770,6 +780,7 @@ export const MultiboardExportFormatSchema = z.object({
 4. Update footer layout if needed
 
 **Verification:**
+
 - Sidebar shows dropdown with all board names
 - "All Boards" appears at bottom of dropdown
 - Export button works
@@ -785,6 +796,7 @@ export const MultiboardExportFormatSchema = z.object({
 3. Pass new handler to Sidebar
 
 **Verification:**
+
 - Select specific board → exports single board file
 - Select "All Boards" → exports multi-board file
 - Check file contents match expected schema
@@ -802,6 +814,7 @@ export const MultiboardExportFormatSchema = z.object({
 5. Add "Select All" / "Deselect All" buttons
 
 **Verification:**
+
 - Import single-board file → works as before
 - Import multi-board file → shows board selection UI
 - Select some boards → imports only selected
@@ -843,6 +856,7 @@ importBoard: (name, columns, cards) => {
 ```
 
 **Verification:**
+
 - Import board with same name as existing → renamed to "Board Name (1)"
 - Import again → renamed to "Board Name (2)"
 - No duplicate names in board list
@@ -941,6 +955,7 @@ See [Testing Checklist](#testing-checklist) section.
 ### Integration Tests
 
 #### Export Tests
+
 - [ ] Select single board → exports single-board file
 - [ ] Select "All Boards" → exports multi-board file
 - [ ] Export all boards with custom fields → fields in metadata
@@ -949,6 +964,7 @@ See [Testing Checklist](#testing-checklist) section.
 - [ ] Export while another export in progress → button disabled
 
 #### Import Tests
+
 - [ ] Import single-board file → works as before
 - [ ] Import multi-board file → shows selection UI
 - [ ] Import multi-board, select all → imports all boards
@@ -960,6 +976,7 @@ See [Testing Checklist](#testing-checklist) section.
 ### UI Tests
 
 #### ExportSelector Component
+
 - [ ] Dropdown shows all board names
 - [ ] "All Boards" appears at bottom with count
 - [ ] Dropdown disabled when no boards
@@ -969,6 +986,7 @@ See [Testing Checklist](#testing-checklist) section.
 - [ ] Dropdown accessible (ARIA labels)
 
 #### ImportModal Updates
+
 - [ ] Multi-board preview shows total stats (boards, columns, cards)
 - [ ] Board selection checkboxes render correctly
 - [ ] "Select All" / "Deselect All" buttons work
@@ -1049,11 +1067,13 @@ See [Testing Checklist](#testing-checklist) section.
 ### Backward Compatibility
 
 **Single-Board Files:**
+
 - Existing single-board exports continue to work
 - Import detects schema automatically
 - No user action required
 
 **Multi-Board Files:**
+
 - New format, won't work with old versions
 - Clearly labeled in file name ("all_boards")
 - Includes schema version for future upgrades
@@ -1061,16 +1081,19 @@ See [Testing Checklist](#testing-checklist) section.
 ### File Naming Convention
 
 **Before:**
+
 ```
 chronica_My_Board_v0.1.0-alpha.6.json
 ```
 
 **After (Single):**
+
 ```
 chronica_My_Board_v0.1.0-alpha.7.json
 ```
 
 **After (Multi):**
+
 ```
 chronica_all_boards_v0.1.0-alpha.7_2025-11-03.json
 ```
@@ -1083,16 +1106,19 @@ chronica_all_boards_v0.1.0-alpha.7_2025-11-03.json
 ## [0.1.0-alpha.7] - 2025-XX-XX
 
 ### Added
+
 - **Multi-Board Export:** Export all boards at once with dropdown selector
 - Board selection UI in import modal for multi-board files
 - Automatic board name conflict resolution (appends (1), (2), etc.)
 - "All Boards" option at bottom of export dropdown
 
 ### Changed
+
 - Export UI now uses dropdown instead of single button
 - Import modal detects format automatically (single vs multi-board)
 
 ### Fixed
+
 - Board name conflicts during import now handled gracefully
 ```
 
@@ -1123,6 +1149,7 @@ chronica_all_boards_v0.1.0-alpha.7_2025-11-03.json
 ### If Multi-Board Feature Breaks
 
 **Symptoms:**
+
 - Export fails silently
 - Import shows errors
 - Dropdown not working
@@ -1131,23 +1158,27 @@ chronica_all_boards_v0.1.0-alpha.7_2025-11-03.json
 **Rollback Steps:**
 
 1. **Revert ExportSelector:**
+
    ```bash
    rm src/ui/ExportSelector.tsx
    git checkout HEAD -- src/ui/Sidebar.tsx
    ```
 
 2. **Revert Import Functions:**
+
    ```bash
    git checkout HEAD -- src/io/importExport.ts
    ```
 
 3. **Revert Types & Schemas:**
+
    ```bash
    git checkout HEAD -- src/state/types.ts
    git checkout HEAD -- src/io/schema.ts
    ```
 
 4. **Revert App Integration:**
+
    ```bash
    git checkout HEAD -- src/App.tsx
    git checkout HEAD -- src/ui/ImportModal.tsx
@@ -1172,6 +1203,7 @@ If export works but import broken:
 ### JSON Schema Examples
 
 **Single-Board Export:**
+
 ```json
 {
   "meta": {
@@ -1188,6 +1220,7 @@ If export works but import broken:
 ```
 
 **Multi-Board Export:**
+
 ```json
 {
   "meta": {
