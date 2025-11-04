@@ -22,7 +22,7 @@ Follow these steps:
    - A list of undocumented changes organized by category (Added/Modified/Removed)
    - Your proposed revisions to the changelog entry
    - Your proposed revisions to the commit message
-   
+
    Present this information in a structured format and ask the user: "Are these findings accurate, and do you approve of my proposed changes to the changelog entry and commit message?"
 
 4. **Provide Three Options**:

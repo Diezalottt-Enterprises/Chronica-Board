@@ -603,7 +603,7 @@ export function KanbanBoard({ onEditCard, onNewCard, theme }: KanbanBoardProps) 
                 onDuplicateColumn={duplicateColumn}
                 onSortCards={sortCards}
                 onToggleCollapse={(columnKey) => {
-                  const currentColumn = activeBoard.columns.find(col => col.key === columnKey);
+                  const currentColumn = activeBoard.columns.find((col) => col.key === columnKey);
                   setColumnCollapsed(columnKey, !(currentColumn?.collapsed ?? false));
                 }}
                 columnsCount={activeBoard.columns.length}

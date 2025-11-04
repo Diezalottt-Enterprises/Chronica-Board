@@ -18,9 +18,9 @@ Co-authored-by: Claude <noreply@anthropic.com>
 git commit -m $commitMessage
 ```
 
-**IMPORTANT:** Use PowerShell here-string syntax (`$commitMessage = @"..."@`) NOT bash heredoc (`cat <<'EOF'`). PowerShell doesn't support bash heredoc. 
+**IMPORTANT:** Use PowerShell here-string syntax (`$commitMessage = @"..."@`) NOT bash heredoc (`cat <<'EOF'`). PowerShell doesn't support bash heredoc.
 
-# Title: Version,  Summary, imperative, start upper case, don't end with a period
+# Title: Version, Summary, imperative, start upper case, don't end with a period
 
 # No more than 60 chars. #### 50 chars is about -> here:
 

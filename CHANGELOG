@@ -4,6 +4,17 @@ All notable changes to Chronica will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.1.0-alpha.6] - 2025-11-03
+
+Code formatting fixes to pass Prettier checks in CI/CD pipeline.
+
+### Fixed
+- Prettier formatting issues in 8 files (markdown docs, JavaScript scripts, CSS, TypeScript)
+
+### Technical
+- All source files now conform to Prettier code style standards
+- Ensures format check stage passes in CI/CD pipeline
+
 ## [0.1.0-alpha.5] - 2025-11-03
 
 Pipeline lint fix to resolve ESLint parsing error for build scripts.

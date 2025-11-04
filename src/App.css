@@ -1020,7 +1020,9 @@ button.icon {
   line-height: 1;
   color: var(--text-secondary);
   opacity: 0.6;
-  transition: opacity 0.15s, background 0.15s;
+  transition:
+    opacity 0.15s,
+    background 0.15s;
   border-radius: var(--radius-sm);
   position: relative;
 }
@@ -1043,7 +1045,9 @@ button.icon {
   align-items: center;
   justify-content: center;
   padding: var(--spacing-md) 8px;
-  transition: background 0.2s, transform 0.2s;
+  transition:
+    background 0.2s,
+    transform 0.2s;
 }
 
 .column-collapsed:hover {
