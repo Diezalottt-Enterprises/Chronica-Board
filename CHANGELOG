@@ -4,6 +4,26 @@ All notable changes to Chronica will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.1.0-alpha.7] - 2025-11-04
+
+Documentation update establishing project status and future roadmap.
+
+### Added
+- Project status section in CLAUDE.md documenting 90% beta-readiness
+- Comprehensive feature documentation in docs/features/:
+  - FEATURE-MULTI-BOARD-EXPORT.md - Export all boards in single file
+  - FEATURE-AI-JSON-FORMAT.md - AI-optimized nested JSON export for Claude Code integration
+  - FEATURE-COLUMN-COLOR-MODE.md - Toggle between subtle and vibrant column colors
+  - FEATURE-STYLE-GUIDE-ALIGNMENT.md - Unified design system implementation
+- Development status report (docs/DEVELOPMENT-STATUS.md) with completion metrics
+- Stack Junkie style guide documentation (docs/stack-junkie-style-guide.md)
+
+### Technical
+- Updated CLAUDE.md with current project completion status (90%)
+- Documented what's complete: custom fields, security, persistence, system tray
+- Documented what's missing: test coverage (2.26%), custom field display on cards, planned features
+- Confirmed all 4 feature specs in docs/features/ are ready for implementation
+
 ## [0.1.0-alpha.6] - 2025-11-03
 
 Code formatting fixes to pass Prettier checks in CI/CD pipeline.
