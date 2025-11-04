@@ -4,6 +4,17 @@ All notable changes to Chronica will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.1.0-alpha.5] - 2025-11-03
+
+Pipeline lint fix to resolve ESLint parsing error for build scripts.
+
+### Fixed
+- ESLint parsing error for scripts/sync-version.js in CI/CD pipeline
+- Added scripts/** to ESLint ignore list to exclude build tooling from TypeScript-aware linting
+
+### Technical
+- Updated eslint.config.js to ignore scripts/ folder (contains Node.js build tooling, not application code)
+
 ## [0.1.0-alpha.4] - 2025-11-03
 
 Column management overhaul with comprehensive operations, enhanced version control infrastructure, and critical bug fixes for state management.

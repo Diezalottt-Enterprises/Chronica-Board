@@ -4,7 +4,7 @@
 /**
  * App version - update here only
  */
-export const VERSION = "0.1.0-alpha.4" as const;
+export const VERSION = "0.1.0-alpha.5" as const;
 
 /**
  * Version with 'v' prefix for display
