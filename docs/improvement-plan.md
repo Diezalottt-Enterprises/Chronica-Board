@@ -1,7 +1,7 @@
 # Chronica v0.1.0-alpha - Improvement Plan & Security Analysis
 
 **Generated:** 2025-10-25
-**Target:** Always-on kanban app with custom fields support
+**Target:** Always-on kanban app with Card Fields support
 
 ---
 
@@ -526,7 +526,7 @@ const boards = useStore((state) => state.boards, shallow);
 
 ---
 
-## Custom Fields Design
+## Card Fields Design
 
 ### Architecture
 
@@ -579,7 +579,7 @@ interface Card {
 
 **UI:**
 
-- Settings → "Custom Fields" tab
+- Settings → "Card Fields" tab
 - CRUD interface for field definitions
 - CardEditor dynamically renders based on field types
 - Inline validation errors
@@ -684,7 +684,7 @@ interface Card {
 
 ---
 
-### Phase 2: Custom Fields (Week 4-5)
+### Phase 2: Card Fields (Week 4-5)
 
 **Goal:** Flexible field system with validation
 
@@ -694,11 +694,11 @@ interface Card {
 2. Update Config interface, add fields storage
 3. Create field registry with dynamic validation
 4. Build FieldManager UI (Settings tab)
-5. Update CardEditor to render custom fields
+5. Update CardEditor to render Card Fields
 6. Implement import/export for field definitions
 7. Field value validation in card CRUD
 
-**Deliverable:** Working custom fields feature
+**Deliverable:** Working Card Fields feature
 
 **Verification:**
 
@@ -776,9 +776,9 @@ interface Card {
 
 ## Unresolved Questions
 
-**Custom Fields:**
+**Card Fields:**
 
-- [ ] Max number of custom fields? (suggest 20)
+- [ ] Max number of Card Fields? (suggest 20)
 - [ ] Allow field reordering in UI?
 - [ ] Field-level permissions (hide/readonly)?
 - [ ] Export with/without custom data option?
@@ -877,7 +877,7 @@ src/
 
 - [ ] Always-on (launches with Windows)
 - [ ] Accessible (WCAG 2.1 AA)
-- [ ] Custom fields working
+- [ ] Card Fields working
 - [ ] Import/Export in sidebar above Settings
 - [ ] Responsive columns (100% visible at all window sizes)
 - [ ] Smooth drag-and-drop between columns

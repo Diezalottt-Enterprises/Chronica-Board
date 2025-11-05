@@ -4,6 +4,49 @@ All notable changes to Chronica will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.1.0-alpha.8] - 2025-11-04
+
+Multi-board export and AI-optimized JSON format implementation. This release adds comprehensive export capabilities with a new modal interface and AI-friendly nested JSON structure for enhanced Claude Code integration.
+
+### Added
+- ExportModal component with board selection interface
+  - Export single board or all boards in one file
+  - Shows board name, card count, and preview
+  - Supports both standard and AI-optimized formats
+- AI-optimized JSON export format (nested structure)
+  - Cards nested within columns for better readability
+  - Includes statistics and metadata for AI context
+  - Timestamps (created_at, modified_at) on boards, columns, and cards
+  - Multi-board export with project-wide statistics
+- Board-level field definitions (migrated from global config)
+  - Each board can have its own custom fields
+  - Fields stored in board.fields instead of config.fields
+- ExportModal UI component (src/ui/ExportModal.tsx)
+- BoardFieldEditor component (src/ui/BoardFieldEditor.tsx)
+- AIExportModal component stub (src/ui/AIExportModal.tsx)
+
+### Changed
+- Export button in Header now opens ExportModal instead of immediate export
+- Import/export functions now handle both standard and AI-optimized formats
+- Auto-detection of AI-optimized format during import
+- Custom fields now stored at board level rather than globally in config
+- importExport.ts expanded with AI conversion functions (850+ lines added)
+- Board interface now includes optional fields property
+- Config interface: fields deprecated, added defaultFieldTemplate
+
+### Technical
+- Added AIOptimizedExportFormat and AIOptimizedMultiboardExportFormat types
+- Added AIOptimizedColumn, AIOptimizedCard, AIOptimizedBoardEntry types
+- New export functions: exportBoardAIOptimized, exportAllBoardsAIOptimized
+- New import function: importAIOptimizedFromJSON with format auto-detection
+- Board statistics calculation for AI context (tags_used, colors_used, cards_per_column)
+- Conversion functions: convertToAIOptimized, convertFromAIOptimized
+- UI state management: added showExport modal state
+- File naming convention: standard exports use board name, AI exports append "_ai" suffix
+
+### Removed
+- Direct export functionality from Header (replaced with modal workflow)
+
 ## [0.1.0-alpha.7] - 2025-11-04
 
 Documentation update establishing project status and future roadmap.
@@ -20,7 +63,7 @@ Documentation update establishing project status and future roadmap.
 
 ### Technical
 - Updated CLAUDE.md with current project completion status (90%)
-- Documented what's complete: custom fields, security, persistence, system tray
+- Documented what's complete: Card Fields, security, persistence, system tray
 - Documented what's missing: test coverage (2.26%), custom field display on cards, planned features
 - Confirmed all 4 feature specs in docs/features/ are ready for implementation
 

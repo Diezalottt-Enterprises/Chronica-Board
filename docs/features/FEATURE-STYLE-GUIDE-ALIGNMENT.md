@@ -1281,7 +1281,7 @@ See [Testing Checklist](#testing-checklist) section below.
    - LEGACY_COLOR_MAP provides migration path
    - Old exports with "cyan" should map to "primary"
 
-3. **Custom Fields** (already implemented)
+3. **Card Fields** (already implemented)
    - CardEditor will respect new theme tokens
    - No breaking changes
 

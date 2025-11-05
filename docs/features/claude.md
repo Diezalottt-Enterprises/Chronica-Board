@@ -57,7 +57,7 @@ Updated Assessment (higher than initial 85%):
 | Area               | Completion | Notes                                 |
 | ------------------ | ---------- | ------------------------------------- |
 | Core Features      | 100%       | Boards, cards, columns fully working  |
-| Custom Fields      | 95%        | Fully implemented (docs were wrong!)  |
+| Card Fields      | 95%        | Fully implemented (docs were wrong!)  |
 | System Integration | 95%        | Tray, autostart, persistence all work |
 | Security           | 100%       | XSS prevention, validation complete   |
 | Testing            | 5%         | Only utils tested (biggest gap)       |
@@ -94,14 +94,14 @@ Reality Check:
 
 Your app is MORE complete than documented:
 
-- Development Status doc (Nov 3) says "Custom Fields UI Missing" → FALSE, FieldManager exists and works
+- Development Status doc (Nov 3) says "Card Fields UI Missing" → FALSE, FieldManager exists and works
 - You're at 90% complete for beta, not 75%
 - All critical bugs are fixed
 - No blocking issues
 
 What You Have:
 
-✅ Production-ready kanban app with multi-board support✅ Custom fields end-to-end
+✅ Production-ready kanban app with multi-board support✅ Card Fields end-to-end
 (create/edit/validate/persist)✅ Security hardened (XSS, validation, path safety)✅ System tray integration✅
 Resilient persistence with backups✅ Comprehensive documentation (4 detailed feature specs!)
 
@@ -164,7 +164,7 @@ Reality:
 - No critical bugs
 - All core features work
 - Security is excellent
-- Custom fields fully functional (despite docs saying otherwise)
+- Card Fields fully functional (despite docs saying otherwise)
 - 4 well-documented features ready to implement
 
 Missing: Tests and nice-to-haves. Not blockers.

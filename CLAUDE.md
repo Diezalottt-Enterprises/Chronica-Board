@@ -14,7 +14,7 @@ Chronica is a desktop sticky kanban widget built with Tauri 2, React 19, and Typ
 ### What's Complete (100%)
 
 - Multi-board kanban with drag-and-drop
-- Custom fields system (FieldManager UI, validation, persistence)
+- Card Fields system (FieldManager UI, validation, persistence)
 - System tray integration (autostart, hide/show)
 - Security hardening (XSS prevention, input validation)
 - Resilient persistence (atomic writes, backups, retry logic)
@@ -35,7 +35,7 @@ Chronica is a desktop sticky kanban widget built with Tauri 2, React 19, and Typ
 - 73 console.log statements need cleanup/removal
 - 6 ESLint errors (coverage files need exclusion)
 - No accessibility audit done
-- Custom fields not visible on Card.tsx (only in CardEditor)
+- Card Fields not visible on Card.tsx (only in CardEditor)
 
 **All feature docs in `docs/features/` are current and relevant.**
 
@@ -105,7 +105,7 @@ Three core stores manage application state:
 
 - **`fieldRegistry.ts`** & **`fieldSchema.ts`** - Custom field system (future-proofing)
   - Dynamic field validation and sanitization
-  - Max 20 custom fields per board
+  - Max 20 Card Fields per board
 
 ### Service Layer (`src/services/`)
 
@@ -245,3 +245,16 @@ TypeScript/Vite aliases (configured in `tsconfig.json` and `vite.config.ts`):
 - Rust compilation can take 5-10 minutes on first build
 - Installer created in `tauri/target/release/bundle/`
 - Dev mode supports hot reload for React but not Rust changes
+
+## Version History
+
+| Version | Date       | Changes                                          | Author      |
+| ------- | ---------- | ------------------------------------------------ | ----------- |
+| 1.0     | 2025-11-03 | Initial creation with 4 feature files            | Claude Code |
+| 1.1     | 2025-11-04 | Added FEATURE-INSTALLER-BUILD.md (5 files total) | Claude Code |
+
+---
+
+**Last Updated:** 2025-11-04
+**Maintained By:** Chronica Development Team
+**Document Count:** 5 feature files + 1 index

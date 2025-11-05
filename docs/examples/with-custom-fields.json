@@ -1,0 +1,145 @@
+{
+  "meta": {
+    "schema": "chronica-ai-optimized",
+    "version": 2,
+    "ai_optimized": true,
+    "project": "Sprint Planning with Custom Fields",
+    "description": "Example board demonstrating custom field definitions and usage",
+    "created_at": "2025-11-04T12:00:00.000Z",
+    "modified_at": "2025-11-04T12:00:00.000Z",
+    "generated_by": "Chronica",
+    "app_version": "0.1.0-alpha.7",
+    "fields": {
+      "priority": {
+        "id": "priority",
+        "label": "Priority",
+        "type": "select",
+        "required": true,
+        "validation": {
+          "options": ["P0 - Critical", "P1 - High", "P2 - Medium", "P3 - Low"]
+        }
+      },
+      "estimate": {
+        "id": "estimate",
+        "label": "Time Estimate (hours)",
+        "type": "number",
+        "required": false,
+        "validation": {
+          "min": 0.5,
+          "max": 40
+        }
+      },
+      "assignee": {
+        "id": "assignee",
+        "label": "Assigned To",
+        "type": "text",
+        "required": false,
+        "validation": {
+          "maxLength": 100
+        }
+      }
+    }
+  },
+  "board": {
+    "id": "sprint-001",
+    "name": "Sprint Planning with Custom Fields",
+    "column_count": 3,
+    "card_count": 6,
+    "columns": [
+      {
+        "key": "backlog",
+        "title": "Backlog",
+        "order": 0,
+        "card_count": 2,
+        "cards": [
+          {
+            "id": "card-001",
+            "title": "Implement user authentication",
+            "description": "Add OAuth 2.0 authentication flow for GitHub and Google providers.",
+            "customFields": {
+              "priority": "P1 - High",
+              "estimate": 16,
+              "assignee": "Alice"
+            }
+          },
+          {
+            "id": "card-002",
+            "title": "Design dashboard UI",
+            "description": "Create wireframes and mockups for the main dashboard.",
+            "customFields": {
+              "priority": "P2 - Medium",
+              "estimate": 8,
+              "assignee": "Bob"
+            }
+          }
+        ]
+      },
+      {
+        "key": "in-progress",
+        "title": "In Progress",
+        "order": 1,
+        "card_count": 3,
+        "cards": [
+          {
+            "id": "card-003",
+            "title": "Fix login redirect bug",
+            "description": "Users are redirected to 404 after successful login.",
+            "customFields": {
+              "priority": "P0 - Critical",
+              "estimate": 4,
+              "assignee": "Charlie"
+            }
+          },
+          {
+            "id": "card-004",
+            "title": "Add API rate limiting",
+            "customFields": {
+              "priority": "P1 - High",
+              "estimate": 6,
+              "assignee": "Alice"
+            }
+          },
+          {
+            "id": "card-005",
+            "title": "Update documentation",
+            "customFields": {
+              "priority": "P3 - Low",
+              "estimate": 2,
+              "assignee": "Diana"
+            }
+          }
+        ]
+      },
+      {
+        "key": "done",
+        "title": "Done",
+        "order": 2,
+        "color": "#10b981",
+        "card_count": 1,
+        "cards": [
+          {
+            "id": "card-006",
+            "title": "Set up CI/CD pipeline",
+            "description": "GitHub Actions configured for automated testing and deployment.",
+            "customFields": {
+              "priority": "P1 - High",
+              "estimate": 12,
+              "assignee": "Bob"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "statistics": {
+    "total_columns": 3,
+    "total_cards": 6,
+    "cards_per_column": {
+      "Backlog": 2,
+      "In Progress": 3,
+      "Done": 1
+    },
+    "tags_used": [],
+    "colors_used": ["#10b981"]
+  }
+}

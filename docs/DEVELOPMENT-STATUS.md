@@ -14,7 +14,7 @@ Chronica is in **LATE ALPHA** stage. The improvement plan (9-week roadmap) has b
 
 - ✅ **Phase 0 (Security):** COMPLETE (100%)
 - ✅ **Phase 1 (Foundation):** COMPLETE (100%)
-- ⚠️ **Phase 2 (Custom Fields):** INFRASTRUCTURE COMPLETE, UI INTEGRATION PENDING (80%)
+- ⚠️ **Phase 2 (Card Fields):** INFRASTRUCTURE COMPLETE, UI INTEGRATION PENDING (80%)
 - ✅ **Phase 3 (Always-On):** COMPLETE (90%)
 - ⚠️ **Phase 4 (Polish):** IN PROGRESS (60%)
 
@@ -55,7 +55,7 @@ Chronica is in **LATE ALPHA** stage. The improvement plan (9-week roadmap) has b
 
 ---
 
-## Phase 2: Custom Fields ⚠️ INFRASTRUCTURE COMPLETE (80%)
+## Phase 2: Card Fields ⚠️ INFRASTRUCTURE COMPLETE (80%)
 
 | Task                               | Status  | Evidence                              |
 | ---------------------------------- | ------- | ------------------------------------- |
@@ -63,7 +63,7 @@ Chronica is in **LATE ALPHA** stage. The improvement plan (9-week roadmap) has b
 | Update Config interface            | ✅ DONE | Config has `fields` property          |
 | Field registry with validation     | ✅ DONE | `src/io/fieldRegistry.ts` (207 lines) |
 | FieldManager UI (Settings tab)     | ❌ TODO | No UI component found                 |
-| CardEditor custom fields rendering | ❌ TODO | Not integrated                        |
+| CardEditor Card Fields rendering | ❌ TODO | Not integrated                        |
 | Import/export field definitions    | ✅ DONE | Export format includes meta.fields    |
 | Field value validation in CRUD     | ✅ DONE | Registry validates on card operations |
 
@@ -77,9 +77,9 @@ Chronica is in **LATE ALPHA** stage. The improvement plan (9-week roadmap) has b
 
 **What's Missing:**
 
-- UI to create/edit/delete custom fields in Settings
+- UI to create/edit/delete Card Fields in Settings
 - CardEditor doesn't render custom field inputs
-- No user-facing way to use custom fields yet
+- No user-facing way to use Card Fields yet
 
 **Verdict:** Backend is 100% ready. Frontend UI integration needed (~1-2 days work).
 
@@ -227,7 +227,7 @@ Chronica is in **LATE ALPHA** stage. The improvement plan (9-week roadmap) has b
 
 ### High Priority
 
-1. **Custom Fields UI Missing** - Infrastructure exists but no Settings UI
+1. **Card Fields UI Missing** - Infrastructure exists but no Settings UI
 2. **Low Test Coverage** - Only 18 tests (utils only), need store/integration tests
 3. **Console Logs in Production** - ~30 console.log statements need removal/conditional
 4. **Save Error UI** - Errors log to console but no user-facing alert/toast
@@ -252,8 +252,8 @@ Chronica is in **LATE ALPHA** stage. The improvement plan (9-week roadmap) has b
 
 **Timeline:** 1 week
 
-1. Add custom fields UI in Settings (2 days)
-2. Integrate custom fields into CardEditor (1 day)
+1. Add Card Fields UI in Settings (2 days)
+2. Integrate Card Fields into CardEditor (1 day)
 3. Create save error modal/toast (1 day)
 4. Remove console.log statements (1 day)
 5. Ship as **v0.1.0-beta.1** for user testing
@@ -273,12 +273,12 @@ Chronica is in **LATE ALPHA** stage. The improvement plan (9-week roadmap) has b
 
 **Rationale:** Production-grade quality before any users see it.
 
-### Option C: Just Custom Fields UI
+### Option C: Just Card Fields UI
 
 **Timeline:** 2-3 days
 
 1. Build FieldManager component in Settings
-2. Integrate custom fields into CardEditor
+2. Integrate Card Fields into CardEditor
 3. Ship as **v0.1.0-alpha.7**
 
 **Rationale:** Complete Phase 2, then reassess.
@@ -291,7 +291,7 @@ Chronica is in **LATE ALPHA** stage. The improvement plan (9-week roadmap) has b
 | ---------------------- | ---------------- | ------------------ | ------------------------ |
 | Phase 0: Security      | 1 week           | ✅ DONE            | ✅ Complete              |
 | Phase 1: Foundation    | 2 weeks          | ✅ DONE            | ✅ Complete              |
-| Phase 2: Custom Fields | 2 weeks          | 80% Done           | ⚠️ UI pending            |
+| Phase 2: Card Fields | 2 weeks          | 80% Done           | ⚠️ UI pending            |
 | Phase 3: Always-On     | 2 weeks          | ✅ DONE            | ✅ Complete              |
 | Phase 4: Polish        | 2 weeks          | 60% Done           | ⚠️ In progress           |
 | **Total**              | **9 weeks**      | **~6 weeks equiv** | **✅ Ahead of schedule** |
@@ -304,7 +304,7 @@ Chronica is in **LATE ALPHA** stage. The improvement plan (9-week roadmap) has b
 
 **Current State:** Production-ready for internal/beta testing
 **Blocker Items:** None (all critical features work)
-**Nice-to-Have Items:** Custom fields UI, higher test coverage, accessibility audit
+**Nice-to-Have Items:** Card Fields UI, higher test coverage, accessibility audit
 
 **Recommendation:** Ship beta now (Option A). Get user feedback while polishing tests and accessibility in parallel. The app is stable, secure, and feature-complete for its alpha goals.
 

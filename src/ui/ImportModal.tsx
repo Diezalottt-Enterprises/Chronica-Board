@@ -1,9 +1,13 @@
 // Import modal (Chronica v0.1.0-alpha)
 import { useState, useEffect } from "react";
 import { useBoardStore } from "../stores/boardStore";
-import { useConfigStore } from "../stores/configStore";
 import { useUIStore } from "../stores/uiStore";
-import { importBoardFromFile, importBoardFromJSON, getImportPreview } from "../io/importExport";
+import {
+  importBoardFromFile,
+  importBoardFromJSON,
+  getImportPreview,
+  importAIOptimizedFromJSON,
+} from "../io/importExport";
 
 interface ImportModalProps {
   onClose: () => void;
@@ -11,7 +15,6 @@ interface ImportModalProps {
 
 export function ImportModal({ onClose }: ImportModalProps) {
   const { importBoard } = useBoardStore();
-  const { getAllFields, updateConfig } = useConfigStore();
   const { showAlert } = useUIStore();
   const [tab, setTab] = useState<"file" | "paste">("file");
   const [jsonContent, setJsonContent] = useState("");
@@ -25,36 +28,17 @@ export function ImportModal({ onClose }: ImportModalProps) {
     };
   }, []);
 
-  const mergeFields = (importedFields?: Record<string, any>) => {
-    if (!importedFields || Object.keys(importedFields).length === 0) {
-      return; // No fields to merge
-    }
-
-    const existingFields = getAllFields();
-    const hasConflicts = Object.keys(importedFields).some((id) => id in existingFields);
-
-    if (hasConflicts) {
-      showAlert(
-        "Field Conflict",
-        "Imported board has custom fields. These will be merged with your existing fields."
-      );
-    }
-
-    // Merge fields (imported fields take precedence)
-    const mergedFields = { ...existingFields, ...importedFields };
-    updateConfig({ fields: mergedFields });
-  };
-
   const handleFileImport = async () => {
     try {
       setError(null);
       const result = await importBoardFromFile();
       if (result) {
-        mergeFields(result.fields);
-        importBoard(result.name, result.columns, result.cards);
+        // Fields are passed directly to the board - no more merging
+        importBoard(result.name, result.columns, result.cards, result.fields);
         onClose();
       }
     } catch (err: any) {
+      // If standard import fails, the error will be caught here
       setError(err.message || "Import failed");
     }
   };
@@ -73,10 +57,40 @@ export function ImportModal({ onClose }: ImportModalProps) {
   const handlePasteImport = () => {
     try {
       setError(null);
-      const result = importBoardFromJSON(jsonContent);
-      mergeFields(result.fields);
-      importBoard(result.name, result.columns, result.cards);
-      onClose();
+
+      // Parse to detect format
+      const data = JSON.parse(jsonContent);
+      const schema = data.meta?.schema;
+
+      if (schema === "chronica-ai-optimized") {
+        // AI-optimized format
+        const imported = importAIOptimizedFromJSON(jsonContent);
+
+        if (imported.format === "single" && imported.singleBoard) {
+          importBoard(
+            imported.singleBoard.name,
+            imported.singleBoard.columns,
+            imported.singleBoard.cards,
+            imported.singleBoard.fields
+          );
+          onClose();
+        } else if (imported.format === "multi" && imported.multiBoard) {
+          // Import multiple boards - each board gets the shared fields
+          imported.multiBoard.boards.forEach((board) => {
+            importBoard(board.name, board.columns, board.cards, imported.multiBoard?.fields);
+          });
+          showAlert(
+            "Multi-Board Import",
+            `Successfully imported ${imported.multiBoard.boards.length} boards.`
+          );
+          onClose();
+        }
+      } else {
+        // Standard format
+        const result = importBoardFromJSON(jsonContent);
+        importBoard(result.name, result.columns, result.cards, result.fields);
+        onClose();
+      }
     } catch (err: any) {
       setError(err.message || "Import failed");
     }

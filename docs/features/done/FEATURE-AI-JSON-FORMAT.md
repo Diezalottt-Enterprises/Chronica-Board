@@ -91,7 +91,7 @@ Enhance the export format with an AI-optimized structure that makes it easy for 
    - Example: "Create sprint board with 10 user stories"
 
 3. **Card Enrichment**
-   - AI adds details, links, estimates, custom fields
+   - AI adds details, links, estimates, Card Fields
    - Example: Add acceptance criteria, links to docs, time estimates
 
 4. **Project Tracking**
@@ -151,7 +151,7 @@ Add acceptance criteria, estimates, and assign to columns based on priority.
 1. Parse user stories from command
 2. Generate Chronica board structure
 3. Create columns: Backlog, To Do, In Progress, Review, Done
-4. Add cards with titles, descriptions, custom fields (estimate, priority)
+4. Add cards with titles, descriptions, Card Fields (estimate, priority)
 5. Output `chronica_sprint_1_ai.json`
 6. User imports into Chronica
 
@@ -191,7 +191,7 @@ Claude, for each card in "To Do" column, add:
 
 **Required Format Features:**
 
-- Custom fields schema in export
+- Card Fields schema in export
 - Links array structure
 - Tags array
 - Description supports formatting
@@ -226,7 +226,7 @@ Claude, analyze the "Q4 Roadmap" board and give me:
 
 - Timestamps for trend analysis
 - Column statistics
-- Card metadata (assignee via custom fields)
+- Card metadata (assignee via Card Fields)
 - Historical data (if available)
 
 ---
@@ -764,7 +764,7 @@ export function AIExportModal({ boards, activeBoard, onExport, onClose }: AIExpo
             </select>
           </div>
 
-          {/* AI-Optimized Checkbox */}
+/*          {/* AI-Optimized Checkbox */}
           <div className="form-checkbox">
             <input
               type="checkbox"
@@ -786,7 +786,7 @@ export function AIExportModal({ boards, activeBoard, onExport, onClose }: AIExpo
               </span>
             </label>
           </div>
-
+*/
           {/* README/Instructions (only for AI-optimized) */}
           {aiOptimized && (
             <div className="form-group">
@@ -1264,7 +1264,7 @@ Most used tags: `backend (8), frontend (6), security (4)`
 - [ ] File name has "\_ai" suffix
 - [ ] JSON is pretty-printed (readable)
 - [ ] Timestamps in ISO8601 format
-- [ ] Custom fields included in metadata
+- [ ] Card Fields included in metadata
 
 ### Import Tests
 

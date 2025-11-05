@@ -1,0 +1,250 @@
+{
+  "meta": {
+    "schema": "chronica-ai-optimized",
+    "version": 2,
+    "ai_optimized": true,
+    "project": "Full Template Board",
+    "description": "This template shows EVERY possible field in the AI-optimized Chronica format. Use this as a reference when creating your own boards. Fields marked REQUIRED must be present. Fields marked OPTIONAL can be omitted.",
+    "created_at": "2025-11-04T12:00:00.000Z",
+    "modified_at": "2025-11-04T12:00:00.000Z",
+    "generated_by": "Chronica Template Generator",
+    "app_version": "0.1.0-alpha.7",
+    "fields": {
+      "priority": {
+        "id": "priority",
+        "label": "Priority",
+        "type": "select",
+        "required": false,
+        "validation": {
+          "options": ["High", "Medium", "Low"]
+        }
+      },
+      "estimate": {
+        "id": "estimate",
+        "label": "Time Estimate (hours)",
+        "type": "number",
+        "required": false,
+        "validation": {
+          "min": 0,
+          "max": 100
+        }
+      },
+      "story_points": {
+        "id": "story_points",
+        "label": "Story Points",
+        "type": "number",
+        "required": false,
+        "validation": {
+          "min": 1,
+          "max": 13
+        }
+      },
+      "assignee": {
+        "id": "assignee",
+        "label": "Assigned To",
+        "type": "text",
+        "required": false,
+        "validation": {
+          "maxLength": 100
+        }
+      },
+      "start_date": {
+        "id": "start_date",
+        "label": "Start Date",
+        "type": "date",
+        "required": false
+      },
+      "documentation_url": {
+        "id": "documentation_url",
+        "label": "Documentation",
+        "type": "url",
+        "required": false
+      },
+      "blocked": {
+        "id": "blocked",
+        "label": "Blocked",
+        "type": "checkbox",
+        "required": false
+      }
+    }
+  },
+  "board": {
+    "id": "550e8400-e29b-41d4-a716-446655440000",
+    "name": "Full Template Board",
+    "description": "Example board showing all possible fields and options",
+    "created_at": "2025-11-04T12:00:00.000Z",
+    "modified_at": "2025-11-04T12:00:00.000Z",
+    "column_count": 4,
+    "card_count": 8,
+    "columns": [
+      {
+        "key": "backlog",
+        "title": "Backlog",
+        "order": 0,
+        "color": "#8D99AE",
+        "collapsed": false,
+        "card_count": 2,
+        "cards": [
+          {
+            "id": "card-001",
+            "title": "Card with all possible fields (Example 1)",
+            "description": "This card demonstrates **every possible field** that can be used in a Chronica card.\n\n**Features:**\n- Markdown description support\n- Custom fields\n- Tags\n- Links\n- Due dates\n- Colors\n\nUse this as a reference when creating cards.",
+            "color": "mint",
+            "tags": ["example", "template", "documentation"],
+            "rank": 1000,
+            "due": "2025-11-15",
+            "links": [
+              {
+                "label": "GitHub Issue",
+                "url": "https://github.com/example/repo/issues/123"
+              },
+              {
+                "label": "Design Mockup",
+                "url": "https://figma.com/file/example"
+              }
+            ],
+            "customFields": {
+              "priority": "High",
+              "estimate": 8,
+              "story_points": 5,
+              "assignee": "Alice Developer",
+              "start_date": "2025-11-08",
+              "documentation_url": "https://docs.example.com/feature-x",
+              "blocked": false
+            },
+            "created_at": "2025-11-04T12:00:00.000Z",
+            "modified_at": "2025-11-04T12:00:00.000Z"
+          },
+          {
+            "id": "card-002",
+            "title": "Minimal card (only required fields)",
+            "rank": 2000
+          }
+        ]
+      },
+      {
+        "key": "todo",
+        "title": "To Do",
+        "order": 1,
+        "color": "#3b82f6",
+        "collapsed": false,
+        "card_count": 3,
+        "cards": [
+          {
+            "id": "card-003",
+            "title": "Card with hex color",
+            "description": "This card uses a custom hex color instead of a predefined color name.",
+            "color": "#FF6B6B",
+            "tags": ["feature"],
+            "rank": 1000,
+            "customFields": {
+              "priority": "Medium",
+              "estimate": 4
+            }
+          },
+          {
+            "id": "card-004",
+            "title": "Card with predefined color names",
+            "description": "Predefined colors: mint, cyan, salmon, lavender, slate",
+            "color": "lavender",
+            "tags": ["ui", "design"],
+            "rank": 2000
+          },
+          {
+            "id": "card-005",
+            "title": "Card with no due date",
+            "description": "The `due` field can be omitted entirely, or set to `null`.",
+            "due": null,
+            "rank": 3000,
+            "customFields": {
+              "priority": "Low"
+            }
+          }
+        ]
+      },
+      {
+        "key": "in-progress",
+        "title": "In Progress",
+        "order": 2,
+        "color": null,
+        "collapsed": false,
+        "card_count": 2,
+        "cards": [
+          {
+            "id": "card-006",
+            "title": "Card with checkbox custom field",
+            "description": "This card demonstrates the checkbox field type.",
+            "color": "cyan",
+            "rank": 1000,
+            "customFields": {
+              "blocked": true,
+              "assignee": "Bob Engineer"
+            }
+          },
+          {
+            "id": "card-007",
+            "title": "Card with URL custom field",
+            "description": "URL fields validate that the value is a valid HTTP/HTTPS URL.",
+            "rank": 2000,
+            "customFields": {
+              "documentation_url": "https://docs.example.com/api-spec"
+            }
+          }
+        ]
+      },
+      {
+        "key": "done",
+        "title": "Done",
+        "order": 3,
+        "color": "#10b981",
+        "collapsed": true,
+        "card_count": 1,
+        "cards": [
+          {
+            "id": "card-008",
+            "title": "Completed task",
+            "description": "This column is collapsed (collapsed: true), so it displays as a thin vertical bar in the UI.",
+            "color": "slate",
+            "tags": ["completed", "shipped"],
+            "rank": 1000,
+            "customFields": {
+              "priority": "High",
+              "estimate": 12,
+              "story_points": 8
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "statistics": {
+    "total_columns": 4,
+    "total_cards": 8,
+    "cards_per_column": {
+      "Backlog": 2,
+      "To Do": 3,
+      "In Progress": 2,
+      "Done": 1
+    },
+    "tags_used": [
+      "example",
+      "template",
+      "documentation",
+      "feature",
+      "ui",
+      "design",
+      "completed",
+      "shipped"
+    ],
+    "colors_used": [
+      "#8D99AE",
+      "#3b82f6",
+      "#10b981",
+      "mint",
+      "#FF6B6B",
+      "lavender",
+      "cyan",
+      "slate"
+    ]
+  }
+}

@@ -5,7 +5,7 @@ import { validateFieldValue } from "./fieldSchema";
 import { sanitizeText, sanitizeUrl } from "../utils/sanitize";
 
 /**
- * Field registry for managing and validating custom fields
+ * Field registry for managing and validating Card Fields
  */
 export class FieldRegistry {
   private fields: Map<string, FieldDefinition>;
@@ -117,7 +117,7 @@ export class FieldRegistry {
   }
 
   /**
-   * Validate all custom fields on a card
+   * Validate all Card Fields on a card
    */
   validateCardFields(customFields?: Record<string, unknown>): {
     valid: boolean;

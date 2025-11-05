@@ -1,0 +1,58 @@
+{
+  "meta": {
+    "schema": "chronica-ai-optimized",
+    "version": 2,
+    "ai_optimized": true,
+    "project": "Minimal Board",
+    "created_at": "2025-11-04T12:00:00.000Z",
+    "modified_at": "2025-11-04T12:00:00.000Z",
+    "generated_by": "Chronica",
+    "app_version": "0.1.0-alpha.7"
+  },
+  "board": {
+    "id": "min-board-001",
+    "name": "Minimal Board",
+    "column_count": 2,
+    "card_count": 3,
+    "columns": [
+      {
+        "key": "todo",
+        "title": "To Do",
+        "order": 0,
+        "card_count": 2,
+        "cards": [
+          {
+            "id": "card-001",
+            "title": "First task"
+          },
+          {
+            "id": "card-002",
+            "title": "Second task"
+          }
+        ]
+      },
+      {
+        "key": "done",
+        "title": "Done",
+        "order": 1,
+        "card_count": 1,
+        "cards": [
+          {
+            "id": "card-003",
+            "title": "Completed task"
+          }
+        ]
+      }
+    ]
+  },
+  "statistics": {
+    "total_columns": 2,
+    "total_cards": 3,
+    "cards_per_column": {
+      "To Do": 2,
+      "Done": 1
+    },
+    "tags_used": [],
+    "colors_used": []
+  }
+}

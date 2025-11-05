@@ -1,0 +1,226 @@
+{
+  "meta": {
+    "schema": "chronica-ai-optimized",
+    "version": 2,
+    "ai_optimized": true,
+    "project": "Chronica Feature Development Board",
+    "description": "Current status of all planned features for Chronica v0.1.0-alpha/beta releases",
+    "created_at": "2025-11-04T14:00:00.000Z",
+    "modified_at": "2025-11-04T14:00:00.000Z",
+    "generated_by": "Claude Code",
+    "app_version": "0.1.0-alpha.7",
+    "fields": {
+      "priority": {
+        "id": "priority",
+        "label": "Priority",
+        "type": "select",
+        "required": false,
+        "validation": {
+          "options": ["High", "Medium", "Low"]
+        }
+      },
+      "effort": {
+        "id": "effort",
+        "label": "Estimated Effort",
+        "type": "text",
+        "required": false,
+        "validation": {
+          "maxLength": 50
+        }
+      },
+      "doc_file": {
+        "id": "doc_file",
+        "label": "Feature Doc",
+        "type": "text",
+        "required": false,
+        "validation": {
+          "maxLength": 100
+        }
+      }
+    }
+  },
+  "board": {
+    "id": "chronica-features-2025-11-04",
+    "name": "Chronica Feature Development Board",
+    "description": "Tracking all planned and in-progress features for Chronica",
+    "created_at": "2025-11-04T14:00:00.000Z",
+    "modified_at": "2025-11-04T14:00:00.000Z",
+    "column_count": 5,
+    "card_count": 6,
+    "columns": [
+      {
+        "key": "todo",
+        "title": "Todo",
+        "order": 0,
+        "color": "#3b82f6",
+        "card_count": 3,
+        "cards": [
+          {
+            "id": "feat-multi-board-export",
+            "title": "Multi-Board Export with Dropdown Selector",
+            "description": "**Status in Doc:** Not Started\n\n**Overview:**\nAdd ability to export multiple boards at once through a dropdown selector in the export modal. Users can select individual boards or \"All Boards\" option.\n\n**Key Requirements:**\n- Dropdown board selector in ExportModal\n- \"All Boards\" option\n- Multi-board JSON format support\n- Individual board export maintained\n\n**Notes:**\n- Export functions exist (`exportAllBoardsAIOptimized`)\n- UI needs board selector dropdown\n- May already be partially implemented",
+            "tags": ["export", "ui", "multi-board"],
+            "color": "cyan",
+            "rank": 1000,
+            "customFields": {
+              "priority": "High",
+              "effort": "1-2 days",
+              "doc_file": "docs/features/FEATURE-MULTI-BOARD-EXPORT.md"
+            }
+          },
+          {
+            "id": "feat-style-guide",
+            "title": "Stack Junkie Universal Style Guide v0.3 Alignment",
+            "description": "**Status in Doc:** Not Started\n\n**Overview:**\nAlign Chronica's color system, typography, and component styling with Stack Junkie Universal Style Guide v0.3 for consistent design language across projects.\n\n**Key Requirements:**\n- Update color palette to style guide colors\n- Align typography (font sizes, weights, line heights)\n- Update component styling\n- Maintain dark mode compatibility\n\n**Notes:**\n- Foundation for design consistency\n- High complexity (2-3 days)\n- No dependencies on other features",
+            "tags": ["design", "styling", "foundation"],
+            "color": "lavender",
+            "rank": 2000,
+            "customFields": {
+              "priority": "High",
+              "effort": "2-3 days",
+              "doc_file": "docs/features/FEATURE-STYLE-GUIDE-ALIGNMENT.md"
+            }
+          },
+          {
+            "id": "feat-column-color-mode",
+            "title": "Column Color Mode Toggle",
+            "description": "**Status in Doc:** Planned\n\n**Overview:**\nAdd toggle in Settings to switch between two column coloring modes:\n1. **Card Color Mode** (current): Cards have colors, columns are neutral\n2. **Column Color Mode** (new): Columns have colors, cards inherit/neutral\n\n**Key Requirements:**\n- Settings toggle for color mode\n- Persist mode in config\n- Update column rendering logic\n- Maintain backward compatibility\n\n**Notes:**\n- Medium priority\n- 1-2 days effort\n- Targeted for v0.1.0-alpha.7",
+            "tags": ["ui", "appearance", "settings"],
+            "color": "mint",
+            "rank": 3000,
+            "customFields": {
+              "priority": "Medium",
+              "effort": "1-2 days",
+              "doc_file": "docs/features/FEATURE-COLUMN-COLOR-MODE.md"
+            }
+          }
+        ]
+      },
+      {
+        "key": "in-progress",
+        "title": "In Progress",
+        "order": 1,
+        "color": "#f59e0b",
+        "card_count": 0,
+        "cards": []
+      },
+      {
+        "key": "awaiting-qc",
+        "title": "Awaiting QC/Test",
+        "order": 2,
+        "color": "#8b5cf6",
+        "card_count": 2,
+        "cards": [
+          {
+            "id": "feat-ai-json-format",
+            "title": "AI-Friendly JSON Export Format",
+            "description": "**Status in Doc:** Not Started  \n**Actual Status:** Backend Complete, Docs Created, UI Polish Missing\n\n**What's Done Today:**\n- ✅ Comprehensive AI board generation guide (8,500 words)\n- ✅ Full template JSON with all fields\n- ✅ 6 example JSON files (minimal, custom fields, multi-column, etc.)\n- ✅ Examples README with usage guide\n- ✅ All examples validated successfully\n\n**What Exists (Pre-Today):**\n- ✅ AI-optimized schema fully implemented\n- ✅ Export/import functions bidirectional\n- ✅ Auto-format detection\n- ✅ Nested structure support\n\n**What's Missing:**\n- ❌ README field in AIExportModal UI\n- ❌ AI vs Standard format toggle checkbox\n- ❌ Format badge in import preview\n\n**Ready for QC:**\n- Test import of all 6 example files\n- Verify docs are clear and complete\n- Test AI generation workflow end-to-end",
+            "tags": ["ai", "export", "import", "documentation"],
+            "color": "cyan",
+            "rank": 1000,
+            "links": [
+              {
+                "label": "AI Generation Guide",
+                "url": "file://docs/AI-BOARD-GENERATION-GUIDE.md"
+              },
+              {
+                "label": "Examples Folder",
+                "url": "file://docs/examples/"
+              }
+            ],
+            "customFields": {
+              "priority": "High",
+              "effort": "1-2 days (docs done, 1-2 hours UI polish remains)",
+              "doc_file": "docs/features/FEATURE-AI-JSON-FORMAT.md"
+            }
+          },
+          {
+            "id": "feat-installer-build",
+            "title": "Windows Installer Build and Distribution",
+            "description": "**Status in Doc:** Partially Implemented (needs documentation and automation)\n\n**Overview:**\nCreate automated Windows installer build process for Chronica with proper code signing, versioning, and distribution workflow.\n\n**What Exists:**\n- Tauri build configuration\n- Basic installer generation (`pnpm tauri build`)\n- Version syncing script\n\n**What's Missing:**\n- Documentation for build process\n- Automated CI/CD for releases\n- Code signing setup\n- Distribution checklist\n\n**Ready for QC:**\n- Verify installer builds successfully\n- Test installation on clean Windows machine\n- Document manual build steps",
+            "tags": ["build", "installer", "distribution", "devops"],
+            "color": "salmon",
+            "rank": 2000,
+            "customFields": {
+              "priority": "High",
+              "effort": "4-6 hours",
+              "doc_file": "docs/features/FEATURE-INSTALLER-BUILD.md"
+            }
+          }
+        ]
+      },
+      {
+        "key": "debug",
+        "title": "Debug",
+        "order": 3,
+        "color": "#ef4444",
+        "card_count": 0,
+        "cards": []
+      },
+      {
+        "key": "done",
+        "title": "Done",
+        "order": 4,
+        "color": "#10b981",
+        "card_count": 1,
+        "cards": [
+          {
+            "id": "feat-board-level-fields",
+            "title": "Board-Level Card Fields System",
+            "description": "**Status:** ✅ COMPLETED (2025-11-04)\n\n**Overview:**\nRefactored card field system from global (config-level) to board-level, with support for card-specific one-off fields.\n\n**Problem Solved:**\n- Boards now have independent field definitions\n- No more field conflicts on import\n- Board-specific fields (e.g., \"Sprint\" only on sprint boards)\n- Card-only fields for one-off custom data\n\n**3-Tier System Implemented:**\n1. **Global Template** (Settings) → blueprint for new boards\n2. **Board Fields** (per board) → independent fields accessed via ⚙️ menu\n3. **Card-Only Fields** (per card) → one-off fields in card editor\n\n**What Was Built:**\n- ✅ Type updates (Card, Board, Config)\n- ✅ boardStore updates (createBoard, importBoard, updateBoardFields)\n- ✅ configStore migration logic (fields → defaultFieldTemplate)\n- ✅ Import/Export updated (board.fields support)\n- ✅ ImportModal simplified (no more field conflicts)\n- ✅ Board Edit Menu (⚙️ icon → \"Card Fields\")\n- ✅ BoardFieldEditor component (NEW)\n- ✅ FieldManager refactored (accepts props, shows context)\n- ✅ CardEditor card-only fields UI (+ Add Field button)\n- ✅ SettingsModal template labels\n- ✅ TypeScript & Vite build passing\n\n**Files Modified:** 11 files  \n**Files Created:** 1 file (BoardFieldEditor.tsx)  \n**Total Changes:** ~400 lines",
+            "tags": ["fields", "board", "import", "export", "completed"],
+            "color": "mint",
+            "rank": 1000,
+            "customFields": {
+              "priority": "High",
+              "effort": "4-6 hours (actual: ~4 hours)",
+              "doc_file": "docs/features/FEATURE-BOARD-LEVEL-CARD-FIELDS.md"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "statistics": {
+    "total_columns": 5,
+    "total_cards": 6,
+    "cards_per_column": {
+      "Todo": 3,
+      "In Progress": 0,
+      "Awaiting QC/Test": 2,
+      "Debug": 0,
+      "Done": 1
+    },
+    "tags_used": [
+      "export",
+      "ui",
+      "multi-board",
+      "design",
+      "styling",
+      "foundation",
+      "appearance",
+      "settings",
+      "ai",
+      "import",
+      "documentation",
+      "build",
+      "installer",
+      "distribution",
+      "devops",
+      "fields",
+      "board",
+      "completed"
+    ],
+    "colors_used": [
+      "#3b82f6",
+      "#f59e0b",
+      "#8b5cf6",
+      "#ef4444",
+      "#10b981",
+      "cyan",
+      "lavender",
+      "mint",
+      "salmon"
+    ]
+  }
+}

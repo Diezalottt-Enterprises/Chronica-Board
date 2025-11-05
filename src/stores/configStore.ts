@@ -38,6 +38,11 @@ export const useConfigStore = create<ConfigState>((set, get) => ({
 
   // Config actions
   setConfig: (config) => {
+    // Migration: Copy old global fields to defaultFieldTemplate
+    if (config.fields && !config.defaultFieldTemplate) {
+      config.defaultFieldTemplate = config.fields;
+      delete config.fields; // Clean up deprecated field
+    }
     set({ config });
   },
 
@@ -84,39 +89,39 @@ export const useConfigStore = create<ConfigState>((set, get) => ({
     set({ config: { ...state.config, uiScale: clamped } });
   },
 
-  // Field management actions
+  // Field management actions (operates on defaultFieldTemplate)
   addField: (fieldId, field) => {
     const state = get();
     if (!state.config) return;
-    const fields = { ...(state.config.fields || {}) };
-    fields[fieldId] = field;
-    set({ config: { ...state.config, fields } });
+    const defaultFieldTemplate = { ...(state.config.defaultFieldTemplate || {}) };
+    defaultFieldTemplate[fieldId] = field;
+    set({ config: { ...state.config, defaultFieldTemplate } });
   },
 
   updateField: (fieldId, field) => {
     const state = get();
     if (!state.config) return;
-    const fields = { ...(state.config.fields || {}) };
-    fields[fieldId] = field;
-    set({ config: { ...state.config, fields } });
+    const defaultFieldTemplate = { ...(state.config.defaultFieldTemplate || {}) };
+    defaultFieldTemplate[fieldId] = field;
+    set({ config: { ...state.config, defaultFieldTemplate } });
   },
 
   removeField: (fieldId) => {
     const state = get();
     if (!state.config) return;
-    const fields = { ...(state.config.fields || {}) };
-    delete fields[fieldId];
-    set({ config: { ...state.config, fields } });
+    const defaultFieldTemplate = { ...(state.config.defaultFieldTemplate || {}) };
+    delete defaultFieldTemplate[fieldId];
+    set({ config: { ...state.config, defaultFieldTemplate } });
   },
 
   getField: (fieldId) => {
     const state = get();
-    return state.config?.fields?.[fieldId];
+    return state.config?.defaultFieldTemplate?.[fieldId];
   },
 
   getAllFields: () => {
     const state = get();
-    return state.config?.fields || {};
+    return state.config?.defaultFieldTemplate || {};
   },
 }));
 

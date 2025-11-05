@@ -3,7 +3,9 @@
 import { create } from "zustand";
 import { v4 as uuidv4 } from "uuid";
 import type { Board, BoardsIndex, Card, Column } from "../state/types";
+import type { FieldDefinition } from "../io/fieldSchema";
 import { DEFAULT_RANK } from "../constants/ranks";
+import { useConfigStore } from "./configStore";
 
 /**
  * Default columns for new boards
@@ -56,7 +58,13 @@ interface BoardState {
   createBoard: (name: string, withStarters?: boolean) => void;
   renameBoard: (boardId: string, newName: string) => void;
   deleteBoard: (boardId: string) => void;
-  importBoard: (name: string, columns: Column[], cards: Card[]) => void;
+  importBoard: (
+    name: string,
+    columns: Column[],
+    cards: Card[],
+    fields?: Record<string, FieldDefinition>
+  ) => void;
+  updateBoardFields: (boardId: string, fields: Record<string, FieldDefinition>) => void;
 
   // Card actions
   addCard: (card: Omit<Card, "id">) => void;
@@ -102,11 +110,16 @@ export const useBoardStore = create<BoardState>((set, get) => ({
 
   createBoard: (name, withStarters = false) => {
     const state = get();
+    // Copy global template fields to new board
+    const { config } = useConfigStore.getState();
+    const templateFields = config?.defaultFieldTemplate;
+
     const newBoard: Board = {
       id: uuidv4(),
       name,
       columns: DEFAULT_COLUMNS,
       cards: withStarters ? STARTER_CARDS.map((card) => ({ ...card, id: uuidv4() })) : [],
+      fields: templateFields ? { ...templateFields } : undefined, // Copy template
     };
 
     const boards = [...state.boards, newBoard];
@@ -138,7 +151,7 @@ export const useBoardStore = create<BoardState>((set, get) => ({
     set({ boards, activeBoard });
   },
 
-  importBoard: (name, columns, cards) => {
+  importBoard: (name, columns, cards, fields) => {
     const state = get();
     const newBoard: Board = {
       id: uuidv4(),
@@ -148,6 +161,7 @@ export const useBoardStore = create<BoardState>((set, get) => ({
         ...card,
         id: card.id || uuidv4(), // Ensure all cards have IDs
       })),
+      fields, // Use imported fields directly
     };
 
     const boards = [...state.boards, newBoard];
@@ -415,5 +429,13 @@ export const useBoardStore = create<BoardState>((set, get) => ({
     const boards = state.boards.map((b) => (b.id === updatedBoard.id ? updatedBoard : b));
 
     set({ boards, activeBoard: updatedBoard });
+  },
+
+  updateBoardFields: (boardId, fields) => {
+    const state = get();
+    const boards = state.boards.map((b) => (b.id === boardId ? { ...b, fields } : b));
+    const activeBoard =
+      state.activeBoard?.id === boardId ? { ...state.activeBoard, fields } : state.activeBoard;
+    set({ boards, activeBoard });
   },
 }));

@@ -67,8 +67,8 @@ pnpm tauri dev
    - [ ] **Expected:** All HTML tags displayed as plain text
    - [ ] **Fail if:** Text is bold/italic or link is clickable
 
-5. **Test custom fields (if you created any in Settings):**
-   - [ ] Go to Settings (gear icon) → Custom Fields tab
+5. **Test Card Fields (if you created any in Settings):**
+   - [ ] Go to Settings (gear icon) → Card Fields tab
    - [ ] If no fields exist, create a text field: Name "Notes", Type "text"
    - [ ] Create a new card
    - [ ] In the "Notes" custom field, enter: `<b>bold</b>`
@@ -430,13 +430,13 @@ pnpm tauri dev
 
 ---
 
-## Phase 2: Custom Fields
+## Phase 2: Card Fields
 
 ### Test 10: Field Manager (Settings)
 
 **Goal:** Verify custom field CRUD operations
 
-1. Open Settings → Custom Fields tab:
+1. Open Settings → Card Fields tab:
    - [ ] Tab visible and selectable
    - [ ] Empty state or existing fields shown
 2. Create text field:
@@ -461,12 +461,12 @@ pnpm tauri dev
 
 ---
 
-### Test 11: Custom Fields in Card Editor
+### Test 11: Card Fields in Card Editor
 
 **Goal:** Verify fields render and validate correctly
 
 1. Create/edit card:
-   - [ ] Custom fields section appears
+   - [ ] Card Fields section appears
    - [ ] All defined fields rendered with correct input type
 2. Test select field:
    - [ ] "Priority" dropdown shows all options
@@ -486,11 +486,11 @@ pnpm tauri dev
 
 ---
 
-### Test 12: Custom Fields in Import/Export
+### Test 12: Card Fields in Import/Export
 
 **Goal:** Verify field definitions persist across export/import
 
-1. Export board with custom fields:
+1. Export board with Card Fields:
    - [ ] Export → Save JSON
    - [ ] Open JSON in text editor
    - [ ] Verify `meta.fields` contains field definitions
@@ -501,7 +501,7 @@ pnpm tauri dev
    - [ ] Field definitions imported
    - [ ] Card custom field values restored
 3. Check Settings:
-   - [ ] Custom Fields tab shows imported fields
+   - [ ] Card Fields tab shows imported fields
 
 **Pass Criteria:** Fields definitions and values survive export/import cycle
 
@@ -745,7 +745,7 @@ pnpm tauri dev
 3. Create 50 cards in one column:
    - [ ] Scroll smooth
    - [ ] Drag-drop still fast
-4. Edit card with many custom fields:
+4. Edit card with many Card Fields:
    - [ ] Typing feels instant
    - [ ] No input lag
 
@@ -880,7 +880,7 @@ pnpm tauri dev
    - [ ] Autostart toggle works (see Test 19)
    - [ ] "Show starter cards" toggle
    - [ ] About section shows version
-3. Custom Fields tab (see Test 10)
+3. Card Fields tab (see Test 10)
 4. Close modal:
    - [ ] Click X or outside → closes
    - [ ] Settings persist on reopen
@@ -918,8 +918,8 @@ pnpm tauri dev
 2. Empty board:
    - [ ] Create board with no cards
    - [ ] Each column shows "Empty" state or similar
-3. No custom fields:
-   - [ ] Settings → Custom Fields → empty state message
+3. No Card Fields:
+   - [ ] Settings → Card Fields → empty state message
 
 **Pass Criteria:** Helpful messages, no crashes on empty data
 
@@ -938,8 +938,8 @@ pnpm tauri dev
    - Create 20 boards
    - [ ] Sidebar handles overflow (scroll?)
    - [ ] Switching boards still fast
-3. Max custom fields (20):
-   - Create 20 custom fields
+3. Max Card Fields (20):
+   - Create 20 Card Fields
    - [ ] Card editor handles many fields
    - [ ] Validation still works
 
@@ -1029,7 +1029,7 @@ pnpm tauri dev
 
 ### Data Persistence
 
-- [ ] Create board with 5 cards + custom fields
+- [ ] Create board with 5 cards + Card Fields
 - [ ] Close app (Quit from tray)
 - [ ] Check `%AppData%\Chronica\` → files exist
 - [ ] Relaunch → all data restored

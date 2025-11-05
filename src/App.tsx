@@ -14,7 +14,10 @@ import {
   saveConfig,
 } from "./io/persistence";
 import { saveQueue } from "./services/saveQueue";
-import { exportBoard } from "./io/importExport";
+import {
+  exportBoardAIOptimized,
+  exportAllBoardsAIOptimized,
+} from "./io/importExport";
 import { setOpacity } from "./platform/window";
 import { Header } from "./ui/Header";
 import { Sidebar } from "./ui/Sidebar";
@@ -22,6 +25,7 @@ import { KanbanBoard } from "./ui/KanbanBoard";
 import { CardEditor } from "./ui/CardEditor";
 import { SettingsModal } from "./ui/SettingsModal";
 import { ImportModal } from "./ui/ImportModal";
+import { ExportModal } from "./ui/ExportModal";
 import type { Card, ColumnKey } from "./state/types";
 import { detectInitialTheme, type Theme } from "./utils/theme";
 import "./App.css";
@@ -34,11 +38,13 @@ function App() {
     newCardColumn,
     showSettings,
     showImport,
+    showExport,
     dialog,
     setEditingCard,
     setNewCardColumn,
     setShowSettings,
     setShowImport,
+    setShowExport,
     setSaveStatus,
     showAlert,
   } = useUIStore();
@@ -209,13 +215,25 @@ function App() {
     setNewCardColumn(null);
   };
 
-  const handleExport = async () => {
-    if (!activeBoard) return;
+  const handleShowExport = () => {
+    setShowExport(true);
+  };
+
+  const handleExport = async (
+    boardId: string // "all" for all boards, or board.id for single board
+  ) => {
     try {
-      await exportBoard(activeBoard.name, activeBoard.columns, activeBoard.cards, config?.fields);
+      if (boardId === "all") {
+        await exportAllBoardsAIOptimized(boards);
+      } else {
+        const board = boards.find((b) => b.id === boardId);
+        if (!board) throw new Error("Board not found");
+        await exportBoardAIOptimized(board);
+      }
     } catch (error) {
       console.error("Export failed:", error);
-      showAlert("Export Failed", "Export failed. See console for details.");
+      showAlert("Export Failed", `${error}`);
+      throw error;
     }
   };
 
@@ -249,7 +267,7 @@ function App() {
           onImport={() => {
             setShowImport(true);
           }}
-          onExport={handleExport}
+          onExport={handleShowExport}
         />
         <KanbanBoard onEditCard={handleEditCard} onNewCard={handleNewCard} theme={theme} />
       </div>
@@ -277,6 +295,18 @@ function App() {
         <ImportModal
           onClose={() => {
             setShowImport(false);
+          }}
+        />
+      )}
+
+      {showExport && (
+        <ExportModal
+          boards={boards}
+          activeBoard={activeBoard}
+          fields={config?.fields}
+          onExport={handleExport}
+          onClose={() => {
+            setShowExport(false);
           }}
         />
       )}

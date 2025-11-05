@@ -1,15 +1,18 @@
-// Field Manager UI for custom fields (Chronica v0.1.0-alpha)
+// Field Manager UI for Card Fields (Chronica v0.1.0-alpha)
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { useConfigStore } from "../stores/configStore";
 import { useUIStore } from "../stores/uiStore";
 import type { FieldDefinition, FieldType } from "../io/fieldSchema";
 import { FIELD_LIMITS } from "../io/fieldSchema";
 
-export function FieldManager() {
-  const { getAllFields, addField, updateField, removeField } = useConfigStore();
+interface FieldManagerProps {
+  fields: Record<string, FieldDefinition>;
+  onChange: (fields: Record<string, FieldDefinition>) => void;
+  context?: "global" | "board"; // New prop to show context
+}
+
+export function FieldManager({ fields, onChange, context = "global" }: FieldManagerProps) {
   const { showAlert, showConfirm } = useUIStore();
-  const fields = getAllFields();
   const [editingId, setEditingId] = useState<string | null>(null);
 
   // Form state
@@ -45,7 +48,8 @@ export function FieldManager() {
 
   const handleDelete = (fieldId: string, label: string) => {
     showConfirm("Delete Field", `Delete field "${label}"?`, () => {
-      removeField(fieldId);
+      const { [fieldId]: _, ...rest } = fields;
+      onChange(rest);
     });
   };
 
@@ -111,11 +115,11 @@ export function FieldManager() {
       validation: Object.keys(validation).length > 0 ? validation : undefined,
     };
 
-    if (editingId === "new") {
-      addField(field.id, field);
-    } else {
-      updateField(editingId!, field);
-    }
+    // Update fields via onChange
+    onChange({
+      ...fields,
+      [field.id]: field,
+    });
 
     resetForm();
     setEditingId(null);
@@ -147,8 +151,19 @@ export function FieldManager() {
         }}
       >
         <div>
-          <p style={{ fontSize: "12px", color: "var(--text-secondary)" }}>
-            {fieldCount}/{FIELD_LIMITS.MAX_FIELDS_PER_BOARD} custom fields
+          <h3 style={{ margin: 0, fontSize: "16px", marginBottom: "4px" }}>Card Fields</h3>
+          {context === "global" && (
+            <p style={{ fontSize: "12px", color: "var(--text-secondary)", margin: 0 }}>
+              Default template for new boards
+            </p>
+          )}
+          {context === "board" && (
+            <p style={{ fontSize: "12px", color: "var(--text-secondary)", margin: 0 }}>
+              Fields for this board only
+            </p>
+          )}
+          <p style={{ fontSize: "12px", color: "var(--text-secondary)", marginTop: "4px" }}>
+            {fieldCount}/{FIELD_LIMITS.MAX_FIELDS_PER_BOARD} fields
           </p>
         </div>
         <button
@@ -210,7 +225,7 @@ export function FieldManager() {
       {/* Empty State */}
       {fieldCount === 0 && editingId === null && (
         <div style={{ textAlign: "center", padding: "32px", color: "var(--text-secondary)" }}>
-          <p>No custom fields yet</p>
+          <p>No Card Fields yet</p>
           <p style={{ fontSize: "12px", marginTop: "8px" }}>
             Add fields to capture extra info on cards
           </p>

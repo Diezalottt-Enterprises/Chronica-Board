@@ -31,7 +31,8 @@ export interface Card {
   rank?: number; // For ordering within column (default: 1000)
   due?: string | null; // ISO8601 date
   links?: { label: string; url: string }[];
-  customFields?: Record<string, unknown>; // fieldId → value (validated against field definitions)
+  customFields?: Record<string, unknown>; // fieldId → value (validated against board.fields)
+  cardOnlyFields?: Record<string, unknown>; // One-off fields unique to this card only
 }
 
 /**
@@ -42,6 +43,7 @@ export interface Board {
   name: string;
   columns: Column[];
   cards: Card[];
+  fields?: Record<string, import("../io/fieldSchema").FieldDefinition>; // Board-level field definitions
 }
 
 /**
@@ -71,7 +73,8 @@ export interface Config {
   uiScale: number; // Global UI/font scale: 0.8 - 1.2 (default 1.0)
   // Future-proofing
   columnTitles?: Record<ColumnKey, string>;
-  fields?: Record<string, FieldDefinition>; // fieldId → field definition (max 20 fields)
+  defaultFieldTemplate?: Record<string, FieldDefinition>; // Template for new boards (max 20 fields)
+  fields?: Record<string, FieldDefinition>; // DEPRECATED: Migrated to board-level fields
 }
 
 /**
@@ -108,3 +111,96 @@ export const PREDEFINED_COLORS = {
 } as const;
 
 export type PredefinedColorName = keyof typeof PREDEFINED_COLORS;
+
+/**
+ * AI-optimized metadata
+ */
+export interface AIOptimizedMetadata {
+  schema: "chronica-ai-optimized";
+  version: 2; // Increment version for AI format
+  ai_optimized: true;
+  project: string;
+  description?: string; // Human-readable project description
+  created_at: string;
+  modified_at: string;
+  generated_by: "Chronica";
+  app_version: string;
+  fields: Record<string, FieldDefinition>; // Custom field definitions
+}
+
+/**
+ * AI-optimized column with nested cards
+ */
+export interface AIOptimizedColumn {
+  key: string;
+  title: string;
+  order: number;
+  color?: string | null;
+  collapsed?: boolean;
+  card_count: number; // Redundant count for AI verification
+  cards: AIOptimizedCard[]; // Nested cards
+}
+
+/**
+ * AI-optimized card with timestamps
+ */
+export interface AIOptimizedCard {
+  id: string;
+  title: string;
+  description?: string;
+  color?: string;
+  tags?: string[];
+  rank?: number;
+  due?: string | null;
+  links?: { label: string; url: string }[];
+  customFields?: Record<string, unknown>;
+  created_at?: string; // ISO8601 timestamp
+  modified_at?: string; // ISO8601 timestamp
+}
+
+/**
+ * AI-optimized board entry
+ */
+export interface AIOptimizedBoardEntry {
+  id: string;
+  name: string;
+  description?: string; // Board-level description
+  created_at?: string;
+  modified_at?: string;
+  column_count: number; // Redundant count
+  card_count: number; // Total cards
+  columns: AIOptimizedColumn[]; // Nested structure
+}
+
+/**
+ * AI-optimized single board export
+ */
+export interface AIOptimizedExportFormat {
+  meta: AIOptimizedMetadata;
+  board: AIOptimizedBoardEntry;
+  statistics: {
+    total_columns: number;
+    total_cards: number;
+    cards_per_column: Record<string, number>; // Column name → count
+    tags_used: string[]; // All unique tags
+    colors_used: string[]; // All unique colors
+  };
+}
+
+/**
+ * AI-optimized multi-board export
+ */
+export interface AIOptimizedMultiboardExportFormat {
+  meta: AIOptimizedMetadata;
+  boards: AIOptimizedBoardEntry[];
+  statistics: {
+    board_count: number;
+    total_columns: number;
+    total_cards: number;
+    boards_summary: Array<{
+      name: string;
+      card_count: number;
+      completion_percent: number; // % of cards in "Done" columns
+    }>;
+  };
+}

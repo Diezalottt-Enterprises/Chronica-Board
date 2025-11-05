@@ -25,6 +25,7 @@ interface UIState {
   // Modal states
   showSettings: boolean;
   showImport: boolean;
+  showExport: boolean;
   editingCard: Card | null;
   newCardColumn: ColumnKey | null;
   dialog: DialogState | null;
@@ -36,6 +37,7 @@ interface UIState {
   // Actions
   setShowSettings: (show: boolean) => void;
   setShowImport: (show: boolean) => void;
+  setShowExport: (show: boolean) => void;
   setEditingCard: (card: Card | null) => void;
   setNewCardColumn: (column: ColumnKey | null) => void;
   closeAllModals: () => void;
@@ -68,6 +70,7 @@ export const useUIStore = create<UIState>((set) => ({
   // Initial state
   showSettings: false,
   showImport: false,
+  showExport: false,
   editingCard: null,
   newCardColumn: null,
   dialog: null,
@@ -81,6 +84,9 @@ export const useUIStore = create<UIState>((set) => ({
   setShowImport: (show) => {
     set({ showImport: show });
   },
+  setShowExport: (show) => {
+    set({ showExport: show });
+  },
   setEditingCard: (card) => {
     set({ editingCard: card });
   },
@@ -91,6 +97,7 @@ export const useUIStore = create<UIState>((set) => ({
     set({
       showSettings: false,
       showImport: false,
+      showExport: false,
       editingCard: null,
       newCardColumn: null,
       dialog: null,

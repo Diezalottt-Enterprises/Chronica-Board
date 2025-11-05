@@ -1,0 +1,142 @@
+{
+  "meta": {
+    "schema": "chronica-ai-optimized",
+    "version": 2,
+    "ai_optimized": true,
+    "project": "Field Types Reference",
+    "description": "Demonstrates all 6 custom field types: text, number, date, select, url, checkbox",
+    "created_at": "2025-11-04T12:00:00.000Z",
+    "modified_at": "2025-11-04T12:00:00.000Z",
+    "generated_by": "Chronica",
+    "app_version": "0.1.0-alpha.7",
+    "fields": {
+      "text_field": {
+        "id": "text_field",
+        "label": "Text Field Example",
+        "type": "text",
+        "required": false,
+        "validation": {
+          "maxLength": 200
+        }
+      },
+      "number_field": {
+        "id": "number_field",
+        "label": "Number Field Example",
+        "type": "number",
+        "required": false,
+        "validation": {
+          "min": 1,
+          "max": 100
+        }
+      },
+      "date_field": {
+        "id": "date_field",
+        "label": "Date Field Example",
+        "type": "date",
+        "required": false
+      },
+      "select_field": {
+        "id": "select_field",
+        "label": "Select Field Example",
+        "type": "select",
+        "required": false,
+        "validation": {
+          "options": ["Option A", "Option B", "Option C", "Option D"]
+        }
+      },
+      "url_field": {
+        "id": "url_field",
+        "label": "URL Field Example",
+        "type": "url",
+        "required": false
+      },
+      "checkbox_field": {
+        "id": "checkbox_field",
+        "label": "Checkbox Field Example",
+        "type": "checkbox",
+        "required": false
+      }
+    }
+  },
+  "board": {
+    "id": "field-types-demo",
+    "name": "Field Types Reference",
+    "column_count": 2,
+    "card_count": 6,
+    "columns": [
+      {
+        "key": "examples",
+        "title": "Field Examples",
+        "order": 0,
+        "card_count": 6,
+        "cards": [
+          {
+            "id": "card-text",
+            "title": "Text Field Demo",
+            "description": "Text fields store string values with optional max length validation.",
+            "customFields": {
+              "text_field": "This is a sample text value that can be up to 200 characters long."
+            }
+          },
+          {
+            "id": "card-number",
+            "title": "Number Field Demo",
+            "description": "Number fields store numeric values with optional min/max validation.",
+            "customFields": {
+              "number_field": 42
+            }
+          },
+          {
+            "id": "card-date",
+            "title": "Date Field Demo",
+            "description": "Date fields store ISO8601 date strings (YYYY-MM-DD format).",
+            "customFields": {
+              "date_field": "2025-12-31"
+            }
+          },
+          {
+            "id": "card-select",
+            "title": "Select Field Demo",
+            "description": "Select fields present a dropdown with predefined options.",
+            "customFields": {
+              "select_field": "Option B"
+            }
+          },
+          {
+            "id": "card-url",
+            "title": "URL Field Demo",
+            "description": "URL fields validate that values are valid HTTP/HTTPS URLs.",
+            "customFields": {
+              "url_field": "https://example.com/documentation"
+            }
+          },
+          {
+            "id": "card-checkbox",
+            "title": "Checkbox Field Demo",
+            "description": "Checkbox fields store boolean values (true/false).",
+            "customFields": {
+              "checkbox_field": true
+            }
+          }
+        ]
+      },
+      {
+        "key": "notes",
+        "title": "Implementation Notes",
+        "order": 1,
+        "card_count": 0,
+        "cards": []
+      }
+    ]
+  },
+  "statistics": {
+    "total_columns": 2,
+    "total_cards": 6,
+    "cards_per_column": {
+      "Field Examples": 6,
+      "Implementation Notes": 0
+    },
+    "tags_used": [],
+    "colors_used": []
+  }
+}

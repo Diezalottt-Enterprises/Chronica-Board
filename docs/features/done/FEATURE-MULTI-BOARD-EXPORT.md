@@ -72,7 +72,7 @@ Replace the single-board export system with a dropdown board selector that allow
    - Conflict resolution: Rename duplicates automatically
 
 5. **Field Handling:**
-   - Export: Include global custom fields in metadata
+   - Export: Include global Card Fields in metadata
    - Import: Merge field definitions (imported take precedence)
 
 ### Non-Functional Requirements
@@ -187,7 +187,7 @@ export interface MultiboardMetadata {
   board_count: number;
   total_cards: number;
   total_columns: number;
-  fields: Record<string, FieldDefinition>; // Global custom fields
+  fields: Record<string, FieldDefinition>; // Global Card Fields
 }
 
 /**
@@ -958,7 +958,7 @@ See [Testing Checklist](#testing-checklist) section.
 
 - [ ] Select single board → exports single-board file
 - [ ] Select "All Boards" → exports multi-board file
-- [ ] Export all boards with custom fields → fields in metadata
+- [ ] Export all boards with Card Fields → fields in metadata
 - [ ] Export 20 boards (max) → file under 2MB
 - [ ] Export 0 boards → button disabled
 - [ ] Export while another export in progress → button disabled
@@ -971,7 +971,7 @@ See [Testing Checklist](#testing-checklist) section.
 - [ ] Import multi-board, select some → imports only selected
 - [ ] Import multi-board, select none → import button disabled
 - [ ] Import multi-board with name conflicts → boards renamed
-- [ ] Import multi-board with custom fields → fields merged correctly
+- [ ] Import multi-board with Card Fields → fields merged correctly
 
 ### UI Tests
 
@@ -1035,7 +1035,7 @@ See [Testing Checklist](#testing-checklist) section.
 3. **Multi-Board Export**
    - Exports all boards in one file
    - Valid multi-board schema
-   - Includes global custom fields
+   - Includes global Card Fields
    - File under 2MB (enforced)
 
 4. **Multi-Board Import**
@@ -1043,7 +1043,7 @@ See [Testing Checklist](#testing-checklist) section.
    - Shows board selection UI
    - Imports only selected boards
    - Renames conflicts automatically
-   - Merges custom fields
+   - Merges Card Fields
 
 5. **No Regressions**
    - Existing single-board export/import works

@@ -1,0 +1,126 @@
+{
+  "meta": {
+    "schema": "chronica-ai-optimized",
+    "version": 2,
+    "ai_optimized": true,
+    "project": "Q4 Product Roadmap",
+    "description": "Complex board with 6 columns and 20 cards demonstrating nested structure",
+    "created_at": "2025-11-04T12:00:00.000Z",
+    "modified_at": "2025-11-04T12:00:00.000Z",
+    "generated_by": "Chronica",
+    "app_version": "0.1.0-alpha.7",
+    "fields": {
+      "status": {
+        "id": "status",
+        "label": "Status",
+        "type": "select",
+        "required": false,
+        "validation": {
+          "options": ["Planned", "Active", "On Hold", "Shipped"]
+        }
+      },
+      "owner": {
+        "id": "owner",
+        "label": "Initiative Owner",
+        "type": "text",
+        "required": false
+      }
+    }
+  },
+  "board": {
+    "id": "roadmap-q4-2025",
+    "name": "Q4 Product Roadmap",
+    "column_count": 6,
+    "card_count": 20,
+    "columns": [
+      {
+        "key": "discovery",
+        "title": "Discovery",
+        "order": 0,
+        "color": "#fbbf24",
+        "card_count": 4,
+        "cards": [
+          {"id": "card-001", "title": "Research AI integration options", "tags": ["research"], "customFields": {"status": "Planned", "owner": "Product Team"}},
+          {"id": "card-002", "title": "User interviews for dashboard redesign", "tags": ["research", "ux"], "customFields": {"status": "Active", "owner": "UX Team"}},
+          {"id": "card-003", "title": "Competitive analysis", "tags": ["research"], "customFields": {"status": "Planned"}},
+          {"id": "card-004", "title": "Technical feasibility study", "tags": ["engineering"], "customFields": {"status": "Planned"}}
+        ]
+      },
+      {
+        "key": "planning",
+        "title": "Planning",
+        "order": 1,
+        "color": "#60a5fa",
+        "card_count": 3,
+        "cards": [
+          {"id": "card-005", "title": "API rate limiting implementation plan", "tags": ["backend"], "customFields": {"status": "Active", "owner": "Backend Team"}},
+          {"id": "card-006", "title": "Mobile app MVP scope definition", "tags": ["mobile"], "customFields": {"status": "Planned", "owner": "Mobile Lead"}},
+          {"id": "card-007", "title": "Q1 2026 roadmap planning", "tags": ["planning"], "customFields": {"status": "Planned"}}
+        ]
+      },
+      {
+        "key": "design",
+        "title": "Design",
+        "order": 2,
+        "color": "#c084fc",
+        "card_count": 3,
+        "cards": [
+          {"id": "card-008", "title": "Dashboard UI redesign", "tags": ["design", "ui"], "customFields": {"status": "Active", "owner": "Design Team"}},
+          {"id": "card-009", "title": "Component library expansion", "tags": ["design", "ui"], "customFields": {"status": "Active"}},
+          {"id": "card-010", "title": "Dark mode theme", "tags": ["design", "ui"], "customFields": {"status": "Planned"}}
+        ]
+      },
+      {
+        "key": "development",
+        "title": "Development",
+        "order": 3,
+        "color": "#34d399",
+        "card_count": 5,
+        "cards": [
+          {"id": "card-011", "title": "OAuth 2.0 integration", "tags": ["backend", "auth"], "customFields": {"status": "Active", "owner": "Auth Team"}},
+          {"id": "card-012", "title": "Real-time notifications", "tags": ["backend", "websockets"], "customFields": {"status": "Active"}},
+          {"id": "card-013", "title": "Export to PDF feature", "tags": ["frontend"], "customFields": {"status": "Active"}},
+          {"id": "card-014", "title": "Performance optimization", "tags": ["backend", "frontend"], "customFields": {"status": "Planned"}},
+          {"id": "card-015", "title": "Mobile responsive layout", "tags": ["frontend", "mobile"], "customFields": {"status": "Active"}}
+        ]
+      },
+      {
+        "key": "testing",
+        "title": "Testing & QA",
+        "order": 4,
+        "color": "#f59e0b",
+        "card_count": 3,
+        "cards": [
+          {"id": "card-016", "title": "End-to-end test suite", "tags": ["testing"], "customFields": {"status": "Active", "owner": "QA Team"}},
+          {"id": "card-017", "title": "Load testing infrastructure", "tags": ["testing", "performance"], "customFields": {"status": "Planned"}},
+          {"id": "card-018", "title": "Security audit", "tags": ["testing", "security"], "customFields": {"status": "Planned"}}
+        ]
+      },
+      {
+        "key": "shipped",
+        "title": "Shipped",
+        "order": 5,
+        "color": "#10b981",
+        "card_count": 2,
+        "cards": [
+          {"id": "card-019", "title": "CI/CD pipeline", "tags": ["devops"], "customFields": {"status": "Shipped", "owner": "DevOps Team"}},
+          {"id": "card-020", "title": "User authentication system", "tags": ["backend", "auth"], "customFields": {"status": "Shipped", "owner": "Auth Team"}}
+        ]
+      }
+    ]
+  },
+  "statistics": {
+    "total_columns": 6,
+    "total_cards": 20,
+    "cards_per_column": {
+      "Discovery": 4,
+      "Planning": 3,
+      "Design": 3,
+      "Development": 5,
+      "Testing & QA": 3,
+      "Shipped": 2
+    },
+    "tags_used": ["research", "ux", "engineering", "backend", "mobile", "planning", "design", "ui", "auth", "websockets", "frontend", "testing", "performance", "security", "devops"],
+    "colors_used": ["#fbbf24", "#60a5fa", "#c084fc", "#34d399", "#f59e0b", "#10b981"]
+  }
+}

@@ -18,7 +18,8 @@
       "Bash(pnpm ls:*)",
       "Bash(pnpm remove:*)",
       "Read(//c/Users/ckvam/.claude/projects/C--Users-ckvam-Documents-Stack-Junkie-Dev-Projects-Active-Chronica-Chronica-CC/**)",
-      "Bash(if exist node_modules rmdir /s /q node_modules)"
+      "Bash(if exist node_modules rmdir /s /q node_modules)",
+      "Bash(pnpm run sync-version:*)"
     ],
     "deny": [],
     "ask": []

@@ -2,7 +2,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { useBoardStore } from "../stores/boardStore";
 import { useUIStore } from "../stores/uiStore";
-import { useConfigStore } from "../stores/configStore";
 import { PREDEFINED_COLORS } from "../state/types";
 import type { Card, ColumnKey } from "../state/types";
 import { sanitizeTitle, sanitizeDescription, sanitizeColor } from "../utils/sanitize";
@@ -18,14 +17,13 @@ interface CardEditorProps {
 export function CardEditor({ card, initialColumn, onClose }: CardEditorProps) {
   const { activeBoard, addCard, updateCard, deleteCard } = useBoardStore();
   const { showAlert, showConfirm } = useUIStore();
-  const { getAllFields } = useConfigStore();
   const [title, setTitle] = useState(card?.title || "");
   const [description, setDescription] = useState(card?.description || "");
   const [color, setColor] = useState(card?.color || "slate");
   const [column, setColumn] = useState(card?.column || initialColumn || "todo");
 
-  // Custom fields state
-  const fields = getAllFields();
+  // Board-level Card Fields state
+  const fields = activeBoard?.fields || {};
   const fieldRegistry = createFieldRegistry(fields);
   const [customFields, setCustomFields] = useState<Record<string, FieldValue>>(() => {
     const initial: Record<string, FieldValue> = {};
@@ -38,6 +36,11 @@ export function CardEditor({ card, initialColumn, onClose }: CardEditorProps) {
     });
     return initial;
   });
+
+  // Card-only fields state
+  const [cardOnlyFields, setCardOnlyFields] = useState<Record<string, unknown>>(
+    card?.cardOnlyFields || {}
+  );
 
   useEffect(() => {
     // Prevent background scrolling
@@ -58,7 +61,7 @@ export function CardEditor({ card, initialColumn, onClose }: CardEditorProps) {
     const sanitizedDescription = sanitizeDescription(description);
     const sanitizedColor = sanitizeColor(color);
 
-    // Validate and sanitize custom fields
+    // Validate and sanitize Card Fields
     const fieldValidation = fieldRegistry.validateCardFields(customFields);
     if (!fieldValidation.valid) {
       const firstError = Object.values(fieldValidation.errors)[0] ?? "Validation failed";
@@ -73,6 +76,7 @@ export function CardEditor({ card, initialColumn, onClose }: CardEditorProps) {
       column,
       customFields:
         Object.keys(fieldValidation.sanitized).length > 0 ? fieldValidation.sanitized : undefined,
+      cardOnlyFields: Object.keys(cardOnlyFields).length > 0 ? cardOnlyFields : undefined,
     };
 
     if (card) {
@@ -90,6 +94,7 @@ export function CardEditor({ card, initialColumn, onClose }: CardEditorProps) {
     color,
     column,
     customFields,
+    cardOnlyFields,
     card,
     fieldRegistry,
     showAlert,
@@ -109,6 +114,30 @@ export function CardEditor({ card, initialColumn, onClose }: CardEditorProps) {
 
   const handleCustomFieldChange = useCallback((fieldId: string, value: FieldValue) => {
     setCustomFields((prev) => ({ ...prev, [fieldId]: value }));
+  }, []);
+
+  // Card-only field handlers
+  const handleAddCardOnlyField = useCallback(() => {
+    const fieldName = prompt("Field name:");
+    if (fieldName && fieldName.trim()) {
+      const trimmedName = fieldName.trim();
+      if (cardOnlyFields[trimmedName] !== undefined) {
+        showAlert("Duplicate Field", `Field "${trimmedName}" already exists`);
+        return;
+      }
+      setCardOnlyFields((prev) => ({ ...prev, [trimmedName]: "" }));
+    }
+  }, [cardOnlyFields, showAlert]);
+
+  const handleUpdateCardOnlyField = useCallback((fieldName: string, value: unknown) => {
+    setCardOnlyFields((prev) => ({ ...prev, [fieldName]: value }));
+  }, []);
+
+  const handleRemoveCardOnlyField = useCallback((fieldName: string) => {
+    setCardOnlyFields((prev) => {
+      const { [fieldName]: _, ...rest } = prev;
+      return rest;
+    });
   }, []);
 
   const handleOverlayClick = useCallback(
@@ -204,7 +233,7 @@ export function CardEditor({ card, initialColumn, onClose }: CardEditorProps) {
             </div>
           </div>
 
-          {/* Custom Fields */}
+          {/* Card Fields */}
           {Object.entries(fields).map(([fieldId, field]) => (
             <div className="form-group" key={fieldId}>
               <label className="form-label">
@@ -294,6 +323,73 @@ export function CardEditor({ card, initialColumn, onClose }: CardEditorProps) {
               )}
             </div>
           ))}
+
+          {/* Card-Only Fields Section */}
+          {(Object.keys(cardOnlyFields).length > 0 || Object.keys(fields).length > 0) && (
+            <div style={{ marginTop: "24px", paddingTop: "16px", borderTop: "1px solid var(--border-color)" }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginBottom: "12px",
+                }}
+              >
+                <div>
+                  <h4 style={{ margin: 0, fontSize: "14px", fontWeight: 600 }}>
+                    Custom Fields (This Card Only)
+                  </h4>
+                  <p style={{ margin: 0, marginTop: "4px", fontSize: "12px", color: "var(--text-secondary)" }}>
+                    One-off fields unique to this card
+                  </p>
+                </div>
+                <button
+                  onClick={handleAddCardOnlyField}
+                  style={{ fontSize: "12px", padding: "4px 8px" }}
+                >
+                  + Add Field
+                </button>
+              </div>
+
+              {Object.entries(cardOnlyFields).map(([fieldName, value]) => (
+                <div className="form-group" key={fieldName}>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      marginBottom: "4px",
+                    }}
+                  >
+                    <label className="form-label" style={{ marginBottom: 0 }}>
+                      {fieldName}
+                    </label>
+                    <button
+                      onClick={() => handleRemoveCardOnlyField(fieldName)}
+                      className="icon"
+                      style={{ fontSize: "12px", padding: "2px 6px" }}
+                      title="Remove field"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                  <input
+                    type="text"
+                    className="form-input"
+                    value={value as string}
+                    onChange={(e) => handleUpdateCardOnlyField(fieldName, e.target.value)}
+                    placeholder={`Enter ${fieldName}...`}
+                  />
+                </div>
+              ))}
+
+              {Object.keys(cardOnlyFields).length === 0 && (
+                <p style={{ fontSize: "12px", color: "var(--text-secondary)", fontStyle: "italic" }}>
+                  No custom fields yet. Click "+ Add Field" to create one.
+                </p>
+              )}
+            </div>
+          )}
         </div>
 
         <div className="modal-footer">

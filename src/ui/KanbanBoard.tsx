@@ -25,6 +25,7 @@ import { Card } from "./Card";
 import { SortableCard } from "./SortableCard";
 import { ColorPicker } from "./ColorPicker";
 import { OverflowMenu, type MenuItem } from "./OverflowMenu";
+import { BoardFieldEditor } from "./BoardFieldEditor";
 import type { Card as CardType, Column, ColumnKey } from "../state/types";
 import { DEFAULT_RANK, RANK_GAP } from "../constants/ranks";
 import { getColumnColorStyles } from "../utils/theme";
@@ -420,10 +421,13 @@ export function KanbanBoard({ onEditCard, onNewCard, theme }: KanbanBoardProps) 
     duplicateColumn,
     sortCards,
     setColumnCollapsed,
+    updateBoardFields,
   } = useBoardStore();
   const { showPrompt, showConfirm } = useUIStore();
   const { config, setColumnsLocked } = useConfigStore();
   const [activeCardId, setActiveCardId] = useState<string | null>(null);
+  const [showBoardEditMenu, setShowBoardEditMenu] = useState(false);
+  const [showBoardFieldEditor, setShowBoardFieldEditor] = useState(false);
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -581,6 +585,57 @@ export function KanbanBoard({ onEditCard, onNewCard, theme }: KanbanBoardProps) 
         strategy={horizontalListSortingStrategy}
       >
         <div className="kanban-board">
+          {/* Board Edit Menu */}
+          <div
+            style={{
+              position: "absolute",
+              top: "8px",
+              right: "8px",
+              zIndex: 10,
+            }}
+          >
+            <button
+              className="icon"
+              onClick={() => setShowBoardEditMenu(!showBoardEditMenu)}
+              title="Board Options"
+              style={{ fontSize: "14px" }}
+            >
+              ⚙️
+            </button>
+
+            {showBoardEditMenu && (
+              <div
+                style={{
+                  position: "absolute",
+                  top: "100%",
+                  right: 0,
+                  marginTop: "4px",
+                  background: "var(--bg-primary)",
+                  border: "1px solid var(--border-color)",
+                  borderRadius: "var(--radius-sm)",
+                  boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)",
+                  minWidth: "180px",
+                  overflow: "hidden",
+                }}
+              >
+                <div
+                  className="menu-item"
+                  onClick={() => {
+                    setShowBoardFieldEditor(true);
+                    setShowBoardEditMenu(false);
+                  }}
+                  style={{
+                    padding: "8px 12px",
+                    cursor: "pointer",
+                    fontSize: "13px",
+                  }}
+                >
+                  📝 Card Fields
+                </div>
+              </div>
+            )}
+          </div>
+
           {sortedColumns.map((column) => {
             const cards = cardsByColumn[column.key] || [];
 
@@ -621,6 +676,15 @@ export function KanbanBoard({ onEditCard, onNewCard, theme }: KanbanBoardProps) 
       </SortableContext>
 
       <DragOverlay>{activeCard ? <Card card={activeCard} onClick={() => {}} /> : null}</DragOverlay>
+
+      {/* Board Field Editor Modal */}
+      {showBoardFieldEditor && (
+        <BoardFieldEditor
+          board={activeBoard}
+          onSave={(fields) => updateBoardFields(activeBoard.id, fields)}
+          onClose={() => setShowBoardFieldEditor(false)}
+        />
+      )}
     </DndContext>
   );
 }

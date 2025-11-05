@@ -1,0 +1,53 @@
+{
+  "meta": {
+    "schema": "chronica-ai-optimized",
+    "version": 2,
+    "ai_optimized": true,
+    "project": "Empty Board Template",
+    "description": "Valid board with 0 cards - useful for setting up structure before adding tasks",
+    "created_at": "2025-11-04T12:00:00.000Z",
+    "modified_at": "2025-11-04T12:00:00.000Z",
+    "generated_by": "Chronica",
+    "app_version": "0.1.0-alpha.7"
+  },
+  "board": {
+    "id": "empty-board-001",
+    "name": "Empty Board Template",
+    "column_count": 3,
+    "card_count": 0,
+    "columns": [
+      {
+        "key": "todo",
+        "title": "To Do",
+        "order": 0,
+        "card_count": 0,
+        "cards": []
+      },
+      {
+        "key": "in-progress",
+        "title": "In Progress",
+        "order": 1,
+        "card_count": 0,
+        "cards": []
+      },
+      {
+        "key": "done",
+        "title": "Done",
+        "order": 2,
+        "card_count": 0,
+        "cards": []
+      }
+    ]
+  },
+  "statistics": {
+    "total_columns": 3,
+    "total_cards": 0,
+    "cards_per_column": {
+      "To Do": 0,
+      "In Progress": 0,
+      "Done": 0
+    },
+    "tags_used": [],
+    "colors_used": []
+  }
+}

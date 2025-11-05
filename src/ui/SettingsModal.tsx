@@ -22,6 +22,7 @@ export function SettingsModal({ onClose, theme, onThemeChange }: SettingsModalPr
     setPinned: updatePinned,
     setOpacity: updateOpacity,
     setUIScale,
+    updateConfig,
   } = useConfigStore();
   const [activeTab, setActiveTab] = useState<Tab>("general");
   const [autostart, setAutostartLocal] = useState(config?.autostart || false);
@@ -123,7 +124,7 @@ export function SettingsModal({ onClose, theme, onThemeChange }: SettingsModalPr
               fontWeight: activeTab === "fields" ? 600 : 400,
             }}
           >
-            Custom Fields
+            Card Fields
           </button>
         </div>
 
@@ -271,7 +272,21 @@ export function SettingsModal({ onClose, theme, onThemeChange }: SettingsModalPr
             </>
           )}
 
-          {activeTab === "fields" && <FieldManager />}
+          {activeTab === "fields" && (
+            <div>
+              <div style={{ marginBottom: "12px" }}>
+                <p style={{ fontSize: "13px", color: "var(--text-secondary)" }}>
+                  These fields will be copied to new boards when created. Existing boards are not
+                  affected.
+                </p>
+              </div>
+              <FieldManager
+                fields={config?.defaultFieldTemplate || {}}
+                onChange={(fields) => updateConfig({ defaultFieldTemplate: fields })}
+                context="global"
+              />
+            </div>
+          )}
         </div>
 
         <div className="modal-footer">
