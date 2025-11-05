@@ -28,17 +28,17 @@ export function sanitizeRichText(input: string): string {
 
 /**
  * Validate and sanitize color
- * Allows predefined color names (mint, cyan, salmon, lavender, slate) or valid hex format (#RGB or #RRGGBB)
- * Returns sanitized color or default cyan if invalid
+ * Allows predefined color names (primary, accent, success, etc.) or valid hex format (#RGB or #RRGGBB)
+ * Returns sanitized color as hex value or default if invalid
  */
 export function sanitizeColor(color: string | undefined): string {
   const DEFAULT_COLOR = "#6fc2db"; // cyan
 
   if (!color || color.trim() === "") return DEFAULT_COLOR;
 
-  // Check if it's a predefined color name
+  // Check if it's a predefined color name and resolve to hex value
   if (color in PREDEFINED_COLORS) {
-    return color;
+    return PREDEFINED_COLORS[color as keyof typeof PREDEFINED_COLORS];
   }
 
   // Allow valid hex colors (#RGB or #RRGGBB format)

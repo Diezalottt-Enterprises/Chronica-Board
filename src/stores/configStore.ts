@@ -3,6 +3,7 @@
 import { create } from "zustand";
 import type { Config } from "../state/types";
 import type { FieldDefinition } from "../io/fieldSchema";
+import type { ColumnColorMode } from "../utils/theme";
 import { VERSION_DISPLAY } from "../version";
 
 /**
@@ -20,6 +21,7 @@ interface ConfigState {
   setSidebarPinned: (pinned: boolean) => void;
   setColumnsLocked: (locked: boolean) => void;
   setUIScale: (scale: number) => void;
+  setColumnColorMode: (mode: ColumnColorMode) => void;
 
   // Field management
   addField: (fieldId: string, field: FieldDefinition) => void;
@@ -89,6 +91,12 @@ export const useConfigStore = create<ConfigState>((set, get) => ({
     set({ config: { ...state.config, uiScale: clamped } });
   },
 
+  setColumnColorMode: (mode) => {
+    const state = get();
+    if (!state.config) return;
+    set({ config: { ...state.config, columnColorMode: mode } });
+  },
+
   // Field management actions (operates on defaultFieldTemplate)
   addField: (fieldId, field) => {
     const state = get();
@@ -138,5 +146,6 @@ export function getDefaultConfig(): Config {
     sidebarPinned: true,
     columnsLocked: false,
     uiScale: 1.0,
+    columnColorMode: "subtle",
   };
 }

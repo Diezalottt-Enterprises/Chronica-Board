@@ -20,6 +20,8 @@ export function CardEditor({ card, initialColumn, onClose }: CardEditorProps) {
   const [title, setTitle] = useState(card?.title || "");
   const [description, setDescription] = useState(card?.description || "");
   const [color, setColor] = useState(card?.color || "slate");
+  const [colorStyle, setColorStyle] = useState(card?.colorStyle || "border");
+  const [colorIntensity, setColorIntensity] = useState(card?.colorIntensity || "subtle");
   const [column, setColumn] = useState(card?.column || initialColumn || "todo");
 
   // Board-level Card Fields state
@@ -73,6 +75,8 @@ export function CardEditor({ card, initialColumn, onClose }: CardEditorProps) {
       title: sanitizedTitle,
       description: sanitizedDescription,
       color: sanitizedColor || color, // Fallback to original if sanitization fails
+      colorStyle,
+      colorIntensity,
       column,
       customFields:
         Object.keys(fieldValidation.sanitized).length > 0 ? fieldValidation.sanitized : undefined,
@@ -232,6 +236,83 @@ export function CardEditor({ card, initialColumn, onClose }: CardEditorProps) {
               />
             </div>
           </div>
+
+          {/* Card Color Style & Intensity Toggles */}
+          {color && (
+            <>
+              <div className="form-group">
+                <label className="form-label">Card Style</label>
+                <div style={{ display: "flex", gap: "8px" }}>
+                  <button
+                    type="button"
+                    className={colorStyle === "border" ? "active" : ""}
+                    onClick={() => setColorStyle("border")}
+                    style={{
+                      padding: "6px 12px",
+                      border: "1px solid var(--border)",
+                      background: colorStyle === "border" ? "var(--color-primary)" : "var(--bg-surface)",
+                      color: colorStyle === "border" ? "white" : "var(--text-primary)",
+                      borderRadius: "var(--radius-sm)",
+                      cursor: "pointer",
+                    }}
+                  >
+                    Border Only
+                  </button>
+                  <button
+                    type="button"
+                    className={colorStyle === "filled" ? "active" : ""}
+                    onClick={() => setColorStyle("filled")}
+                    style={{
+                      padding: "6px 12px",
+                      border: "1px solid var(--border)",
+                      background: colorStyle === "filled" ? "var(--color-primary)" : "var(--bg-surface)",
+                      color: colorStyle === "filled" ? "white" : "var(--text-primary)",
+                      borderRadius: "var(--radius-sm)",
+                      cursor: "pointer",
+                    }}
+                  >
+                    Filled
+                  </button>
+                </div>
+              </div>
+
+              {colorStyle === "filled" && (
+                <div className="form-group">
+                  <label className="form-label">Color Intensity</label>
+                  <div style={{ display: "flex", gap: "8px" }}>
+                    <button
+                      type="button"
+                      onClick={() => setColorIntensity("subtle")}
+                      style={{
+                        padding: "6px 12px",
+                        border: "1px solid var(--border)",
+                        background: colorIntensity === "subtle" ? "var(--color-primary)" : "var(--bg-surface)",
+                        color: colorIntensity === "subtle" ? "white" : "var(--text-primary)",
+                        borderRadius: "var(--radius-sm)",
+                        cursor: "pointer",
+                      }}
+                    >
+                      Subtle
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setColorIntensity("vibrant")}
+                      style={{
+                        padding: "6px 12px",
+                        border: "1px solid var(--border)",
+                        background: colorIntensity === "vibrant" ? "var(--color-primary)" : "var(--bg-surface)",
+                        color: colorIntensity === "vibrant" ? "white" : "var(--text-primary)",
+                        borderRadius: "var(--radius-sm)",
+                        cursor: "pointer",
+                      }}
+                    >
+                      Vibrant
+                    </button>
+                  </div>
+                </div>
+              )}
+            </>
+          )}
 
           {/* Card Fields */}
           {Object.entries(fields).map(([fieldId, field]) => (

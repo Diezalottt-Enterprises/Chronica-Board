@@ -3,13 +3,15 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { Card } from "./Card";
 import type { Card as CardType } from "../state/types";
+import type { Theme } from "../utils/theme";
 
 interface SortableCardProps {
   card: CardType;
   onClick: () => void;
+  theme: Theme;
 }
 
-export function SortableCard({ card, onClick }: SortableCardProps) {
+export function SortableCard({ card, onClick, theme }: SortableCardProps) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: card.id,
   });
@@ -22,7 +24,7 @@ export function SortableCard({ card, onClick }: SortableCardProps) {
 
   return (
     <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
-      <Card card={card} onClick={onClick} />
+      <Card card={card} onClick={onClick} theme={theme} />
     </div>
   );
 }

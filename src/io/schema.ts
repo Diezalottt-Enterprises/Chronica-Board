@@ -22,6 +22,8 @@ export const CardSchema = z.object({
   description: z.string().optional(),
   column: z.string(),
   color: z.string().optional(),
+  colorStyle: z.enum(["border", "filled"]).optional(),
+  colorIntensity: z.enum(["subtle", "vibrant"]).optional(),
   tags: z.array(z.string()).optional(),
   rank: z.number().optional(),
   due: z.string().nullable().optional(),

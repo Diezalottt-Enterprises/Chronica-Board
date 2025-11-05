@@ -1,0 +1,79 @@
+/* Stack Junkie Universal Style Guide v0.3 - Dark Theme */
+/* Dark theme semantic color tokens */
+
+[data-theme="dark"] {
+  /* ========================================
+     FRAMEWORK NEUTRALS - Night & Cloud
+     ======================================== */
+  --night-900: #0a0b0d;
+  --night-800: #0f1117;
+  --night-700: #141821;
+  --night-600: #1c2230;
+  --night-400: #2c3442;
+  --cloud-100: #f5f7fa;
+  --cloud-200: #d9e1ed;
+  --cloud-400: #9aa5b5;
+
+  /* ========================================
+     SEMANTIC MAPPING - Text
+     ======================================== */
+  --text-primary: var(--cloud-100);
+  --text-secondary: var(--cloud-200);
+  --text-muted: var(--cloud-400);
+
+  /* ========================================
+     SEMANTIC MAPPING - Backgrounds
+     ======================================== */
+  --bg-surface: var(--night-800);
+  --bg-elevated: var(--night-700);
+  --bg-elevated-2: var(--night-600);
+
+  /* ========================================
+     SEMANTIC MAPPING - Borders
+     ======================================== */
+  --border: var(--night-400);
+
+  /* ========================================
+     SEMANTIC COLORS - Actions & States
+     Brighter colors for better visibility on dark backgrounds
+     ======================================== */
+  --color-primary: #3b82f6;
+  --color-accent: #60a5fa;
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --color-info: #38bdf8;
+
+  /* ========================================
+     INTERACTIVE STATES
+     ======================================== */
+  --link: var(--color-accent);
+  --link-hover: var(--color-primary);
+  --ring: rgba(96, 165, 250, 0.55);
+
+  /* ========================================
+     SHADOWS - Darker for depth in dark theme
+     ======================================== */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.6), 0 4px 6px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.7), 0 10px 10px rgba(0, 0, 0, 0.6);
+
+  /* ========================================
+     OVERLAY & EFFECTS
+     ======================================== */
+  --overlay: rgba(5, 7, 10, 0.65);
+
+  /* ========================================
+     SELECTION
+     ======================================== */
+  --selection-bg: rgba(96, 165, 250, 0.25);
+  --selection-text: var(--text-primary);
+
+  /* ========================================
+     GRADIENTS
+     ======================================== */
+  --gradient-start: var(--color-primary);
+  --gradient-end: var(--color-accent);
+}

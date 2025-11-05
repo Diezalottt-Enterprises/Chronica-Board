@@ -26,7 +26,9 @@ export interface Card {
   title: string;
   description?: string;
   column: ColumnKey;
-  color?: string; // Hex color or predefined name (mint, cyan, salmon, lavender, slate)
+  color?: string; // Hex color or predefined name (primary, accent, success, warning, danger, info)
+  colorStyle?: "border" | "filled"; // Border-only (default) or filled background
+  colorIntensity?: "subtle" | "vibrant"; // Color intensity for filled backgrounds (default: subtle)
   tags?: string[];
   rank?: number; // For ordering within column (default: 1000)
   due?: string | null; // ISO8601 date
@@ -71,6 +73,7 @@ export interface Config {
   sidebarPinned: boolean; // Sidebar pin/unpin state
   columnsLocked: boolean; // Column dragging lock state
   uiScale: number; // Global UI/font scale: 0.8 - 1.2 (default 1.0)
+  columnColorMode?: "subtle" | "vibrant"; // Column background color intensity (default: "subtle")
   // Future-proofing
   columnTitles?: Record<ColumnKey, string>;
   defaultFieldTemplate?: Record<string, FieldDefinition>; // Template for new boards (max 20 fields)
@@ -100,17 +103,31 @@ export interface ExportFormat {
 }
 
 /**
- * Predefined color names
+ * Semantic color palette (Stack Junkie Style Guide v0.3)
+ * These are the resolved hex values for use in color pickers and dynamic styling
  */
 export const PREDEFINED_COLORS = {
-  mint: "#98D8C8",
-  cyan: "#6FC2DB",
-  salmon: "#F88379",
-  lavender: "#B4A7D6",
-  slate: "#8D99AE",
+  primary: "#2563EB", // Blue - primary actions
+  accent: "#3B82F6", // Light blue - accents and highlights
+  success: "#16A34A", // Green - success states
+  warning: "#D97706", // Amber - warnings
+  danger: "#DC2626", // Red - errors and destructive actions
+  info: "#0284C7", // Cyan - informational
 } as const;
 
 export type PredefinedColorName = keyof typeof PREDEFINED_COLORS;
+
+/**
+ * Legacy color name mapping for backward compatibility
+ * Maps old color names to new semantic color names
+ */
+export const LEGACY_COLOR_MAP: Record<string, PredefinedColorName> = {
+  cyan: "primary",
+  mint: "success",
+  salmon: "danger",
+  lavender: "accent",
+  slate: "info",
+} as const;
 
 /**
  * AI-optimized metadata

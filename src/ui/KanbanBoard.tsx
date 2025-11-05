@@ -92,6 +92,7 @@ function SortableColumn({
   onToggleCollapse,
   columnsCount,
 }: SortableColumnProps) {
+  const { config } = useConfigStore();
   const [showColorPicker, setShowColorPicker] = useState(false);
   const [showOverflowMenu, setShowOverflowMenu] = useState(false);
   const [menuAnchor, setMenuAnchor] = useState<HTMLElement | null>(null);
@@ -103,7 +104,7 @@ function SortableColumn({
     disabled: locked,
   });
 
-  const colorStyles = getColumnColorStyles(column.color, theme);
+  const colorStyles = getColumnColorStyles(column.color, theme, config?.columnColorMode || "subtle");
 
   // Title editing handlers
   const handleTitleClick = () => {
@@ -392,6 +393,7 @@ function SortableColumn({
               onClick={() => {
                 onEditCard(card);
               }}
+              theme={theme}
             />
           ))}
         </DroppableColumn>
@@ -675,7 +677,7 @@ export function KanbanBoard({ onEditCard, onNewCard, theme }: KanbanBoardProps) 
         </div>
       </SortableContext>
 
-      <DragOverlay>{activeCard ? <Card card={activeCard} onClick={() => {}} /> : null}</DragOverlay>
+      <DragOverlay>{activeCard ? <Card card={activeCard} onClick={() => {}} theme={theme} /> : null}</DragOverlay>
 
       {/* Board Field Editor Modal */}
       {showBoardFieldEditor && (

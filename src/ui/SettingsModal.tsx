@@ -4,7 +4,7 @@ import { useConfigStore } from "../stores/configStore";
 import { invoke } from "@tauri-apps/api/core";
 import { setPinned, setOpacity } from "../platform/window";
 import { FieldManager } from "./FieldManager";
-import type { Theme } from "../utils/theme";
+import type { Theme, ColumnColorMode } from "../utils/theme";
 import { VERSION_DISPLAY } from "../version";
 
 interface SettingsModalProps {
@@ -22,6 +22,7 @@ export function SettingsModal({ onClose, theme, onThemeChange }: SettingsModalPr
     setPinned: updatePinned,
     setOpacity: updateOpacity,
     setUIScale,
+    setColumnColorMode,
     updateConfig,
   } = useConfigStore();
   const [activeTab, setActiveTab] = useState<Tab>("general");
@@ -66,6 +67,11 @@ export function SettingsModal({ onClose, theme, onThemeChange }: SettingsModalPr
   const handleUIScaleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newScale = parseFloat(e.target.value);
     setUIScale(newScale);
+  };
+
+  const handleColumnColorModeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newMode: ColumnColorMode = e.target.checked ? "vibrant" : "subtle";
+    setColumnColorMode(newMode);
   };
 
   const handleOverlayClick = (e: React.MouseEvent) => {
@@ -157,6 +163,31 @@ export function SettingsModal({ onClose, theme, onThemeChange }: SettingsModalPr
                   }}
                 >
                   Use a dark background and light text
+                </p>
+
+                {/* Column Color Mode Toggle */}
+                <div className="form-checkbox" style={{ marginTop: "12px" }}>
+                  <input
+                    type="checkbox"
+                    role="switch"
+                    id="columnColorMode"
+                    aria-checked={config?.columnColorMode === "vibrant"}
+                    checked={config?.columnColorMode === "vibrant"}
+                    onChange={handleColumnColorModeChange}
+                  />
+                  <label htmlFor="columnColorMode" style={{ textTransform: "none" }}>
+                    Vibrant column colors
+                  </label>
+                </div>
+                <p
+                  style={{
+                    fontSize: "11px",
+                    color: "var(--text-secondary)",
+                    marginTop: "4px",
+                    marginLeft: "24px",
+                  }}
+                >
+                  Use bolder, more saturated column backgrounds
                 </p>
 
                 <div style={{ marginTop: "12px", marginLeft: "24px" }}>

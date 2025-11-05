@@ -1,6 +1,9 @@
 // Theme utilities for Chronica v0.1.0-alpha
 
 export type Theme = "light" | "dark";
+export type ColumnColorMode = "subtle" | "vibrant";
+export type CardColorStyle = "border" | "filled";
+export type CardColorIntensity = "subtle" | "vibrant";
 
 /**
  * Detect initial theme preference
@@ -45,9 +48,13 @@ export function isValidHex(hex: string): boolean {
 }
 
 /**
- * Get column color styles based on theme
+ * Get column color styles based on theme and color mode
  */
-export function getColumnColorStyles(color: string | null | undefined, theme: Theme) {
+export function getColumnColorStyles(
+  color: string | null | undefined,
+  theme: Theme,
+  mode: ColumnColorMode = "subtle"
+) {
   if (!color) {
     return {
       headerBg: "",
@@ -60,11 +67,76 @@ export function getColumnColorStyles(color: string | null | undefined, theme: Th
 
   const isLightTheme = theme === "light";
 
+  // Alpha values for subtle mode (gentle tints)
+  const subtleAlphas = {
+    headerBg: isLightTheme ? 0.16 : 0.24,
+    bodyBg: isLightTheme ? 0.06 : 0.12,
+    border: isLightTheme ? 0.35 : 0.45,
+  };
+
+  // Alpha values for vibrant mode (bold, saturated colors)
+  const vibrantAlphas = {
+    headerBg: isLightTheme ? 0.5 : 0.6,
+    bodyBg: isLightTheme ? 0.15 : 0.25,
+    border: isLightTheme ? 0.7 : 0.8,
+  };
+
+  const alphas = mode === "vibrant" ? vibrantAlphas : subtleAlphas;
+
   return {
-    headerBg: hexToRgba(color, isLightTheme ? 0.16 : 0.24),
-    bodyBg: hexToRgba(color, isLightTheme ? 0.06 : 0.12),
-    border: hexToRgba(color, isLightTheme ? 0.35 : 0.45),
-    rail: color,
+    headerBg: hexToRgba(color, alphas.headerBg),
+    bodyBg: hexToRgba(color, alphas.bodyBg),
+    border: hexToRgba(color, alphas.border),
+    rail: color, // Always solid
     textColor: isDark(color) ? "#ffffff" : "#000000",
+  };
+}
+
+/**
+ * Get card color styles based on theme, style mode, and intensity
+ */
+export function getCardColorStyles(
+  color: string | null | undefined,
+  theme: Theme,
+  style: CardColorStyle = "border",
+  intensity: CardColorIntensity = "subtle"
+) {
+  if (!color) {
+    // No color set - use default card styling
+    return {
+      background: "var(--bg-surface)",
+      borderLeft: "4px solid var(--border)",
+      color: "var(--text-primary)",
+    };
+  }
+
+  // Border-only mode (current default behavior)
+  if (style === "border") {
+    return {
+      background: "var(--bg-surface)",
+      borderLeft: `4px solid ${color}`,
+      color: "var(--text-primary)",
+    };
+  }
+
+  // Filled mode with dynamic background
+  const isLightTheme = theme === "light";
+
+  // Alpha values for filled card backgrounds
+  // Cards are primary content, so even vibrant is less intense than column headers
+  const subtleAlphas = {
+    bg: isLightTheme ? 0.12 : 0.18,
+  };
+
+  const vibrantAlphas = {
+    bg: isLightTheme ? 0.35 : 0.45,
+  };
+
+  const alpha = intensity === "vibrant" ? vibrantAlphas.bg : subtleAlphas.bg;
+
+  return {
+    background: hexToRgba(color, alpha),
+    borderLeft: `4px solid ${color}`,
+    color: isDark(color) ? "#ffffff" : "#000000", // Auto-contrast text
   };
 }

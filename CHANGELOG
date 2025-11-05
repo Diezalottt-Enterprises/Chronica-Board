@@ -4,6 +4,52 @@ All notable changes to Chronica will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.1.0-alpha.9] - 2025-11-05
+
+Design token system implementation aligning with Stack Junkie Style Guide. Introduced centralized CSS custom properties for colors, spacing, typography, shadows, and borders. Replaced hardcoded color names with semantic tokens (primary, accent, success, warning, danger, info) and added card styling options.
+
+### Added
+- Design token system with CSS custom properties
+  - Base tokens: spacing, typography, shadows, borders (src/styles/tokens/base.css)
+  - Light theme tokens (src/styles/tokens/light.css)
+  - Dark theme tokens (src/styles/tokens/dark.css)
+  - Central import file (src/styles/index.css)
+- Card color styling options
+  - colorStyle field: "border" (default) or "filled" background
+  - colorIntensity field: "subtle" or "vibrant" for filled backgrounds
+- Card style toggle buttons in CardEditor (Border/Filled, Subtle/Vibrant)
+- Semantic color palette aligned with Stack Junkie Style Guide v0.3
+  - primary (blue), accent (light blue), success (green)
+  - warning (amber), danger (red), info (cyan)
+- Legacy color name mapping for backward compatibility (cyan→primary, mint→success, etc.)
+- Column color mode configuration (subtle/vibrant) in Config type
+- Theme utility functions: getCardColorStyles for dynamic card styling
+
+### Changed
+- Replaced hardcoded color names (mint, cyan, salmon, lavender, slate) with semantic tokens
+- App.css now imports design tokens before component styles
+- All CSS color references updated to use token variables
+  - --bg-surface, --bg-elevated, --bg-elevated-2 for backgrounds
+  - --color-primary, --color-accent, etc. for UI colors
+  - --text-primary, --text-secondary for text
+  - --border for border colors
+  - --shadow-sm, --shadow-md, --shadow-lg, --shadow-xl for shadows
+- Font sizes now reference token base values scaled by --ui-scale
+- Typography uses --font-body from design tokens
+- Card component now accepts theme prop and uses getCardColorStyles utility
+- KanbanBoard passes theme to Card components
+- PREDEFINED_COLORS constant updated with new semantic color hex values
+- CardSchema and Card type extended with colorStyle and colorIntensity fields
+
+### Technical
+- Added LEGACY_COLOR_MAP for backward compatibility with old color names
+- Added ColumnColorMode type ("subtle" | "vibrant")
+- Added getCardColorStyles function in theme.ts for dynamic card styling
+- Config interface extended with optional columnColorMode field (default: "subtle")
+- configStore gained setColumnColorMode action
+- CSS custom property architecture: 3-layer system (base → theme → app-specific)
+- Design tokens follow BEM-inspired naming convention
+
 ## [0.1.0-alpha.8] - 2025-11-04
 
 Multi-board export and AI-optimized JSON format implementation. This release adds comprehensive export capabilities with a new modal interface and AI-friendly nested JSON structure for enhanced Claude Code integration.

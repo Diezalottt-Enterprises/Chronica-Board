@@ -28,7 +28,8 @@ import { ImportModal } from "./ui/ImportModal";
 import { ExportModal } from "./ui/ExportModal";
 import type { Card, ColumnKey } from "./state/types";
 import { detectInitialTheme, type Theme } from "./utils/theme";
-import "./App.css";
+import "./styles/index.css"; // Design tokens (must load first)
+import "./App.css"; // Component styles
 
 function App() {
   const { boards, activeBoard, setBoards, createBoard } = useBoardStore();

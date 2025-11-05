@@ -1,0 +1,77 @@
+/* Stack Junkie Universal Style Guide v0.3 - Light Theme */
+/* Light theme semantic color tokens */
+
+:root {
+  /* ========================================
+     FRAMEWORK NEUTRALS - Ink & Mist
+     ======================================== */
+  --ink-900: #0b0c10;
+  --ink-700: #1f232b;
+  --ink-500: #5b6575;
+  --mist-100: #f5f7fa;
+  --mist-200: #edf1f5;
+  --mist-400: #cbd4df;
+  --white: #ffffff;
+
+  /* ========================================
+     SEMANTIC MAPPING - Text
+     ======================================== */
+  --text-primary: var(--ink-900);
+  --text-secondary: var(--ink-700);
+  --text-muted: var(--ink-500);
+
+  /* ========================================
+     SEMANTIC MAPPING - Backgrounds
+     ======================================== */
+  --bg-surface: var(--white);
+  --bg-elevated: var(--mist-100);
+  --bg-elevated-2: var(--mist-200);
+
+  /* ========================================
+     SEMANTIC MAPPING - Borders
+     ======================================== */
+  --border: var(--mist-400);
+
+  /* ========================================
+     SEMANTIC COLORS - Actions & States
+     ======================================== */
+  --color-primary: #2563eb;
+  --color-accent: #3b82f6;
+  --color-success: #16a34a;
+  --color-warning: #d97706;
+  --color-danger: #dc2626;
+  --color-info: #0284c7;
+
+  /* ========================================
+     INTERACTIVE STATES
+     ======================================== */
+  --link: var(--color-primary);
+  --link-hover: var(--color-accent);
+  --ring: rgba(37, 99, 235, 0.45);
+
+  /* ========================================
+     SHADOWS - Light theme opacity
+     ======================================== */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+
+  /* ========================================
+     OVERLAY & EFFECTS
+     ======================================== */
+  --overlay: rgba(10, 11, 13, 0.35);
+
+  /* ========================================
+     SELECTION
+     ======================================== */
+  --selection-bg: rgba(37, 99, 235, 0.18);
+  --selection-text: var(--text-primary);
+
+  /* ========================================
+     GRADIENTS
+     ======================================== */
+  --gradient-start: var(--color-primary);
+  --gradient-end: var(--color-accent);
+}
